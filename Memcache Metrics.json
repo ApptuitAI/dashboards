@@ -1,0 +1,4672 @@
+{
+  "__inputs": [
+    {
+      "name": "${DS_APPTUIT}",
+      "label": "Apptuit Prod Query Engine - PG",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "apptuit",
+      "pluginName": "Apptuit"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "apptuit",
+      "name": "Apptuit",
+      "version": "1.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.4.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_APPTUIT}",
+          "format": "none",
+          "gQuery": {
+            "aTime": 1524202938981,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 63,
+                      "origStart": 0,
+                      "targetEnd": 63,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 78,
+                      "origStart": 64,
+                      "targetEnd": 66,
+                      "targetStart": 63,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 93,
+                      "origStart": 78,
+                      "targetEnd": 81,
+                      "targetStart": 67,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "memcache_connections=fetch('memcached.connections').downsample('[[__interval]]', 'max').sum();"
+              }
+            ],
+            "timeSeries": []
+          },
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 2,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "none",
+              "gDSAgg": "last",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.curr_connections",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 63,
+                      "origStart": 0,
+                      "targetEnd": 63,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 78,
+                      "origStart": 64,
+                      "targetEnd": 66,
+                      "targetStart": 63,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 93,
+                      "origStart": 78,
+                      "targetEnd": 81,
+                      "targetStart": 67,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "memcache_connections=fetch('memcached.connections').downsample('[[__interval]]', 'max').sum();"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": "",
+          "title": "Connections",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_APPTUIT}",
+          "format": "none",
+          "gQuery": {
+            "aTime": 1524202938981,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 59,
+                      "origStart": 0,
+                      "targetEnd": 59,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 74,
+                      "origStart": 60,
+                      "targetEnd": 62,
+                      "targetStart": 59,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 89,
+                      "origStart": 74,
+                      "targetEnd": 77,
+                      "targetStart": 63,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "memcache_current_items=fetch('memcached.items').downsample('[[__interval]]', 'max').sum();"
+              }
+            ],
+            "timeSeries": []
+          },
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 3,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "none",
+              "gDSAgg": "last",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.curr_items",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 59,
+                      "origStart": 0,
+                      "targetEnd": 59,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 74,
+                      "origStart": 60,
+                      "targetEnd": 62,
+                      "targetStart": 59,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 89,
+                      "origStart": 74,
+                      "targetEnd": 77,
+                      "targetStart": 63,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "memcache_current_items=fetch('memcached.items').downsample('[[__interval]]', 'max').sum();"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": "",
+          "title": "# Items",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_APPTUIT}",
+          "format": "percentunit",
+          "gQuery": {
+            "aTime": 1524202938982,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 77,
+                      "origStart": 0,
+                      "targetEnd": 77,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 92,
+                      "origStart": 78,
+                      "targetEnd": 80,
+                      "targetStart": 77,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 124,
+                      "origStart": 92,
+                      "targetEnd": 112,
+                      "targetStart": 81,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 81,
+                      "origStart": 0,
+                      "targetEnd": 81,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 96,
+                      "origStart": 82,
+                      "targetEnd": 84,
+                      "targetStart": 81,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 128,
+                      "origStart": 96,
+                      "targetEnd": 116,
+                      "targetStart": 85,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 71,
+                      "origStart": 0,
+                      "targetEnd": 71,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 80,
+                      "origStart": 0,
+                      "targetEnd": 80,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 26,
+                      "origStart": 0,
+                      "targetEnd": 26,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 5,
+                "output": true,
+                "query": "memcache_hits=fetch('memcached.commands.hits.count', rate='true').downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_misses=fetch('memcached.commands.misses.count', rate='true').downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_total_ops=memcache_hits.add(memcache_misses, ignore='command');\nmemcache_hit_ratio=memcache_hits.div(memcache_total_ops, ignore='command').avg();\noutput(memcache_hit_ratio);"
+              }
+            ],
+            "timeSeries": []
+          },
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 6,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [
+                {
+                  "errors": [],
+                  "expr": "(a+b+c+d+e)/(a+b+c+d+e+f+g+i+j)",
+                  "id": "K",
+                  "join": {
+                    "operator": "union",
+                    "useAggTags": true,
+                    "useQueryTags": false
+                  },
+                  "output": true
+                }
+              ],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "last",
+              "gDSAgg": "last",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.cas_hits",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "B",
+                  "metric": "memcache.decr_hits",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "C",
+                  "metric": "memcache.incr_hits",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "D",
+                  "metric": "memcache.get_hits",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "E",
+                  "metric": "memcache.delete_hits",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "F",
+                  "metric": "memcache.cas_misses",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "G",
+                  "metric": "memcache.decr_misses",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "H",
+                  "metric": "memcache.incr_misses",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "I",
+                  "metric": "memcache.get_misses",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "J",
+                  "metric": "memcache.delete_misses",
+                  "output": false
+                }
+              ]
+            }
+          },
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 77,
+                      "origStart": 0,
+                      "targetEnd": 77,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 92,
+                      "origStart": 78,
+                      "targetEnd": 80,
+                      "targetStart": 77,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 124,
+                      "origStart": 92,
+                      "targetEnd": 112,
+                      "targetStart": 81,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 81,
+                      "origStart": 0,
+                      "targetEnd": 81,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 96,
+                      "origStart": 82,
+                      "targetEnd": 84,
+                      "targetStart": 81,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 128,
+                      "origStart": 96,
+                      "targetEnd": 116,
+                      "targetStart": 85,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 71,
+                      "origStart": 0,
+                      "targetEnd": 71,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 80,
+                      "origStart": 0,
+                      "targetEnd": 80,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 26,
+                      "origStart": 0,
+                      "targetEnd": 26,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 5,
+                "output": true,
+                "query": "memcache_hits=fetch('memcached.commands.hits.count', rate='true').downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_misses=fetch('memcached.commands.misses.count', rate='true').downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_total_ops=memcache_hits.add(memcache_misses, ignore='command');\nmemcache_hit_ratio=memcache_hits.div(memcache_total_ops, ignore='command').avg();\noutput(memcache_hit_ratio);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": "",
+          "title": "Hit Ratio",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_APPTUIT}",
+          "format": "percentunit",
+          "gQuery": {
+            "aTime": 1524202938982,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 99,
+                      "origStart": 0,
+                      "targetEnd": 99,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 114,
+                      "origStart": 100,
+                      "targetEnd": 102,
+                      "targetStart": 99,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 129,
+                      "origStart": 114,
+                      "targetEnd": 117,
+                      "targetStart": 103,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 99,
+                      "origStart": 0,
+                      "targetEnd": 99,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 114,
+                      "origStart": 100,
+                      "targetEnd": 102,
+                      "targetStart": 99,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 129,
+                      "origStart": 114,
+                      "targetEnd": 117,
+                      "targetStart": 103,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 69,
+                      "origStart": 0,
+                      "targetEnd": 69,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 74,
+                      "origStart": 0,
+                      "targetEnd": 74,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 4,
+                "output": true,
+                "query": "memcache_gets=fetch('memcached.commands.count', rate='true').tag_filter('command==get').downsample('[[__interval]]', 'max').sum();\nmemcache_sets=fetch('memcached.commands.count', rate='true').tag_filter('command==set').downsample('[[__interval]]', 'max').sum();\nmemcache_total_ops=memcache_gets.add(memcache_sets, ignore='command');\nmemcache_get_ratio=memcache_gets.div(memcache_total_ops, ignore='command');"
+              }
+            ],
+            "timeSeries": []
+          },
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 4,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [
+                {
+                  "errors": [],
+                  "expr": "b/(a+b)",
+                  "id": "C",
+                  "join": {
+                    "operator": "union",
+                    "useAggTags": true,
+                    "useQueryTags": false
+                  },
+                  "output": true
+                }
+              ],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "last",
+              "gDSAgg": "last",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.cmd_set",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "B",
+                  "metric": "memcache.cmd_get",
+                  "output": false
+                }
+              ]
+            }
+          },
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 99,
+                      "origStart": 0,
+                      "targetEnd": 99,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 114,
+                      "origStart": 100,
+                      "targetEnd": 102,
+                      "targetStart": 99,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 129,
+                      "origStart": 114,
+                      "targetEnd": 117,
+                      "targetStart": 103,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 99,
+                      "origStart": 0,
+                      "targetEnd": 99,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 114,
+                      "origStart": 100,
+                      "targetEnd": 102,
+                      "targetStart": 99,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 129,
+                      "origStart": 114,
+                      "targetEnd": 117,
+                      "targetStart": 103,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 69,
+                      "origStart": 0,
+                      "targetEnd": 69,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 74,
+                      "origStart": 0,
+                      "targetEnd": 74,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 4,
+                "output": true,
+                "query": "memcache_gets=fetch('memcached.commands.count', rate='true').tag_filter('command==get').downsample('[[__interval]]', 'max').sum();\nmemcache_sets=fetch('memcached.commands.count', rate='true').tag_filter('command==set').downsample('[[__interval]]', 'max').sum();\nmemcache_total_ops=memcache_gets.add(memcache_sets, ignore='command');\nmemcache_get_ratio=memcache_gets.div(memcache_total_ops, ignore='command');"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": "",
+          "title": "Get/Set Ratio",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_APPTUIT}",
+          "format": "percentunit",
+          "gQuery": {
+            "aTime": 1524202938982,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 63,
+                      "origStart": 0,
+                      "targetEnd": 63,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 78,
+                      "origStart": 64,
+                      "targetEnd": 66,
+                      "targetStart": 63,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 93,
+                      "origStart": 78,
+                      "targetEnd": 81,
+                      "targetStart": 67,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 70,
+                      "origStart": 0,
+                      "targetEnd": 70,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 85,
+                      "origStart": 71,
+                      "targetEnd": 73,
+                      "targetStart": 70,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 100,
+                      "origStart": 85,
+                      "targetEnd": 88,
+                      "targetStart": 74,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 83,
+                      "origStart": 0,
+                      "targetEnd": 83,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 3,
+                "output": true,
+                "query": "memcache_bytes_used=fetch('memcached.memory.bytes').downsample('[[__interval]]', 'max').sum();\nmemcache_bytes_limit=fetch('memcached.memory.limit.bytes').downsample('[[__interval]]', 'max').sum();\nmemcache_fill_percent=memcache_bytes_used.div(memcache_bytes_limit, ignore='state');"
+              }
+            ],
+            "timeSeries": []
+          },
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 9,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [
+                {
+                  "errors": [],
+                  "expr": "a/b",
+                  "id": "C",
+                  "join": {
+                    "operator": "union",
+                    "useAggTags": true,
+                    "useQueryTags": false
+                  },
+                  "output": true
+                }
+              ],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "last",
+              "gDSAgg": "last",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.bytes",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "B",
+                  "metric": "memcache.limit_maxbytes",
+                  "output": false
+                }
+              ]
+            }
+          },
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 63,
+                      "origStart": 0,
+                      "targetEnd": 63,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 78,
+                      "origStart": 64,
+                      "targetEnd": 66,
+                      "targetStart": 63,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 93,
+                      "origStart": 78,
+                      "targetEnd": 81,
+                      "targetStart": 67,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 70,
+                      "origStart": 0,
+                      "targetEnd": 70,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 85,
+                      "origStart": 71,
+                      "targetEnd": 73,
+                      "targetStart": 70,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 100,
+                      "origStart": 85,
+                      "targetEnd": 88,
+                      "targetStart": 74,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 83,
+                      "origStart": 0,
+                      "targetEnd": 83,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 3,
+                "output": true,
+                "query": "memcache_bytes_used=fetch('memcached.memory.bytes').downsample('[[__interval]]', 'max').sum();\nmemcache_bytes_limit=fetch('memcached.memory.limit.bytes').downsample('[[__interval]]', 'max').sum();\nmemcache_fill_percent=memcache_bytes_used.div(memcache_bytes_limit, ignore='state');"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": "",
+          "title": "Fill %",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_APPTUIT}",
+          "format": "none",
+          "gQuery": {
+            "aTime": 1524202938982,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 78,
+                      "origStart": 0,
+                      "targetEnd": 78,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 93,
+                      "origStart": 79,
+                      "targetEnd": 81,
+                      "targetStart": 78,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 108,
+                      "origStart": 93,
+                      "targetEnd": 96,
+                      "targetStart": 82,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "memcache_evictions=fetch('memcached.evictions.count', rate='true').downsample('[[__interval]]', 'max').sum();"
+              }
+            ],
+            "timeSeries": []
+          },
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 11,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "last",
+              "gDSAgg": "last",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "gRate": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.evictions",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 78,
+                      "origStart": 0,
+                      "targetEnd": 78,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 93,
+                      "origStart": 79,
+                      "targetEnd": 81,
+                      "targetStart": 78,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 12,
+                      "origEnd": 108,
+                      "origStart": 93,
+                      "targetEnd": 96,
+                      "targetStart": 82,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "memcache_evictions=fetch('memcached.evictions.count', rate='true').downsample('[[__interval]]', 'max').sum();"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": "",
+          "title": "Eviction Rate",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524202938982,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "alias": "memcache_hit_ratio:hit ratio",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 64,
+                      "origStart": 0,
+                      "targetEnd": 64,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 79,
+                      "origStart": 65,
+                      "targetEnd": 66,
+                      "targetStart": 64,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 111,
+                      "origStart": 79,
+                      "targetEnd": 98,
+                      "targetStart": 67,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 68,
+                      "origStart": 0,
+                      "targetEnd": 68,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 83,
+                      "origStart": 69,
+                      "targetEnd": 70,
+                      "targetStart": 68,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 115,
+                      "origStart": 83,
+                      "targetEnd": 102,
+                      "targetStart": 71,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 53,
+                      "origStart": 0,
+                      "targetEnd": 53,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 56,
+                      "origStart": 0,
+                      "targetEnd": 56,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 4,
+                "output": true,
+                "query": "memcache_hits=fetch('memcached.commands.hits.count').downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_misses=fetch('memcached.commands.misses.count').downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_total_ops=memcache_hits.add(memcache_misses);\nmemcache_hit_ratio=memcache_hits.div(memcache_total_ops);"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [
+                {
+                  "alias": "Hit Ratio",
+                  "errors": [],
+                  "expr": "(a+b+c+d+e)/(a+b+c+d+e+f+g+h+i+j)",
+                  "id": "K",
+                  "join": {
+                    "operator": "union",
+                    "useAggTags": true,
+                    "useQueryTags": false
+                  },
+                  "output": true
+                }
+              ],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "none",
+              "gDSAgg": "avg",
+              "gDSAutoDisable": true,
+              "gDSFill": "none",
+              "gNewCode": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.get_hits",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "B",
+                  "metric": "memcache.delete_hits",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "C",
+                  "metric": "memcache.decr_hits",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "D",
+                  "metric": "memcache.incr_hits",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "E",
+                  "metric": "memcache.cas_hits",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "F",
+                  "metric": "memcache.get_misses",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "G",
+                  "metric": "memcache.delete_misses",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "H",
+                  "metric": "memcache.decr_misses",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "I",
+                  "metric": "memcache.incr_misses",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "J",
+                  "metric": "memcache.cas_misses",
+                  "output": false
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "memcache_hit_ratio:hit ratio",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 64,
+                      "origStart": 0,
+                      "targetEnd": 64,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 79,
+                      "origStart": 65,
+                      "targetEnd": 66,
+                      "targetStart": 64,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 111,
+                      "origStart": 79,
+                      "targetEnd": 98,
+                      "targetStart": 67,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 68,
+                      "origStart": 0,
+                      "targetEnd": 68,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 83,
+                      "origStart": 69,
+                      "targetEnd": 70,
+                      "targetStart": 68,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 115,
+                      "origStart": 83,
+                      "targetEnd": 102,
+                      "targetStart": 71,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 53,
+                      "origStart": 0,
+                      "targetEnd": 53,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 56,
+                      "origStart": 0,
+                      "targetEnd": 56,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 4,
+                "output": true,
+                "query": "memcache_hits=fetch('memcached.commands.hits.count').downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_misses=fetch('memcached.commands.misses.count').downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_total_ops=memcache_hits.add(memcache_misses);\nmemcache_hit_ratio=memcache_hits.div(memcache_total_ops);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Hit Ratio",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524202938983,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 112,
+                      "origStart": 0,
+                      "targetEnd": 112,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 127,
+                      "origStart": 113,
+                      "targetEnd": 114,
+                      "targetStart": 112,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 142,
+                      "origStart": 127,
+                      "targetEnd": 129,
+                      "targetStart": 115,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 112,
+                      "origStart": 0,
+                      "targetEnd": 112,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 127,
+                      "origStart": 113,
+                      "targetEnd": 114,
+                      "targetStart": 112,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 142,
+                      "origStart": 127,
+                      "targetEnd": 129,
+                      "targetStart": 115,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 69,
+                      "origStart": 0,
+                      "targetEnd": 69,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 74,
+                      "origStart": 0,
+                      "targetEnd": 74,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 4,
+                "output": true,
+                "query": "memcache_gets=fetch('memcached.commands.count', align='30s', rate='true').tag_filter('command==get').downsample('[[__interval]]', 'max').sum();\nmemcache_sets=fetch('memcached.commands.count', align='30s', rate='true').tag_filter('command==set').downsample('[[__interval]]', 'max').sum();\nmemcache_total_ops=memcache_gets.add(memcache_sets, ignore='command');\nmemcache_get_ratio=memcache_gets.div(memcache_total_ops, ignore='command');"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "expressions": [
+                {
+                  "errors": [],
+                  "expr": "b/(a+b)",
+                  "id": "C",
+                  "join": {
+                    "operator": "union",
+                    "useAggTags": true,
+                    "useQueryTags": false
+                  },
+                  "output": true
+                }
+              ],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "sum",
+              "gDSAgg": "avg",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.cmd_set",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "B",
+                  "metric": "memcache.cmd_get",
+                  "output": false
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 112,
+                      "origStart": 0,
+                      "targetEnd": 112,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 127,
+                      "origStart": 113,
+                      "targetEnd": 114,
+                      "targetStart": 112,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 142,
+                      "origStart": 127,
+                      "targetEnd": 129,
+                      "targetStart": 115,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 112,
+                      "origStart": 0,
+                      "targetEnd": 112,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 127,
+                      "origStart": 113,
+                      "targetEnd": 114,
+                      "targetStart": 112,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 142,
+                      "origStart": 127,
+                      "targetEnd": 129,
+                      "targetStart": 115,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 69,
+                      "origStart": 0,
+                      "targetEnd": 69,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 74,
+                      "origStart": 0,
+                      "targetEnd": 74,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 4,
+                "output": true,
+                "query": "memcache_gets=fetch('memcached.commands.count', align='30s', rate='true').tag_filter('command==get').downsample('[[__interval]]', 'max').sum();\nmemcache_sets=fetch('memcached.commands.count', align='30s', rate='true').tag_filter('command==set').downsample('[[__interval]]', 'max').sum();\nmemcache_total_ops=memcache_gets.add(memcache_sets, ignore='command');\nmemcache_get_ratio=memcache_gets.div(memcache_total_ops, ignore='command');"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Get/Set Ratio",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {
+            "Items in memory": "#806EB7",
+            "Limit": "#F4D598"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524202938983,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "alias": "memcache_fill_percent:fill %;memcache_current_items:Items in memory",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 63,
+                      "origStart": 0,
+                      "targetEnd": 63,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 78,
+                      "origStart": 64,
+                      "targetEnd": 65,
+                      "targetStart": 63,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 93,
+                      "origStart": 78,
+                      "targetEnd": 80,
+                      "targetStart": 66,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 70,
+                      "origStart": 0,
+                      "targetEnd": 70,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 85,
+                      "origStart": 71,
+                      "targetEnd": 72,
+                      "targetStart": 70,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 100,
+                      "origStart": 85,
+                      "targetEnd": 87,
+                      "targetStart": 73,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 59,
+                      "origStart": 0,
+                      "targetEnd": 59,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 74,
+                      "origStart": 60,
+                      "targetEnd": 61,
+                      "targetStart": 59,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 89,
+                      "origStart": 74,
+                      "targetEnd": 76,
+                      "targetStart": 62,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 83,
+                      "origStart": 0,
+                      "targetEnd": 83,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 53,
+                      "origStart": 0,
+                      "targetEnd": 53,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 5,
+                "output": true,
+                "query": "memcache_bytes_used=fetch('memcached.memory.bytes').downsample('[[__interval]]', 'avg').sum();\nmemcache_bytes_limit=fetch('memcached.memory.limit.bytes').downsample('[[__interval]]', 'avg').sum();\nmemcache_current_items=fetch('memcached.items').downsample('[[__interval]]', 'avg').sum();\nmemcache_fill_percent=memcache_bytes_used.div(memcache_bytes_limit, ignore='state');\noutput(memcache_fill_percent, memcache_current_items);"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 7,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "expressions": [
+                {
+                  "alias": "Fill %",
+                  "errors": [],
+                  "expr": "a/b",
+                  "id": "D",
+                  "join": {
+                    "operator": "union",
+                    "useAggTags": true,
+                    "useQueryTags": false
+                  },
+                  "output": true
+                }
+              ],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "sum",
+              "gDSAgg": "avg",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "alias": "In Use",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.bytes",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "alias": "Limit",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "B",
+                  "metric": "memcache.limit_maxbytes",
+                  "output": false
+                },
+                {
+                  "agg": "global default",
+                  "alias": "Items in memory",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "C",
+                  "metric": "memcache.curr_items",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "Items in memory",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "memcache_fill_percent:fill %;memcache_current_items:Items in memory",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 63,
+                      "origStart": 0,
+                      "targetEnd": 63,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 78,
+                      "origStart": 64,
+                      "targetEnd": 65,
+                      "targetStart": 63,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 93,
+                      "origStart": 78,
+                      "targetEnd": 80,
+                      "targetStart": 66,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 70,
+                      "origStart": 0,
+                      "targetEnd": 70,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 85,
+                      "origStart": 71,
+                      "targetEnd": 72,
+                      "targetStart": 70,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 100,
+                      "origStart": 85,
+                      "targetEnd": 87,
+                      "targetStart": 73,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 59,
+                      "origStart": 0,
+                      "targetEnd": 59,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 74,
+                      "origStart": 60,
+                      "targetEnd": 61,
+                      "targetStart": 59,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 89,
+                      "origStart": 74,
+                      "targetEnd": 76,
+                      "targetStart": 62,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 83,
+                      "origStart": 0,
+                      "targetEnd": 83,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 53,
+                      "origStart": 0,
+                      "targetEnd": 53,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 5,
+                "output": true,
+                "query": "memcache_bytes_used=fetch('memcached.memory.bytes').downsample('[[__interval]]', 'avg').sum();\nmemcache_bytes_limit=fetch('memcached.memory.limit.bytes').downsample('[[__interval]]', 'avg').sum();\nmemcache_current_items=fetch('memcached.items').downsample('[[__interval]]', 'avg').sum();\nmemcache_fill_percent=memcache_bytes_used.div(memcache_bytes_limit, ignore='state');\noutput(memcache_fill_percent, memcache_current_items);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524202938983,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "alias": "memcache_bytes_in:$t(host)-in;memcache_bytes_out:$t(host)-out",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 122,
+                      "origStart": 0,
+                      "targetEnd": 122,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 137,
+                      "origStart": 123,
+                      "targetEnd": 124,
+                      "targetStart": 122,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 146,
+                      "origStart": 137,
+                      "targetEnd": 133,
+                      "targetStart": 125,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 124,
+                      "origStart": 0,
+                      "targetEnd": 124,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 139,
+                      "origStart": 125,
+                      "targetEnd": 126,
+                      "targetStart": 124,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 148,
+                      "origStart": 139,
+                      "targetEnd": 135,
+                      "targetStart": 127,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 6,
+                      "origStart": 0,
+                      "targetEnd": 6,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 47,
+                      "origStart": 0,
+                      "targetEnd": 47,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 45,
+                      "origStart": 0,
+                      "targetEnd": 45,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 5,
+                "output": true,
+                "query": "memcache_bytes_in=fetch('memcached.network.bytes.count', align='30s', rate='true').tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmemcache_bytes_out=fetch('memcached.network.bytes.count', align='30s', rate='true').tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmemcache_bytes_out=zero.sub(memcache_bytes_out);\noutput(memcache_bytes_in, memcache_bytes_out);"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 8,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "none",
+              "gDSAgg": "avg",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "gRate": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "alias": "in",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.bytes_read",
+                  "output": true
+                },
+                {
+                  "agg": "global default",
+                  "alias": "out",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "B",
+                  "metric": "memcache.bytes_written",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "memcache_bytes_in:$t(host)-in;memcache_bytes_out:$t(host)-out",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 122,
+                      "origStart": 0,
+                      "targetEnd": 122,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 137,
+                      "origStart": 123,
+                      "targetEnd": 124,
+                      "targetStart": 122,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 146,
+                      "origStart": 137,
+                      "targetEnd": 133,
+                      "targetStart": 125,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 124,
+                      "origStart": 0,
+                      "targetEnd": 124,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 139,
+                      "origStart": 125,
+                      "targetEnd": 126,
+                      "targetStart": 124,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 148,
+                      "origStart": 139,
+                      "targetEnd": 135,
+                      "targetStart": 127,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 6,
+                      "origStart": 0,
+                      "targetEnd": 6,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 47,
+                      "origStart": 0,
+                      "targetEnd": 47,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 45,
+                      "origStart": 0,
+                      "targetEnd": 45,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 5,
+                "output": true,
+                "query": "memcache_bytes_in=fetch('memcached.network.bytes.count', align='30s', rate='true').tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmemcache_bytes_out=fetch('memcached.network.bytes.count', align='30s', rate='true').tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmemcache_bytes_out=zero.sub(memcache_bytes_out);\noutput(memcache_bytes_in, memcache_bytes_out);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network IO",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524202938984,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 78,
+                      "origStart": 0,
+                      "targetEnd": 78,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 93,
+                      "origStart": 79,
+                      "targetEnd": 80,
+                      "targetStart": 78,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 108,
+                      "origStart": 93,
+                      "targetEnd": 95,
+                      "targetStart": 81,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "memcache_evictions=fetch('memcached.evictions.count', rate='true').downsample('[[__interval]]', 'max').sum();"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 10,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "none",
+              "gDSAgg": "max",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "gRate": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.evictions",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 78,
+                      "origStart": 0,
+                      "targetEnd": 78,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 93,
+                      "origStart": 79,
+                      "targetEnd": 80,
+                      "targetStart": 78,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 108,
+                      "origStart": 93,
+                      "targetEnd": 95,
+                      "targetStart": 81,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "memcache_evictions=fetch('memcached.evictions.count', rate='true').downsample('[[__interval]]', 'max').sum();"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Eviction Rate",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {
+            "yields": "#967302"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524202938984,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "alias": "memcache_curr_connections:$t(host)-connections;memcache_conn_errors:$t(host)-$t(state)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 68,
+                      "origStart": 0,
+                      "targetEnd": 68,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 83,
+                      "origStart": 69,
+                      "targetEnd": 70,
+                      "targetStart": 68,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 92,
+                      "origStart": 83,
+                      "targetEnd": 79,
+                      "targetStart": 71,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 75,
+                      "origStart": 0,
+                      "targetEnd": 75,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 90,
+                      "origStart": 76,
+                      "targetEnd": 77,
+                      "targetStart": 75,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 99,
+                      "origStart": 90,
+                      "targetEnd": 86,
+                      "targetStart": 78,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 55,
+                      "origStart": 0,
+                      "targetEnd": 55,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 3,
+                "output": true,
+                "query": "memcache_curr_connections=fetch('memcached.connections').downsample('[[__interval]]', 'max');\nmemcache_conn_errors=fetch('memcached.connections.error.count').downsample('[[__interval]]', 'max');\noutput(memcache_curr_connections, memcache_conn_errors);"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 12,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "none",
+              "gDSAgg": "max",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "gRate": false,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "alias": "connections",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.curr_connections",
+                  "output": true
+                },
+                {
+                  "agg": "global default",
+                  "alias": "listen_disabled",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "B",
+                  "metric": "memcache.listen_disabled_num",
+                  "output": true
+                },
+                {
+                  "agg": "global default",
+                  "alias": "yields",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "C",
+                  "metric": "memcache.conn_yields",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "memcache.listen_disabled_num{dataset: default, host: centos6}",
+              "yaxis": 2
+            },
+            {
+              "alias": "memcache.conn_yields{dataset: default, host: centos6}",
+              "yaxis": 2
+            },
+            {
+              "alias": "listen_disabled",
+              "yaxis": 2
+            },
+            {
+              "alias": "yields",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "memcache_curr_connections:$t(host)-connections;memcache_conn_errors:$t(host)-$t(state)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 68,
+                      "origStart": 0,
+                      "targetEnd": 68,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 83,
+                      "origStart": 69,
+                      "targetEnd": 70,
+                      "targetStart": 68,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 92,
+                      "origStart": 83,
+                      "targetEnd": 79,
+                      "targetStart": 71,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 75,
+                      "origStart": 0,
+                      "targetEnd": 75,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 90,
+                      "origStart": 76,
+                      "targetEnd": 77,
+                      "targetStart": 75,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 99,
+                      "origStart": 90,
+                      "targetEnd": 86,
+                      "targetStart": 78,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 55,
+                      "origStart": 0,
+                      "targetEnd": 55,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 3,
+                "output": true,
+                "query": "memcache_curr_connections=fetch('memcached.connections').downsample('[[__interval]]', 'max');\nmemcache_conn_errors=fetch('memcached.connections.error.count').downsample('[[__interval]]', 'max');\noutput(memcache_curr_connections, memcache_conn_errors);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Connections",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {
+            "system": "#EF843C",
+            "user": "#7EB26D"
+          },
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524202938984,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "alias": "memcache_cpu_time:$t(host)-$t(stat)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 79,
+                      "origStart": 0,
+                      "targetEnd": 79,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 94,
+                      "origStart": 80,
+                      "targetEnd": 81,
+                      "targetStart": 79,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 123,
+                      "origStart": 94,
+                      "targetEnd": 110,
+                      "targetStart": 82,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "memcache_cpu_time=fetch('memcached.cpu.seconds.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='host,stat');"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 13,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "none",
+              "gDSAgg": "avg",
+              "gDSFill": "none",
+              "gNewCode": true,
+              "gRate": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "alias": "system",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "A",
+                  "metric": "memcache.rusage_system",
+                  "output": true
+                },
+                {
+                  "agg": "global default",
+                  "alias": "user",
+                  "errors": [],
+                  "fill": "nan",
+                  "filters": [],
+                  "id": "B",
+                  "metric": "memcache.rusage_user",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "memcache_cpu_time:$t(host)-$t(stat)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 79,
+                      "origStart": 0,
+                      "targetEnd": 79,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 94,
+                      "origStart": 80,
+                      "targetEnd": 81,
+                      "targetStart": 79,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 123,
+                      "origStart": 94,
+                      "targetEnd": 110,
+                      "targetStart": 82,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "memcache_cpu_time=fetch('memcached.cpu.seconds.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='host,stat');"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memcached CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2017-12-06T11:30:00.000Z",
+    "to": "2017-12-06T12:30:00.000Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Memcache Metrics",
+  "version": 7
+}

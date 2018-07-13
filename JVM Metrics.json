@@ -1,0 +1,2811 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_APPTUIT",
+      "label": "Apptuit",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "apptuit",
+      "pluginName": "Apptuit"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "apptuit",
+      "name": "Apptuit",
+      "version": "1.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.4.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": 278,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852763,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [
+              {
+                "alias": "cpu_pct:$t(cloud_service)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 99,
+                      "origStart": 0,
+                      "targetEnd": 99,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 114,
+                      "origStart": 100,
+                      "targetEnd": 101,
+                      "targetStart": 99,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 124,
+                      "origStart": 114,
+                      "targetEnd": 111,
+                      "targetStart": 102,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 17,
+                      "origStart": 0,
+                      "targetEnd": 17,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 45,
+                      "origStart": 0,
+                      "targetEnd": 45,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 15,
+                      "origStart": 0,
+                      "targetEnd": 15,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "output": true,
+                "query": "A=fetch('jvm.process.cpu.nanos', rate='counter', dropcounterresets='true', align=\"15s\").downsample('[[__interval]]', 'p95');\r\nnanos=1000000000;\r\ncpu_pct=A.div(nanos).max(by='cloud_service');\r\noutput(cpu_pct);"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 1,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "cpu_pct:$t(cloud_service)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 99,
+                      "origStart": 0,
+                      "targetEnd": 99,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 114,
+                      "origStart": 100,
+                      "targetEnd": 101,
+                      "targetStart": 99,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 124,
+                      "origStart": 114,
+                      "targetEnd": 111,
+                      "targetStart": 102,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 17,
+                      "origStart": 0,
+                      "targetEnd": 17,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 45,
+                      "origStart": 0,
+                      "targetEnd": 45,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 15,
+                      "origStart": 0,
+                      "targetEnd": 15,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "output": true,
+                "query": "A=fetch('jvm.process.cpu.nanos', rate='counter', dropcounterresets='true', align=\"15s\").downsample('[[__interval]]', 'p95');\r\nnanos=1000000000;\r\ncpu_pct=A.div(nanos).max(by='cloud_service');\r\noutput(cpu_pct);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Process CPU %",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852763,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [
+              {
+                "alias": "gc_pct:$t(cloud_service)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 96,
+                      "origStart": 0,
+                      "targetEnd": 96,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 111,
+                      "origStart": 97,
+                      "targetEnd": 98,
+                      "targetStart": 96,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 136,
+                      "origStart": 111,
+                      "targetEnd": 123,
+                      "targetStart": 99,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 7,
+                      "origStart": 0,
+                      "targetEnd": 7,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 42,
+                      "origStart": 0,
+                      "targetEnd": 42,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 14,
+                      "origStart": 0,
+                      "targetEnd": 14,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "output": true,
+                "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\").downsample('[[__interval]]', 'p95').sum(by=\"host\");\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 6,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 1,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "gc_pct:$t(cloud_service)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 96,
+                      "origStart": 0,
+                      "targetEnd": 96,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 111,
+                      "origStart": 97,
+                      "targetEnd": 98,
+                      "targetStart": 96,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 136,
+                      "origStart": 111,
+                      "targetEnd": 123,
+                      "targetStart": 99,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 7,
+                      "origStart": 0,
+                      "targetEnd": 7,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 42,
+                      "origStart": 0,
+                      "targetEnd": 42,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 14,
+                      "origStart": 0,
+                      "targetEnd": 14,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "output": true,
+                "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\").downsample('[[__interval]]', 'p95').sum(by=\"host\");\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "% GC Time",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "GC Time",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852763,
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "sum",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.thread.deadlock.count",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "sum",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.thread.deadlock.count",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Deadlocked Threads",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Deadlocked Threads",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852764,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.fd.open",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.fd.open",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Open FDs",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852764,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [
+              {
+                "alias": "C:$t(cloud_service)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 46,
+                      "origStart": 0,
+                      "targetEnd": 46,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 61,
+                      "origStart": 47,
+                      "targetEnd": 48,
+                      "targetStart": 46,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 69,
+                      "origStart": 61,
+                      "targetEnd": 56,
+                      "targetStart": 49,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 48,
+                      "origStart": 0,
+                      "targetEnd": 48,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 63,
+                      "origStart": 49,
+                      "targetEnd": 50,
+                      "targetStart": 48,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 71,
+                      "origStart": 63,
+                      "targetEnd": 58,
+                      "targetStart": 51,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 34,
+                      "origStart": 0,
+                      "targetEnd": 34,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "output": true,
+                "query": "A=fetch('jvm.classloading.loaded').downsample('[[__interval]]','avg');\nB=fetch('jvm.classloading.unloaded').downsample('[[__interval]]','avg');\nC=A.sub(B).max(by=\"cloud_service\");"
+              }
+            ],
+            "timeSeries": []
+          },
+          "height": "250px",
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": null,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "C:$t(cloud_service)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 46,
+                      "origStart": 0,
+                      "targetEnd": 46,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 61,
+                      "origStart": 47,
+                      "targetEnd": 48,
+                      "targetStart": 46,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 69,
+                      "origStart": 61,
+                      "targetEnd": 56,
+                      "targetStart": 49,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 48,
+                      "origStart": 0,
+                      "targetEnd": 48,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 63,
+                      "origStart": 49,
+                      "targetEnd": 50,
+                      "targetStart": 48,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 71,
+                      "origStart": 63,
+                      "targetEnd": 58,
+                      "targetStart": 51,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 34,
+                      "origStart": 0,
+                      "targetEnd": 34,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "output": true,
+                "query": "A=fetch('jvm.classloading.loaded').downsample('[[__interval]]','avg');\nB=fetch('jvm.classloading.unloaded').downsample('[[__interval]]','avg');\nC=A.sub(B).max(by=\"cloud_service\");"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Loaded Class Count",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852764,
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.thread.count",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 3,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.thread.count",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Thread Count",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Thread",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 230,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852764,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "heap",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.usage",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 7,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "heap",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.usage",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Heap Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852764,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "non_heap",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.used.bytes",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 8,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "non_heap",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.used.bytes",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Non Heap Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852764,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [
+              {
+                "alias": "gc_pct:$t(cloud_service)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 128,
+                      "origStart": 0,
+                      "targetEnd": 128,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 143,
+                      "origStart": 129,
+                      "targetEnd": 130,
+                      "targetStart": 128,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 153,
+                      "origStart": 143,
+                      "targetEnd": 140,
+                      "targetStart": 131,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 7,
+                      "origStart": 0,
+                      "targetEnd": 7,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 42,
+                      "origStart": 0,
+                      "targetEnd": 42,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 14,
+                      "origStart": 0,
+                      "targetEnd": 14,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "output": true,
+                "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\").tag_filter(\"generation==young\").downsample('[[__interval]]', 'p95');\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 9,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 1,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "gc_pct:$t(cloud_service)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 128,
+                      "origStart": 0,
+                      "targetEnd": 128,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 143,
+                      "origStart": 129,
+                      "targetEnd": 130,
+                      "targetStart": 128,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 153,
+                      "origStart": 143,
+                      "targetEnd": 140,
+                      "targetStart": 131,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 7,
+                      "origStart": 0,
+                      "targetEnd": 7,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 42,
+                      "origStart": 0,
+                      "targetEnd": 42,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 14,
+                      "origStart": 0,
+                      "targetEnd": 14,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "output": true,
+                "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\").tag_filter(\"generation==young\").downsample('[[__interval]]', 'p95');\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "% Young GC Time",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852764,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [
+              {
+                "alias": "gc_pct:$t(cloud_service)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 126,
+                      "origStart": 0,
+                      "targetEnd": 126,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 141,
+                      "origStart": 127,
+                      "targetEnd": 128,
+                      "targetStart": 126,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 151,
+                      "origStart": 141,
+                      "targetEnd": 138,
+                      "targetStart": 129,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 7,
+                      "origStart": 0,
+                      "targetEnd": 7,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 42,
+                      "origStart": 0,
+                      "targetEnd": 42,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 14,
+                      "origStart": 0,
+                      "targetEnd": 14,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "output": true,
+                "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\").tag_filter(\"generation==old\").downsample('[[__interval]]', 'p95');\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 10,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 1,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "gc_pct:$t(cloud_service)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 126,
+                      "origStart": 0,
+                      "targetEnd": 126,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 141,
+                      "origStart": 127,
+                      "targetEnd": 128,
+                      "targetStart": 126,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 151,
+                      "origStart": 141,
+                      "targetEnd": 138,
+                      "targetStart": 129,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 7,
+                      "origStart": 0,
+                      "targetEnd": 7,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 42,
+                      "origStart": 0,
+                      "targetEnd": 42,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ],
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 14,
+                      "origStart": 0,
+                      "targetEnd": 14,
+                      "targetStart": 1,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "output": true,
+                "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\").tag_filter(\"generation==old\").downsample('[[__interval]]', 'p95');\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "% Old GC Time",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852765,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "eden",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 15,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "eden",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Eden Usage (max)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852765,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "survivor",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 13,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "survivor",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Survivor Usage (max)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852765,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "old",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 14,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "old",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Old Usage (max)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852765,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "code_cache",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 16,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "code_cache",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Code Cache Usage (max)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852766,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "compressed_class_space",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 17,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "compressed_class_space",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Compressed Class Space Usage (max)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1526964852766,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "queries": [],
+            "timeSeries": [
+              {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "metaspace",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              }
+            ]
+          },
+          "id": 18,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "agg": "max",
+                "alias": "$t(cloud_service)",
+                "dsDisable": false,
+                "dsFn": "avg",
+                "errors": [],
+                "filters": [
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "metaspace",
+                    "matchCase": false,
+                    "tagk": "type",
+                    "type": "=="
+                  },
+                  {
+                    "enable": true,
+                    "errors": [],
+                    "filter": "*",
+                    "groupBy": true,
+                    "matchCase": false,
+                    "tagk": "cloud_service",
+                    "type": "=="
+                  }
+                ],
+                "id": "A",
+                "metric": "jvm.memory.pools.usage",
+                "output": true,
+                "rate": false
+              },
+              "type": "Time Series"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Metaspace Usage (max)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "jinsight"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "JVM Metrics",
+  "version": 13
+}

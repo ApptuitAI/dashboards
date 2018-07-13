@@ -1,0 +1,1242 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_APPTUIT",
+      "label": "Apptuit Prod Query Engine - PG",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "apptuit",
+      "pluginName": "Apptuit"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "apptuit",
+      "name": "Apptuit",
+      "version": "1.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.4.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524203971360,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "alias": "tomcat_request_count:$t(host)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 75,
+                      "origStart": 0,
+                      "targetEnd": 75,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 90,
+                      "origStart": 76,
+                      "targetEnd": 77,
+                      "targetStart": 75,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 114,
+                      "origStart": 90,
+                      "targetEnd": 101,
+                      "targetStart": 78,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "tomcat_request_count=fetch('tomcat.request.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='host');"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "sum",
+              "gDSAgg": "avg",
+              "gDSFill": "none",
+              "gRate": true,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "alias": "",
+                  "errors": [],
+                  "fill": "null",
+                  "filters": [
+                    {
+                      "enable": true,
+                      "errors": [],
+                      "filter": "phani-ubuntu1704",
+                      "matchCase": false,
+                      "tagk": "host",
+                      "type": "=="
+                    }
+                  ],
+                  "id": "A",
+                  "metric": "tomcat_request_count",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "404",
+              "yaxis": 2
+            },
+            {
+              "alias": "proc.stat.cpu{env: dev, host: centos6}",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "tomcat_request_count:$t(host)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 75,
+                      "origStart": 0,
+                      "targetEnd": 75,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 90,
+                      "origStart": 76,
+                      "targetEnd": 77,
+                      "targetStart": 75,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 114,
+                      "origStart": 90,
+                      "targetEnd": 101,
+                      "targetStart": 78,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "tomcat_request_count=fetch('tomcat.request.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='host');"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Request/sec",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 257,
+      "panels": [
+        {
+          "aliasColors": {
+            "errors": "#E24D42"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524203971360,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "alias": "tomcat_error_rate:$t(host)-$t(status)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 105,
+                      "origStart": 0,
+                      "targetEnd": 105,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 120,
+                      "origStart": 106,
+                      "targetEnd": 107,
+                      "targetStart": 105,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 146,
+                      "origStart": 120,
+                      "targetEnd": 133,
+                      "targetStart": 108,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "tomcat_error_rate=fetch('tomcat.response.count', rate='true').tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "none",
+              "gDSAgg": "avg",
+              "gDSFill": "none",
+              "gRate": true,
+              "timeSeries": [
+                {
+                  "agg": "sum",
+                  "alias": "$t(response)",
+                  "errors": [],
+                  "fill": "null",
+                  "filters": [
+                    {
+                      "enable": true,
+                      "errors": [],
+                      "filter": "[4-5]\\d\\d",
+                      "groupBy": true,
+                      "matchCase": false,
+                      "tagk": "status",
+                      "type": "regex"
+                    },
+                    {
+                      "enable": true,
+                      "errors": [],
+                      "filter": "phani-ubuntu1704",
+                      "matchCase": false,
+                      "tagk": "host",
+                      "type": "=="
+                    }
+                  ],
+                  "id": "B",
+                  "metric": "tomcat.response.count",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "tomcat_error_rate:$t(host)-$t(status)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 105,
+                      "origStart": 0,
+                      "targetEnd": 105,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 120,
+                      "origStart": 106,
+                      "targetEnd": 107,
+                      "targetStart": 105,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 146,
+                      "origStart": 120,
+                      "targetEnd": 133,
+                      "targetStart": 108,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "tomcat_error_rate=fetch('tomcat.response.count', rate='true').tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Errors/sec",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524203971360,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "alias": "tomcat_response_latency:p$t(quantile)-$t(method)-$t(status)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 77,
+                      "origStart": 0,
+                      "targetEnd": 77,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 92,
+                      "origStart": 78,
+                      "targetEnd": 79,
+                      "targetStart": 77,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 101,
+                      "origStart": 92,
+                      "targetEnd": 88,
+                      "targetStart": 80,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "tomcat_response_latency=fetch('tomcat.response.duration.seconds').downsample('[[__interval]]', 'avg');"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "none",
+              "gDSAgg": "avg",
+              "gDSFill": "none",
+              "timeSeries": [
+                {
+                  "agg": "none",
+                  "alias": "p$t(quantile) $t(method) $t(status)",
+                  "errors": [],
+                  "fill": "null",
+                  "filters": [
+                    {
+                      "enable": true,
+                      "errors": [],
+                      "filter": "phani-ubuntu1704",
+                      "matchCase": false,
+                      "tagk": "host",
+                      "type": "=="
+                    },
+                    {
+                      "enable": true,
+                      "errors": [],
+                      "filter": "GET|PUT|POST|DELETE|HEAD|OPTIONS|PATCH|TRACE|CONNECT",
+                      "matchCase": false,
+                      "tagk": "method",
+                      "type": "regex"
+                    }
+                  ],
+                  "id": "A",
+                  "metric": "tomcat.response.duration.seconds",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "tomcat_response_latency:p$t(quantile)-$t(method)-$t(status)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 77,
+                      "origStart": 0,
+                      "targetEnd": 77,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 92,
+                      "origStart": 78,
+                      "targetEnd": 79,
+                      "targetStart": 77,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 101,
+                      "origStart": 92,
+                      "targetEnd": 88,
+                      "targetStart": 80,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "tomcat_response_latency=fetch('tomcat.response.duration.seconds').downsample('[[__interval]]', 'avg');"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Response Latency",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gQuery": {
+            "aTime": 1524203971360,
+            "dsFunctions": [
+              "avg",
+              "count",
+              "max",
+              "min",
+              "stddev",
+              "stdvar",
+              "sum"
+            ],
+            "fillPolicies": [
+              "null",
+              "zero",
+              "none"
+            ],
+            "gDSAgg": "avg",
+            "gDSFill": "none",
+            "line": 1,
+            "queries": [
+              {
+                "alias": "tomcat_request_count_by_method:$t(method)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 85,
+                      "origStart": 0,
+                      "targetEnd": 85,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 100,
+                      "origStart": 86,
+                      "targetEnd": 87,
+                      "targetStart": 85,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 126,
+                      "origStart": 100,
+                      "targetEnd": 113,
+                      "targetStart": 88,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "tomcat_request_count_by_method=fetch('tomcat.request.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='method');"
+              }
+            ],
+            "timeSeries": []
+          },
+          "id": 6,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "global": {
+              "aggregators": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "none",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "dsFunctions": [
+                "avg",
+                "count",
+                "dev",
+                "ep50r3",
+                "ep50r7",
+                "ep75r3",
+                "ep75r7",
+                "ep90r3",
+                "ep90r7",
+                "ep95r3",
+                "ep95r7",
+                "ep999r3",
+                "ep999r7",
+                "ep99r3",
+                "ep99r7",
+                "first",
+                "last",
+                "max",
+                "mimmax",
+                "mimmin",
+                "min",
+                "mult",
+                "p50",
+                "p75",
+                "p90",
+                "p95",
+                "p99",
+                "p999",
+                "sum",
+                "zimsum"
+              ],
+              "errors": [],
+              "expressions": [],
+              "fillPolicies": [
+                "null",
+                "zero",
+                "none"
+              ],
+              "gAgg": "sum",
+              "gDSAgg": "avg",
+              "gDSFill": "none",
+              "gRate": false,
+              "timeSeries": [
+                {
+                  "agg": "global default",
+                  "alias": "$t(method)",
+                  "errors": [],
+                  "fill": "null",
+                  "filters": [
+                    {
+                      "enable": true,
+                      "errors": [],
+                      "filter": "phani-ubuntu1704",
+                      "matchCase": false,
+                      "tagk": "host",
+                      "type": "=="
+                    },
+                    {
+                      "enable": true,
+                      "errors": [],
+                      "filter": "GET|PUT|POST|DELETE|HEAD|OPTIONS|PATCH|TRACE|CONNECT",
+                      "groupBy": true,
+                      "matchCase": false,
+                      "tagk": "method",
+                      "type": "regex"
+                    }
+                  ],
+                  "id": "A",
+                  "metric": "tomcat.request.count",
+                  "output": true
+                }
+              ]
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "tomcat_request_count_by_method:$t(method)",
+                "errors": [],
+                "genMap": [
+                  [
+                    {
+                      "offset": 0,
+                      "origEnd": 85,
+                      "origStart": 0,
+                      "targetEnd": 85,
+                      "targetStart": 0,
+                      "type": "segment"
+                    },
+                    {
+                      "origEnd": 100,
+                      "origStart": 86,
+                      "targetEnd": 87,
+                      "targetStart": 85,
+                      "type": "var"
+                    },
+                    {
+                      "offset": 13,
+                      "origEnd": 126,
+                      "origStart": 100,
+                      "targetEnd": 113,
+                      "targetStart": 88,
+                      "type": "segment"
+                    }
+                  ]
+                ],
+                "id": "A",
+                "lineStart": 1,
+                "numLines": 1,
+                "output": true,
+                "query": "tomcat_request_count_by_method=fetch('tomcat.request.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='method');"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Requests Count / HTTP Method",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2017-12-06T11:30:00.000Z",
+    "to": "2017-12-06T12:30:00.000Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Tomcat Metrics Grok",
+  "version": 3
+}
