@@ -7,6 +7,13 @@
       "type": "datasource",
       "pluginId": "apptuit",
       "pluginName": "Apptuit"
+    },
+    {
+      "name": "VAR_GLOBAL_TAG_FILTER",
+      "type": "constant",
+      "label": "global_tag_filter",
+      "value": ".tag_filter('host==$host')",
+      "description": ""
     }
   ],
   "__requires": [
@@ -105,7 +112,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "nginx_request_rate=fetch('nginx.request.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='host');"
+                "query": "nginx_request_rate=fetch('nginx.request.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host');"
               }
             ],
             "timeSeries": []
@@ -281,7 +288,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "nginx_request_rate=fetch('nginx.request.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='host');"
+                "query": "nginx_request_rate=fetch('nginx.request.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host');"
               },
               "type": "Query"
             }
@@ -397,7 +404,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "nginx_error_rate=fetch('nginx.response.count', rate='true').tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
+                "query": "nginx_error_rate=fetch('nginx.response.count', rate='true')$global_tag_filter.tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
               }
             ],
             "timeSeries": []
@@ -573,7 +580,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "nginx_error_rate=fetch('nginx.response.count', rate='true').tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
+                "query": "nginx_error_rate=fetch('nginx.response.count', rate='true')$global_tag_filter.tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
               },
               "type": "Query"
             }
@@ -687,7 +694,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "nginx_response_latency=fetch('nginx.response.duration.seconds').downsample('[[__interval]]', 'avg');"
+                "query": "nginx_response_latency=fetch('nginx.response.duration.seconds')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               }
             ],
             "timeSeries": []
@@ -861,7 +868,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "nginx_response_latency=fetch('nginx.response.duration.seconds').downsample('[[__interval]]', 'avg');"
+                "query": "nginx_response_latency=fetch('nginx.response.duration.seconds')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               },
               "type": "Query"
             }
@@ -1010,7 +1017,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "nginx_response_latency=fetch('nginx.response.duration.sum.seconds', rate='true').downsample('[[__interval]]', 'avg').sum(by='host');\nnginx_upstream_response_latency=fetch('nginx.response.upstream.duration.sum.seconds', rate='true').downsample('[[__interval]]', 'avg').sum(by='host');\noutput(nginx_response_latency, nginx_upstream_response_latency);"
+                "query": "nginx_response_latency=fetch('nginx.response.duration.sum.seconds', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host');\nnginx_upstream_response_latency=fetch('nginx.response.upstream.duration.sum.seconds', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host');\noutput(nginx_response_latency, nginx_upstream_response_latency);"
               }
             ],
             "timeSeries": []
@@ -1243,7 +1250,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "nginx_response_latency=fetch('nginx.response.duration.sum.seconds', rate='true').downsample('[[__interval]]', 'avg').sum(by='host');\nnginx_upstream_response_latency=fetch('nginx.response.upstream.duration.sum.seconds', rate='true').downsample('[[__interval]]', 'avg').sum(by='host');\noutput(nginx_response_latency, nginx_upstream_response_latency);"
+                "query": "nginx_response_latency=fetch('nginx.response.duration.sum.seconds', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host');\nnginx_upstream_response_latency=fetch('nginx.response.upstream.duration.sum.seconds', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host');\noutput(nginx_response_latency, nginx_upstream_response_latency);"
               },
               "type": "Query"
             }
@@ -1412,7 +1419,7 @@
                 "lineStart": 1,
                 "numLines": 5,
                 "output": true,
-                "query": "nginx_bytes_in=fetch('nginx.network.bytes.count', rate='true').tag_filter('direction=in').downsample('[[__interval]]', 'avg').sum(by='host');\nnginx_bytes_out=fetch('nginx.network.bytes.count', rate='true').tag_filter('direction=out').downsample('[[__interval]]', 'avg').sum(by='host');\nminusone=-1;\nnginx_bytes_out=nginx_bytes_out.mult(minusone);\noutput(nginx_bytes_in, nginx_bytes_out);"
+                "query": "nginx_bytes_in=fetch('nginx.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction=in').downsample('[[__interval]]', 'avg').sum(by='host');\nnginx_bytes_out=fetch('nginx.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction=out').downsample('[[__interval]]', 'avg').sum(by='host');\nminusone=-1;\nnginx_bytes_out=nginx_bytes_out.mult(minusone);\noutput(nginx_bytes_in, nginx_bytes_out);"
               }
             ],
             "timeSeries": []
@@ -1679,7 +1686,7 @@
                 "lineStart": 1,
                 "numLines": 5,
                 "output": true,
-                "query": "nginx_bytes_in=fetch('nginx.network.bytes.count', rate='true').tag_filter('direction=in').downsample('[[__interval]]', 'avg').sum(by='host');\nnginx_bytes_out=fetch('nginx.network.bytes.count', rate='true').tag_filter('direction=out').downsample('[[__interval]]', 'avg').sum(by='host');\nminusone=-1;\nnginx_bytes_out=nginx_bytes_out.mult(minusone);\noutput(nginx_bytes_in, nginx_bytes_out);"
+                "query": "nginx_bytes_in=fetch('nginx.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction=in').downsample('[[__interval]]', 'avg').sum(by='host');\nnginx_bytes_out=fetch('nginx.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction=out').downsample('[[__interval]]', 'avg').sum(by='host');\nminusone=-1;\nnginx_bytes_out=nginx_bytes_out.mult(minusone);\noutput(nginx_bytes_in, nginx_bytes_out);"
               },
               "type": "Query"
             }
@@ -1793,7 +1800,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "nginx_request_count_by_method=fetch('nginx.request.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='method');"
+                "query": "nginx_request_count_by_method=fetch('nginx.request.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='method');"
               }
             ],
             "timeSeries": []
@@ -1969,7 +1976,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "nginx_request_count_by_method=fetch('nginx.request.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='method');"
+                "query": "nginx_request_count_by_method=fetch('nginx.request.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='method');"
               },
               "type": "Query"
             }
@@ -2023,7 +2030,45 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_APPTUIT}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "host",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "tag_values(nginx.request.count,host)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "value": "${VAR_GLOBAL_TAG_FILTER}",
+          "text": "${VAR_GLOBAL_TAG_FILTER}"
+        },
+        "hide": 2,
+        "label": "global_tag_filter",
+        "name": "global_tag_filter",
+        "options": [
+          {
+            "value": "${VAR_GLOBAL_TAG_FILTER}",
+            "text": "${VAR_GLOBAL_TAG_FILTER}"
+          }
+        ],
+        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "type": "constant"
+      }
+    ]
   },
   "time": {
     "from": "2017-12-06T11:30:00.000Z",

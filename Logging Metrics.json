@@ -7,6 +7,13 @@
       "type": "datasource",
       "pluginId": "apptuit",
       "pluginName": "Apptuit"
+    },
+    {
+      "name": "VAR_GLOBAL_TAG_FILTER",
+      "type": "constant",
+      "label": "global_tag_filter",
+      "value": ".tag_filter('host==$host')",
+      "description": ""
     }
   ],
   "__requires": [
@@ -85,7 +92,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "A=fetch('logger.appends.count', rate='true', align='15s').downsample('[[__interval]]','sum').sum(by='cloud_service,level');"
+                "query": "A=fetch('logger.appends.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]','sum').sum(by='cloud_service,level');"
               }
             ],
             "timeSeries": []
@@ -153,7 +160,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "A=fetch('logger.appends.count', rate='true', align='15s').downsample('[[__interval]]','sum').sum(by='cloud_service,level');"
+                "query": "A=fetch('logger.appends.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]','sum').sum(by='cloud_service,level');"
               },
               "type": "Query"
             }
@@ -248,7 +255,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "A=fetch('logger.throwables.total.count', rate='true', align='15s').downsample('[[__interval]]','sum').sum(by='cloud_service');"
+                "query": "A=fetch('logger.throwables.total.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]','sum').sum(by='cloud_service');"
               }
             ],
             "timeSeries": []
@@ -314,7 +321,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "A=fetch('logger.throwables.total.count', rate='true', align='15s').downsample('[[__interval]]','sum').sum(by='cloud_service');"
+                "query": "A=fetch('logger.throwables.total.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]','sum').sum(by='cloud_service');"
               },
               "type": "Query"
             }
@@ -409,7 +416,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "e=fetch('logger.throwables.count', rate='true').sum(by='cloud_service,class').downsample('[[__interval]]', 'sum');"
+                "query": "e=fetch('logger.throwables.count', rate='true')$global_tag_filter.sum(by='cloud_service,class').downsample('[[__interval]]', 'sum');"
               }
             ],
             "timeSeries": []
@@ -477,7 +484,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "e=fetch('logger.throwables.count', rate='true').sum(by='cloud_service,class').downsample('[[__interval]]', 'sum');"
+                "query": "e=fetch('logger.throwables.count', rate='true')$global_tag_filter.sum(by='cloud_service,class').downsample('[[__interval]]', 'sum');"
               },
               "type": "Query"
             }
@@ -533,7 +540,45 @@
     "jinsight"
   ],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_APPTUIT}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "host",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "tag_values(logger.appends.count,host)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+      "current": {
+      "value": "${VAR_GLOBAL_TAG_FILTER}",
+      "text": "${VAR_GLOBAL_TAG_FILTER}"
+      },
+      "hide": 2,
+      "label": "global_tag_filter",
+      "name": "global_tag_filter",
+      "options": [
+      {
+      "value": "${VAR_GLOBAL_TAG_FILTER}",
+      "text": "${VAR_GLOBAL_TAG_FILTER}"
+      }
+      ],
+      "query": "${VAR_GLOBAL_TAG_FILTER}",
+      "type": "constant"
+      }
+    ]
   },
   "time": {
     "from": "now-2d",

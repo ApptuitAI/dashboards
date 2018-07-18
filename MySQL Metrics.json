@@ -7,6 +7,13 @@
       "type": "datasource",
       "pluginId": "apptuit",
       "pluginName": "Apptuit"
+    },
+    {
+      "name": "VAR_GLOBAL_TAG_FILTER",
+      "type": "constant",
+      "label": "global_tag_filter",
+      "value": ".tag_filter('host==$host')",
+      "description": ""
     }
   ],
   "__requires": [
@@ -114,7 +121,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_query_rate=fetch('mysql.queries.count', rate='true').downsample('[[__interval]]','max').sum();"
+                "query": "mysql_query_rate=fetch('mysql.queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]','max').sum();"
               }
             ],
             "timeSeries": []
@@ -300,7 +307,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_query_rate=fetch('mysql.queries.count', rate='true').downsample('[[__interval]]','max').sum();"
+                "query": "mysql_query_rate=fetch('mysql.queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]','max').sum();"
               },
               "type": "Query"
             }
@@ -382,7 +389,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_connection_rate=fetch('mysql.connections.total.count', rate='true').downsample('$__interval','max').sum();"
+                "query": "mysql_connection_rate=fetch('mysql.connections.total.count', rate='true')$global_tag_filter.downsample('$__interval','max').sum();"
               }
             ],
             "timeSeries": []
@@ -568,7 +575,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_connection_rate=fetch('mysql.connections.total.count', rate='true').downsample('$__interval','max').sum();"
+                "query": "mysql_connection_rate=fetch('mysql.connections.total.count', rate='true')$global_tag_filter.downsample('$__interval','max').sum();"
               },
               "type": "Query"
             }
@@ -650,7 +657,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true').downsample('[[__interval]]', 'max').sum();"
+                "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
               }
             ],
             "timeSeries": []
@@ -836,7 +843,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true').downsample('[[__interval]]', 'max').sum();"
+                "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
               },
               "type": "Query"
             }
@@ -954,7 +961,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true').downsample('[[__interval]]', 'max').sum();\nmysql_aborted_connects=fetch('mysql.connections.count', rate='true').downsample('[[__interval]]', 'max').sum();\nmysql_aborted_total_connections=mysql_aborted_clients.add(mysql_aborted_connects, ignore='state');"
+                "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmysql_aborted_connects=fetch('mysql.connections.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmysql_aborted_total_connections=mysql_aborted_clients.add(mysql_aborted_connects, ignore='state');"
               }
             ],
             "timeSeries": []
@@ -1205,7 +1212,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true').downsample('[[__interval]]', 'max').sum();\nmysql_aborted_connects=fetch('mysql.connections.count', rate='true').downsample('[[__interval]]', 'max').sum();\nmysql_aborted_total_connections=mysql_aborted_clients.add(mysql_aborted_connects, ignore='state');"
+                "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmysql_aborted_connects=fetch('mysql.connections.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmysql_aborted_total_connections=mysql_aborted_clients.add(mysql_aborted_connects, ignore='state');"
               },
               "type": "Query"
             }
@@ -1332,7 +1339,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_bufpool_read_req=fetch('mysql.innodb.buffer_pool.count', rate='true').tag_filter('state==read_req').downsample('[[__interval]]', 'min');\nmysql_bufpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true').tag_filter('state==read').downsample('[[__interval]]', 'min');\nmysql_bufpool_total_reads=mysql_bufpool_read_req.add(mysql_bufpool_reads, ignore='state');\nmysql_bufpool_hit_ratio=mysql_bufpool_read_req.div(mysql_bufpool_total_reads, ignore='state').avg();"
+                "query": "mysql_bufpool_read_req=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read_req').downsample('[[__interval]]', 'min');\nmysql_bufpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read').downsample('[[__interval]]', 'min');\nmysql_bufpool_total_reads=mysql_bufpool_read_req.add(mysql_bufpool_reads, ignore='state');\nmysql_bufpool_hit_ratio=mysql_bufpool_read_req.div(mysql_bufpool_total_reads, ignore='state').avg();"
               }
             ],
             "timeSeries": []
@@ -1593,7 +1600,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_bufpool_read_req=fetch('mysql.innodb.buffer_pool.count', rate='true').tag_filter('state==read_req').downsample('[[__interval]]', 'min');\nmysql_bufpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true').tag_filter('state==read').downsample('[[__interval]]', 'min');\nmysql_bufpool_total_reads=mysql_bufpool_read_req.add(mysql_bufpool_reads, ignore='state');\nmysql_bufpool_hit_ratio=mysql_bufpool_read_req.div(mysql_bufpool_total_reads, ignore='state').avg();"
+                "query": "mysql_bufpool_read_req=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read_req').downsample('[[__interval]]', 'min');\nmysql_bufpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read').downsample('[[__interval]]', 'min');\nmysql_bufpool_total_reads=mysql_bufpool_read_req.add(mysql_bufpool_reads, ignore='state');\nmysql_bufpool_hit_ratio=mysql_bufpool_read_req.div(mysql_bufpool_total_reads, ignore='state').avg();"
               },
               "type": "Query"
             }
@@ -1710,7 +1717,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_dirty_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==dirty').downsample('[[__interval]]', 'max');\nmysql_total_data_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==data').downsample('[[__interval]]', 'max');\nmysql_dirty_page_percent=mysql_total_data_pages.div(mysql_total_data_pages, ignore='state').max();"
+                "query": "mysql_dirty_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==dirty').downsample('[[__interval]]', 'max');\nmysql_total_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'max');\nmysql_dirty_page_percent=mysql_total_data_pages.div(mysql_total_data_pages, ignore='state').max();"
               }
             ],
             "timeSeries": []
@@ -1961,7 +1968,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_dirty_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==dirty').downsample('[[__interval]]', 'max');\nmysql_total_data_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==data').downsample('[[__interval]]', 'max');\nmysql_dirty_page_percent=mysql_total_data_pages.div(mysql_total_data_pages, ignore='state').max();"
+                "query": "mysql_dirty_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==dirty').downsample('[[__interval]]', 'max');\nmysql_total_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'max');\nmysql_dirty_page_percent=mysql_total_data_pages.div(mysql_total_data_pages, ignore='state').max();"
               },
               "type": "Query"
             }
@@ -2114,7 +2121,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_all_commands=fetch('mysql.commands.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='command');\nmysql_total_commands=fetch('mysql.commands.count', rate='true').downsample('[[__interval]]', 'avg').sum(without='command');\nmysql_total_queries=fetch('mysql.queries.count', rate='true').downsample('[[__interval]]', 'avg').sum();\noutput(mysql_all_commands, mysql_total_commands, mysql_total_queries);"
+                "query": "mysql_all_commands=fetch('mysql.commands.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='command');\nmysql_total_commands=fetch('mysql.commands.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(without='command');\nmysql_total_queries=fetch('mysql.queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_all_commands, mysql_total_commands, mysql_total_queries);"
               }
             ],
             "timeSeries": []
@@ -2522,7 +2529,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_all_commands=fetch('mysql.commands.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='command');\nmysql_total_commands=fetch('mysql.commands.count', rate='true').downsample('[[__interval]]', 'avg').sum(without='command');\nmysql_total_queries=fetch('mysql.queries.count', rate='true').downsample('[[__interval]]', 'avg').sum();\noutput(mysql_all_commands, mysql_total_commands, mysql_total_queries);"
+                "query": "mysql_all_commands=fetch('mysql.commands.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='command');\nmysql_total_commands=fetch('mysql.commands.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(without='command');\nmysql_total_queries=fetch('mysql.queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_all_commands, mysql_total_commands, mysql_total_queries);"
               },
               "type": "Query"
             }
@@ -2624,7 +2631,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_select_scan_types=fetch('mysql.commands.select.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='select_type');"
+                "query": "mysql_select_scan_types=fetch('mysql.commands.select.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='select_type');"
               }
             ],
             "timeSeries": []
@@ -2872,7 +2879,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_select_scan_types=fetch('mysql.commands.select.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='select_type');"
+                "query": "mysql_select_scan_types=fetch('mysql.commands.select.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='select_type');"
               },
               "type": "Query"
             }
@@ -2974,7 +2981,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_handlers=fetch('mysql.handlers.count', rate='true').downsample('[[__interval]]', 'max');"
+                "query": "mysql_handlers=fetch('mysql.handlers.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');"
               }
             ],
             "timeSeries": []
@@ -3412,7 +3419,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_handlers=fetch('mysql.handlers.count', rate='true').downsample('[[__interval]]', 'max');"
+                "query": "mysql_handlers=fetch('mysql.handlers.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');"
               },
               "type": "Query"
             }
@@ -3513,7 +3520,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               }
             ],
             "timeSeries": []
@@ -3679,7 +3686,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               },
               "type": "Query"
             }
@@ -3841,7 +3848,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_num_merge_passes=fetch('mysql.queries.sort.merge_passes.count', rate=\"true\").downsample('[[__interval]]', 'sum');\nmysql_sort_types=fetch('mysql.queries.sort.count', rate=\"true\").downsample('[[__interval]]', 'sum');\nmysql_sort_scanned_rows=fetch('mysql.queries.sort.rows.count', rate=\"true\").downsample('[[__interval]]', 'sum');\noutput(mysql_num_merge_passes, mysql_sort_types, mysql_sort_scanned_rows);"
+                "query": "mysql_num_merge_passes=fetch('mysql.queries.sort.merge_passes.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\nmysql_sort_types=fetch('mysql.queries.sort.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\nmysql_sort_scanned_rows=fetch('mysql.queries.sort.rows.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\noutput(mysql_num_merge_passes, mysql_sort_types, mysql_sort_scanned_rows);"
               }
             ],
             "timeSeries": []
@@ -4125,7 +4132,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_num_merge_passes=fetch('mysql.queries.sort.merge_passes.count', rate=\"true\").downsample('[[__interval]]', 'sum');\nmysql_sort_types=fetch('mysql.queries.sort.count', rate=\"true\").downsample('[[__interval]]', 'sum');\nmysql_sort_scanned_rows=fetch('mysql.queries.sort.rows.count', rate=\"true\").downsample('[[__interval]]', 'sum');\noutput(mysql_num_merge_passes, mysql_sort_types, mysql_sort_scanned_rows);"
+                "query": "mysql_num_merge_passes=fetch('mysql.queries.sort.merge_passes.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\nmysql_sort_types=fetch('mysql.queries.sort.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\nmysql_sort_scanned_rows=fetch('mysql.queries.sort.rows.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\noutput(mysql_num_merge_passes, mysql_sort_types, mysql_sort_scanned_rows);"
               },
               "type": "Query"
             }
@@ -4238,7 +4245,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_connections=fetch('mysql.connections.total.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "mysql_connections=fetch('mysql.connections.total.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               }
             ],
             "timeSeries": []
@@ -4404,7 +4411,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_connections=fetch('mysql.connections.total.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "mysql_connections=fetch('mysql.connections.total.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               },
               "type": "Query"
             }
@@ -4543,7 +4550,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true').downsample('[[__interval]]', 'max');\nmysql_aborted_connections=fetch('mysql.connections.count', rate='true').tag_filter('state=aborted').downsample('[[__interval]]', 'max');\noutput(mysql_aborted_clients, mysql_aborted_connections);"
+                "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_aborted_connections=fetch('mysql.connections.count', rate='true')$global_tag_filter.tag_filter('state=aborted').downsample('[[__interval]]', 'max');\noutput(mysql_aborted_clients, mysql_aborted_connections);"
               }
             ],
             "timeSeries": []
@@ -4767,7 +4774,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true').downsample('[[__interval]]', 'max');\nmysql_aborted_connections=fetch('mysql.connections.count', rate='true').tag_filter('state=aborted').downsample('[[__interval]]', 'max');\noutput(mysql_aborted_clients, mysql_aborted_connections);"
+                "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_aborted_connections=fetch('mysql.connections.count', rate='true')$global_tag_filter.tag_filter('state=aborted').downsample('[[__interval]]', 'max');\noutput(mysql_aborted_clients, mysql_aborted_connections);"
               },
               "type": "Query"
             }
@@ -4881,7 +4888,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_table_locks_rate=fetch('mysql.table_locks.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "mysql_table_locks_rate=fetch('mysql.table_locks.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               }
             ],
             "timeSeries": []
@@ -5068,7 +5075,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_table_locks_rate=fetch('mysql.table_locks.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "mysql_table_locks_rate=fetch('mysql.table_locks.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               },
               "type": "Query"
             }
@@ -5250,7 +5257,7 @@
                 "lineStart": 1,
                 "numLines": 5,
                 "output": true,
-                "query": "mysql_network_incoming=fetch('mysql.network.bytes.count', rate='true').tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmysql_network_out=fetch('mysql.network.bytes.count', rate='true').tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmysql_network_outgoing=zero.sub(mysql_network_out);\noutput(mysql_network_incoming, mysql_network_outgoing);"
+                "query": "mysql_network_incoming=fetch('mysql.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmysql_network_out=fetch('mysql.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmysql_network_outgoing=zero.sub(mysql_network_out);\noutput(mysql_network_incoming, mysql_network_outgoing);"
               }
             ],
             "timeSeries": []
@@ -5518,7 +5525,7 @@
                 "lineStart": 1,
                 "numLines": 5,
                 "output": true,
-                "query": "mysql_network_incoming=fetch('mysql.network.bytes.count', rate='true').tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmysql_network_out=fetch('mysql.network.bytes.count', rate='true').tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmysql_network_outgoing=zero.sub(mysql_network_out);\noutput(mysql_network_incoming, mysql_network_outgoing);"
+                "query": "mysql_network_incoming=fetch('mysql.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmysql_network_out=fetch('mysql.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmysql_network_outgoing=zero.sub(mysql_network_out);\noutput(mysql_network_incoming, mysql_network_outgoing);"
               },
               "type": "Query"
             }
@@ -5667,7 +5674,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_running_threads=fetch('mysql.threads.running').downsample('[[__interval]]', 'max');\nmysql_connected_threads=fetch('mysql.threads.connected').downsample('[[__interval]]', 'max');\noutput(mysql_running_threads, mysql_connected_threads);"
+                "query": "mysql_running_threads=fetch('mysql.threads.running')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_connected_threads=fetch('mysql.threads.connected')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_running_threads, mysql_connected_threads);"
               }
             ],
             "timeSeries": []
@@ -5889,7 +5896,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_running_threads=fetch('mysql.threads.running').downsample('[[__interval]]', 'max');\nmysql_connected_threads=fetch('mysql.threads.connected').downsample('[[__interval]]', 'max');\noutput(mysql_running_threads, mysql_connected_threads);"
+                "query": "mysql_running_threads=fetch('mysql.threads.running')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_connected_threads=fetch('mysql.threads.connected')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_running_threads, mysql_connected_threads);"
               },
               "type": "Query"
             }
@@ -6038,7 +6045,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_qcache_free_blocks=fetch('mysql.queries.cache.blocks').tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_total_blocks=fetch('mysql.queries.cache.blocks.total').downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_free_blocks, mysql_qcache_total_blocks);"
+                "query": "mysql_qcache_free_blocks=fetch('mysql.queries.cache.blocks')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_total_blocks=fetch('mysql.queries.cache.blocks.total')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_free_blocks, mysql_qcache_total_blocks);"
               }
             ],
             "timeSeries": []
@@ -6258,7 +6265,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_qcache_free_blocks=fetch('mysql.queries.cache.blocks').tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_total_blocks=fetch('mysql.queries.cache.blocks.total').downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_free_blocks, mysql_qcache_total_blocks);"
+                "query": "mysql_qcache_free_blocks=fetch('mysql.queries.cache.blocks')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_total_blocks=fetch('mysql.queries.cache.blocks.total')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_free_blocks, mysql_qcache_total_blocks);"
               },
               "type": "Query"
             }
@@ -6472,7 +6479,7 @@
                 "lineStart": 1,
                 "numLines": 6,
                 "output": true,
-                "query": "mysql_qcache_hits=fetch('mysql.queries.cache.hits.count', rate=\"true\").downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_inserts=fetch('mysql.queries.cache.inserts.count', rate=\"true\").downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_prunes=fetch('mysql.queries.cache.lowmem_prunes.count', rate=\"true\").downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_notcached=fetch('mysql.queries.cache.not_cached.count', rate=\"true\").downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_queries_in_cache=fetch('mysql.queries.cache.queries_in_cache.count', rate=\"true\").downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_hits, mysql_qcache_inserts, mysql_qcache_prunes, mysql_qcache_notcached, mysql_qcache_queries_in_cache);"
+                "query": "mysql_qcache_hits=fetch('mysql.queries.cache.hits.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_inserts=fetch('mysql.queries.cache.inserts.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_prunes=fetch('mysql.queries.cache.lowmem_prunes.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_notcached=fetch('mysql.queries.cache.not_cached.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_queries_in_cache=fetch('mysql.queries.cache.queries_in_cache.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_hits, mysql_qcache_inserts, mysql_qcache_prunes, mysql_qcache_notcached, mysql_qcache_queries_in_cache);"
               }
             ],
             "timeSeries": []
@@ -6824,7 +6831,7 @@
                 "lineStart": 1,
                 "numLines": 6,
                 "output": true,
-                "query": "mysql_qcache_hits=fetch('mysql.queries.cache.hits.count', rate=\"true\").downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_inserts=fetch('mysql.queries.cache.inserts.count', rate=\"true\").downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_prunes=fetch('mysql.queries.cache.lowmem_prunes.count', rate=\"true\").downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_notcached=fetch('mysql.queries.cache.not_cached.count', rate=\"true\").downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_queries_in_cache=fetch('mysql.queries.cache.queries_in_cache.count', rate=\"true\").downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_hits, mysql_qcache_inserts, mysql_qcache_prunes, mysql_qcache_notcached, mysql_qcache_queries_in_cache);"
+                "query": "mysql_qcache_hits=fetch('mysql.queries.cache.hits.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_inserts=fetch('mysql.queries.cache.inserts.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_prunes=fetch('mysql.queries.cache.lowmem_prunes.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_notcached=fetch('mysql.queries.cache.not_cached.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_queries_in_cache=fetch('mysql.queries.cache.queries_in_cache.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_hits, mysql_qcache_inserts, mysql_qcache_prunes, mysql_qcache_notcached, mysql_qcache_queries_in_cache);"
               },
               "type": "Query"
             }
@@ -7025,7 +7032,7 @@
                 "lineStart": 1,
                 "numLines": 5,
                 "output": true,
-                "query": "mysql_buffer_pool_page_size=fetch('mysql.innodb.page_size.bytes').downsample('[[__interval]]', 'avg').sum();\nmysql_buffer_pool_free_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==free').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_data_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==data').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_misc_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==misc').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\noutput(mysql_buffer_pool_free_pages, mysql_buffer_pool_data_pages, mysql_buffer_pool_misc_pages);"
+                "query": "mysql_buffer_pool_page_size=fetch('mysql.innodb.page_size.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_buffer_pool_free_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_misc_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==misc').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\noutput(mysql_buffer_pool_free_pages, mysql_buffer_pool_data_pages, mysql_buffer_pool_misc_pages);"
               }
             ],
             "timeSeries": []
@@ -7339,7 +7346,7 @@
                 "lineStart": 1,
                 "numLines": 5,
                 "output": true,
-                "query": "mysql_buffer_pool_page_size=fetch('mysql.innodb.page_size.bytes').downsample('[[__interval]]', 'avg').sum();\nmysql_buffer_pool_free_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==free').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_data_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==data').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_misc_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==misc').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\noutput(mysql_buffer_pool_free_pages, mysql_buffer_pool_data_pages, mysql_buffer_pool_misc_pages);"
+                "query": "mysql_buffer_pool_page_size=fetch('mysql.innodb.page_size.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_buffer_pool_free_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_misc_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==misc').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\noutput(mysql_buffer_pool_free_pages, mysql_buffer_pool_data_pages, mysql_buffer_pool_misc_pages);"
               },
               "type": "Query"
             }
@@ -7485,7 +7492,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_bpool_read_reqs=fetch('mysql.innodb.buffer_pool.count', rate='true').tag_filter('state==read_req').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true').tag_filter('state==read').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_total_reads=mysql_bpool_read_reqs.add(mysql_bpool_reads, ignore='state');\nmysql_bpool_hit_ratio=mysql_bpool_read_reqs.div(mysql_bpool_total_reads, ignore='state');"
+                "query": "mysql_bpool_read_reqs=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read_req').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_total_reads=mysql_bpool_read_reqs.add(mysql_bpool_reads, ignore='state');\nmysql_bpool_hit_ratio=mysql_bpool_read_reqs.div(mysql_bpool_total_reads, ignore='state');"
               }
             ],
             "timeSeries": []
@@ -7708,7 +7715,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_bpool_read_reqs=fetch('mysql.innodb.buffer_pool.count', rate='true').tag_filter('state==read_req').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true').tag_filter('state==read').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_total_reads=mysql_bpool_read_reqs.add(mysql_bpool_reads, ignore='state');\nmysql_bpool_hit_ratio=mysql_bpool_read_reqs.div(mysql_bpool_total_reads, ignore='state');"
+                "query": "mysql_bpool_read_reqs=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read_req').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_total_reads=mysql_bpool_read_reqs.add(mysql_bpool_reads, ignore='state');\nmysql_bpool_hit_ratio=mysql_bpool_read_reqs.div(mysql_bpool_total_reads, ignore='state');"
               },
               "type": "Query"
             }
@@ -7854,7 +7861,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_bpool_dirty_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==dirty').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_data_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==data').downsample('[[__interval]]', 'avg').sum();\nmysql_dirty_page_percent=mysql_bpool_dirty_pages.div(mysql_bpool_data_pages, ignore='state');\noutput(mysql_dirty_page_percent);"
+                "query": "mysql_bpool_dirty_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==dirty').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'avg').sum();\nmysql_dirty_page_percent=mysql_bpool_dirty_pages.div(mysql_bpool_data_pages, ignore='state');\noutput(mysql_dirty_page_percent);"
               }
             ],
             "timeSeries": []
@@ -8076,7 +8083,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_bpool_dirty_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==dirty').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_data_pages=fetch('mysql.innodb.buffer_pool.pages').tag_filter('state==data').downsample('[[__interval]]', 'avg').sum();\nmysql_dirty_page_percent=mysql_bpool_dirty_pages.div(mysql_bpool_data_pages, ignore='state');\noutput(mysql_dirty_page_percent);"
+                "query": "mysql_bpool_dirty_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==dirty').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'avg').sum();\nmysql_dirty_page_percent=mysql_bpool_dirty_pages.div(mysql_bpool_data_pages, ignore='state');\noutput(mysql_dirty_page_percent);"
               },
               "type": "Query"
             }
@@ -8178,7 +8185,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_buffer_pool_wait_free=fetch('mysql.innodb.buffer_pool.wait_free.count').downsample('[[__interval]]', 'avg').sum();"
+                "query": "mysql_buffer_pool_wait_free=fetch('mysql.innodb.buffer_pool.wait_free.count')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();"
               }
             ],
             "timeSeries": []
@@ -8333,7 +8340,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_buffer_pool_wait_free=fetch('mysql.innodb.buffer_pool.wait_free.count').downsample('[[__interval]]', 'avg').sum();"
+                "query": "mysql_buffer_pool_wait_free=fetch('mysql.innodb.buffer_pool.wait_free.count')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();"
               },
               "type": "Query"
             }
@@ -8470,7 +8477,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_bpool_write_requests=fetch('mysql.innodb.buffer_pool.count', rate='true').tag_filter('state==write_req').downsample('[[__interval]]','max');\nmysql_bpool_pages_flushed=fetch('mysql.innodb.buffer_pool.pages.flush.count', rate='true').downsample('[[__interval]]','max');\nmysql_bpool_changed_rows_per_block=mysql_bpool_write_requests.div(mysql_bpool_pages_flushed,ignore='state');"
+                "query": "mysql_bpool_write_requests=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==write_req').downsample('[[__interval]]','max');\nmysql_bpool_pages_flushed=fetch('mysql.innodb.buffer_pool.pages.flush.count', rate='true')$global_tag_filter.downsample('[[__interval]]','max');\nmysql_bpool_changed_rows_per_block=mysql_bpool_write_requests.div(mysql_bpool_pages_flushed,ignore='state');"
               }
             ],
             "timeSeries": []
@@ -8684,7 +8691,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_bpool_write_requests=fetch('mysql.innodb.buffer_pool.count', rate='true').tag_filter('state==write_req').downsample('[[__interval]]','max');\nmysql_bpool_pages_flushed=fetch('mysql.innodb.buffer_pool.pages.flush.count', rate='true').downsample('[[__interval]]','max');\nmysql_bpool_changed_rows_per_block=mysql_bpool_write_requests.div(mysql_bpool_pages_flushed,ignore='state');"
+                "query": "mysql_bpool_write_requests=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==write_req').downsample('[[__interval]]','max');\nmysql_bpool_pages_flushed=fetch('mysql.innodb.buffer_pool.pages.flush.count', rate='true')$global_tag_filter.downsample('[[__interval]]','max');\nmysql_bpool_changed_rows_per_block=mysql_bpool_write_requests.div(mysql_bpool_pages_flushed,ignore='state');"
               },
               "type": "Query"
             }
@@ -8991,7 +8998,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_innodb_locks_os_waits=fetch('mysql.innodb.locks.os_waits.count', rate='true').downsample('[[__interval]]', 'max');\nmysql_innodb_locks_rounds=fetch('mysql.innodb.locks.rounds.count', rate='true').downsample('[[__interval]]', 'max');\nmysql_innodb_locks_spin_waits=fetch('mysql.innodb.locks.mutex_spin_waits.count', rate='true').downsample('[[__interval]]', 'max');\noutput(mysql_innodb_locks_os_waits, mysql_innodb_locks_rounds, mysql_innodb_locks_spin_waits);"
+                "query": "mysql_innodb_locks_os_waits=fetch('mysql.innodb.locks.os_waits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_innodb_locks_rounds=fetch('mysql.innodb.locks.rounds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_innodb_locks_spin_waits=fetch('mysql.innodb.locks.mutex_spin_waits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_innodb_locks_os_waits, mysql_innodb_locks_rounds, mysql_innodb_locks_spin_waits);"
               }
             ],
             "timeSeries": []
@@ -9375,7 +9382,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_innodb_locks_os_waits=fetch('mysql.innodb.locks.os_waits.count', rate='true').downsample('[[__interval]]', 'max');\nmysql_innodb_locks_rounds=fetch('mysql.innodb.locks.rounds.count', rate='true').downsample('[[__interval]]', 'max');\nmysql_innodb_locks_spin_waits=fetch('mysql.innodb.locks.mutex_spin_waits.count', rate='true').downsample('[[__interval]]', 'max');\noutput(mysql_innodb_locks_os_waits, mysql_innodb_locks_rounds, mysql_innodb_locks_spin_waits);"
+                "query": "mysql_innodb_locks_os_waits=fetch('mysql.innodb.locks.os_waits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_innodb_locks_rounds=fetch('mysql.innodb.locks.rounds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_innodb_locks_spin_waits=fetch('mysql.innodb.locks.mutex_spin_waits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_innodb_locks_os_waits, mysql_innodb_locks_rounds, mysql_innodb_locks_spin_waits);"
               },
               "type": "Query"
             }
@@ -9477,7 +9484,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_row_operations=fetch('mysql.innodb.row_operations.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "mysql_row_operations=fetch('mysql.innodb.row_operations.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               }
             ],
             "timeSeries": []
@@ -9666,7 +9673,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "mysql_row_operations=fetch('mysql.innodb.row_operations.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "mysql_row_operations=fetch('mysql.innodb.row_operations.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               },
               "type": "Query"
             }
@@ -9803,7 +9810,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_row_lock_time=fetch('mysql.innodb.row_lock.milliseconds.count', rate='true').downsample('[[__interval]]', 'avg');\nmysql_row_lock_waits=fetch('mysql.innodb_row_lock_waits', rate='true').downsample('[[__interval]]', 'avg');\noutput(mysql_row_lock_time, mysql_row_lock_waits);"
+                "query": "mysql_row_lock_time=fetch('mysql.innodb.row_lock.milliseconds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');\nmysql_row_lock_waits=fetch('mysql.innodb_row_lock_waits', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');\noutput(mysql_row_lock_time, mysql_row_lock_waits);"
               }
             ],
             "timeSeries": []
@@ -10012,7 +10019,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_row_lock_time=fetch('mysql.innodb.row_lock.milliseconds.count', rate='true').downsample('[[__interval]]', 'avg');\nmysql_row_lock_waits=fetch('mysql.innodb_row_lock_waits', rate='true').downsample('[[__interval]]', 'avg');\noutput(mysql_row_lock_time, mysql_row_lock_waits);"
+                "query": "mysql_row_lock_time=fetch('mysql.innodb.row_lock.milliseconds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');\nmysql_row_lock_waits=fetch('mysql.innodb_row_lock_waits', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');\noutput(mysql_row_lock_time, mysql_row_lock_waits);"
               },
               "type": "Query"
             }
@@ -10178,7 +10185,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_os_logs_written=fetch('mysql.innodb.redo_log.os_file.bytes.count', rate='true').downsample('[[__interval]]', 'max');\nmysql_os_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true').tag_filter('stat==os_log').downsample('[[__interval]]', 'max');\nmysql_innodb_log_waits=fetch('mysql.innodb.redo_log_buffer.log_wait.count', rate='true').downsample('[[__interval]]', 'max');\noutput(mysql_os_logs_written, mysql_os_log_fsyncs, mysql_innodb_log_waits);"
+                "query": "mysql_os_logs_written=fetch('mysql.innodb.redo_log.os_file.bytes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_os_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true')$global_tag_filter.tag_filter('stat==os_log').downsample('[[__interval]]', 'max');\nmysql_innodb_log_waits=fetch('mysql.innodb.redo_log_buffer.log_wait.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_os_logs_written, mysql_os_log_fsyncs, mysql_innodb_log_waits);"
               }
             ],
             "timeSeries": []
@@ -10422,7 +10429,7 @@
                 "lineStart": 1,
                 "numLines": 4,
                 "output": true,
-                "query": "mysql_os_logs_written=fetch('mysql.innodb.redo_log.os_file.bytes.count', rate='true').downsample('[[__interval]]', 'max');\nmysql_os_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true').tag_filter('stat==os_log').downsample('[[__interval]]', 'max');\nmysql_innodb_log_waits=fetch('mysql.innodb.redo_log_buffer.log_wait.count', rate='true').downsample('[[__interval]]', 'max');\noutput(mysql_os_logs_written, mysql_os_log_fsyncs, mysql_innodb_log_waits);"
+                "query": "mysql_os_logs_written=fetch('mysql.innodb.redo_log.os_file.bytes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_os_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true')$global_tag_filter.tag_filter('stat==os_log').downsample('[[__interval]]', 'max');\nmysql_innodb_log_waits=fetch('mysql.innodb.redo_log_buffer.log_wait.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_os_logs_written, mysql_os_log_fsyncs, mysql_innodb_log_waits);"
               },
               "type": "Query"
             }
@@ -10561,7 +10568,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_innodb_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true').tag_filter('stat==innodb').downsample('[[__interval]]', 'max');\nmysql_innodb_data_bytes=fetch('mysql.innodb.data.bytes.count', rate='true').downsample('[[__interval]]', 'max');\noutput(mysql_innodb_data_bytes, mysql_innodb_log_fsyncs);"
+                "query": "mysql_innodb_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true')$global_tag_filter.tag_filter('stat==innodb').downsample('[[__interval]]', 'max');\nmysql_innodb_data_bytes=fetch('mysql.innodb.data.bytes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_innodb_data_bytes, mysql_innodb_log_fsyncs);"
               }
             ],
             "timeSeries": []
@@ -10780,7 +10787,7 @@
                 "lineStart": 1,
                 "numLines": 3,
                 "output": true,
-                "query": "mysql_innodb_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true').tag_filter('stat==innodb').downsample('[[__interval]]', 'max');\nmysql_innodb_data_bytes=fetch('mysql.innodb.data.bytes.count', rate='true').downsample('[[__interval]]', 'max');\noutput(mysql_innodb_data_bytes, mysql_innodb_log_fsyncs);"
+                "query": "mysql_innodb_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true')$global_tag_filter.tag_filter('stat==innodb').downsample('[[__interval]]', 'max');\nmysql_innodb_data_bytes=fetch('mysql.innodb.data.bytes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_innodb_data_bytes, mysql_innodb_log_fsyncs);"
               },
               "type": "Query"
             }
@@ -10834,7 +10841,45 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_APPTUIT}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "host",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "tag_values(mysql.connections.total.count,host)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "value": "${VAR_GLOBAL_TAG_FILTER}",
+          "text": "${VAR_GLOBAL_TAG_FILTER}"
+        },
+        "hide": 2,
+        "label": "global_tag_filter",
+        "name": "global_tag_filter",
+        "options": [
+          {
+            "value": "${VAR_GLOBAL_TAG_FILTER}",
+            "text": "${VAR_GLOBAL_TAG_FILTER}"
+          }
+        ],
+        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "type": "constant"
+      }
+    ]
   },
   "time": {
     "from": "now-24h",
