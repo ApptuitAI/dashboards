@@ -7,6 +7,13 @@
       "type": "datasource",
       "pluginId": "apptuit",
       "pluginName": "Apptuit"
+    },
+    {
+      "name": "VAR_GLOBAL_TAG_FILTER",
+      "type": "constant",
+      "label": "global_tag_filter",
+      "value": ".tag_filter('host==$host')",
+      "description": ""
     }
   ],
   "__requires": [
@@ -105,7 +112,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "tomcat_request_rate=fetch('tomcat.requests.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='cloud_service');"
+                "query": "tomcat_request_rate=fetch('tomcat.requests.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='cloud_service');"
               }
             ],
             "timeSeries": []
@@ -281,7 +288,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "tomcat_request_rate=fetch('tomcat.requests.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='cloud_service');"
+                "query": "tomcat_request_rate=fetch('tomcat.requests.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='cloud_service');"
               },
               "type": "Query"
             }
@@ -397,7 +404,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "tomcat_error_rate=fetch('tomcat.requests.count', rate='true').tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
+                "query": "tomcat_error_rate=fetch('tomcat.requests.count', rate='true')$global_tag_filter.tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
               }
             ],
             "timeSeries": []
@@ -573,7 +580,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "tomcat_error_rate=fetch('tomcat.requests.count', rate='true').tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
+                "query": "tomcat_error_rate=fetch('tomcat.requests.count', rate='true')$global_tag_filter.tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
               },
               "type": "Query"
             }
@@ -732,7 +739,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "factor=fetch('tomcat.requests.count', rate='true').downsample('[[__interval]]', 'max').max(by=\"cloud_service,method,status\");\nfactor=factor.div(factor);\ntomcat_response_latency=fetch('tomcat.requests.duration').tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').max(by=\"cloud_service,method,status\");\ntomcat_response_latency=tomcat_response_latency.mult(factor, on=\"cloud_service,method,status\");"
+                "query": "factor=fetch('tomcat.requests.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').max(by=\"cloud_service,method,status\");\nfactor=factor.div(factor);\ntomcat_response_latency=fetch('tomcat.requests.duration')$global_tag_filter.tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').max(by=\"cloud_service,method,status\");\ntomcat_response_latency=tomcat_response_latency.mult(factor, on=\"cloud_service,method,status\");"
               }
             ],
             "timeSeries": []
@@ -953,7 +960,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "factor=fetch('tomcat.requests.count', rate='true').downsample('[[__interval]]', 'max').max(by=\"cloud_service,method,status\");\nfactor=factor.div(factor);\ntomcat_response_latency=fetch('tomcat.requests.duration').tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').max(by=\"cloud_service,method,status\");\ntomcat_response_latency=tomcat_response_latency.mult(factor, on=\"cloud_service,method,status\");"
+                "query": "factor=fetch('tomcat.requests.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').max(by=\"cloud_service,method,status\");\nfactor=factor.div(factor);\ntomcat_response_latency=fetch('tomcat.requests.duration')$global_tag_filter.tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').max(by=\"cloud_service,method,status\");\ntomcat_response_latency=tomcat_response_latency.mult(factor, on=\"cloud_service,method,status\");"
               },
               "type": "Query"
             }
@@ -1067,7 +1074,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "tomcat_request_count_by_method=fetch('tomcat.requests.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='method');"
+                "query": "tomcat_request_count_by_method=fetch('tomcat.requests.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='method');"
               }
             ],
             "timeSeries": []
@@ -1248,7 +1255,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "tomcat_request_count_by_method=fetch('tomcat.requests.count', rate='true').downsample('[[__interval]]', 'avg').sum(by='method');"
+                "query": "tomcat_request_count_by_method=fetch('tomcat.requests.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='method');"
               },
               "type": "Query"
             }
@@ -1304,7 +1311,45 @@
     "jinsight"
   ],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_APPTUIT}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "host",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "tag_values(tomcat.requests.count,host)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "value": "${VAR_GLOBAL_TAG_FILTER}",
+          "text": "${VAR_GLOBAL_TAG_FILTER}"
+        },
+        "hide": 2,
+        "label": "global_tag_filter",
+        "name": "global_tag_filter",
+        "options": [
+          {
+            "value": "${VAR_GLOBAL_TAG_FILTER}",
+            "text": "${VAR_GLOBAL_TAG_FILTER}"
+          }
+        ],
+        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "type": "constant"
+      }
+    ]
   },
   "time": {
     "from": "now-2d",

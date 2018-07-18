@@ -7,6 +7,13 @@
       "type": "datasource",
       "pluginId": "apptuit",
       "pluginName": "Apptuit"
+    },
+    {
+      "name": "VAR_GLOBAL_TAG_FILTER",
+      "type": "constant",
+      "label": "global_tag_filter",
+      "value": ".tag_filter('host==$host')",
+      "description": ""
     }
   ],
   "__requires": [
@@ -110,7 +117,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "A=fetch('node.cpu.ticks.count').tag_filter(\"type==idle\").downsample('[[__interval]]','max').count();"
+                "query": "A=fetch('node.cpu.ticks.count')$global_tag_filter.tag_filter(\"type==idle\").downsample('[[__interval]]','max').count();"
               }
             ],
             "timeSeries": []
@@ -193,7 +200,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "A=fetch('node.cpu.ticks.count').tag_filter(\"type==idle\").downsample('[[__interval]]','max').count();"
+                "query": "A=fetch('node.cpu.ticks.count')$global_tag_filter.tag_filter(\"type==idle\").downsample('[[__interval]]','max').count();"
               },
               "type": "Query"
             }
@@ -268,7 +275,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "fetch('node.uptime.seconds.count').downsample('[[__interval]]','avg');"
+                "query": "fetch('node.uptime.seconds.count')$global_tag_filter.downsample('[[__interval]]','avg');"
               }
             ],
             "timeSeries": []
@@ -313,7 +320,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "fetch('node.uptime.seconds.count').downsample('[[__interval]]','avg');"
+                "query": "fetch('node.uptime.seconds.count')$global_tag_filter.downsample('[[__interval]]','avg');"
               },
               "type": "Query"
             }
@@ -418,7 +425,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "idle=fetch('node.cpu.ticks.count', rate='true').tag_filter(\"type==idle\").downsample(\"[[__interval]]\", \"avg\");\nused=100;\nused=used.sub(idle);"
+                "query": "idle=fetch('node.cpu.ticks.count', rate='true')$global_tag_filter.tag_filter(\"type==idle\").downsample(\"[[__interval]]\", \"avg\");\nused=100;\nused=used.sub(idle);"
               }
             ],
             "timeSeries": []
@@ -483,7 +490,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "idle=fetch('node.cpu.ticks.count', rate='true').tag_filter(\"type==idle\").downsample(\"[[__interval]]\", \"avg\");\nused=100;\nused=used.sub(idle);"
+                "query": "idle=fetch('node.cpu.ticks.count', rate='true')$global_tag_filter.tag_filter(\"type==idle\").downsample(\"[[__interval]]\", \"avg\");\nused=100;\nused=used.sub(idle);"
               },
               "type": "Query"
             }
@@ -633,7 +640,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "free=fetch('node.memory.bytes').tag_filter(\"state==free\").downsample('[[__interval]]','avg');\ntotal=fetch('node.memory.total.bytes').downsample('[[__interval]]', 'avg');\nfree_perc = free.div(total, on=\"host\");\nusage = 1;\nusage= usage.sub(free_perc);\noutput(usage);"
+                "query": "free=fetch('node.memory.bytes')$global_tag_filter.tag_filter(\"state==free\").downsample('[[__interval]]','avg');\ntotal=fetch('node.memory.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg');\nfree_perc = free.div(total, on=\"host\");\nusage = 1;\nusage= usage.sub(free_perc);\noutput(usage);"
               }
             ],
             "timeSeries": []
@@ -743,7 +750,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "free=fetch('node.memory.bytes').tag_filter(\"state==free\").downsample('[[__interval]]','avg');\ntotal=fetch('node.memory.total.bytes').downsample('[[__interval]]', 'avg');\nfree_perc = free.div(total, on=\"host\");\nusage = 1;\nusage= usage.sub(free_perc);\noutput(usage);"
+                "query": "free=fetch('node.memory.bytes')$global_tag_filter.tag_filter(\"state==free\").downsample('[[__interval]]','avg');\ntotal=fetch('node.memory.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg');\nfree_perc = free.div(total, on=\"host\");\nusage = 1;\nusage= usage.sub(free_perc);\noutput(usage);"
               },
               "type": "Query"
             }
@@ -828,7 +835,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "fetch('node.disk.used.percent').downsample('[[__interval]]', 'avg')"
+                "query": "fetch('node.disk.used.percent')$global_tag_filter.downsample('[[__interval]]', 'avg')"
               }
             ],
             "timeSeries": []
@@ -873,7 +880,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "fetch('node.disk.used.percent').downsample('[[__interval]]', 'avg')"
+                "query": "fetch('node.disk.used.percent')$global_tag_filter.downsample('[[__interval]]', 'avg')"
               },
               "type": "Query"
             }
@@ -1004,7 +1011,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "bsin=fetch('proc.net.bytes', rate='true').tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nout=0;\nout=out.sub(fetch('proc.net.bytes', rate='true').tag_filter(\"direction==out\").downsample('[[__interval]]','avg'));\noutput(bsin,out);"
+                "query": "bsin=fetch('proc.net.bytes', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nout=0;\nout=out.sub(fetch('proc.net.bytes', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg'));\noutput(bsin,out);"
               }
             ],
             "timeSeries": []
@@ -1094,7 +1101,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "bsin=fetch('proc.net.bytes', rate='true').tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nout=0;\nout=out.sub(fetch('proc.net.bytes', rate='true').tag_filter(\"direction==out\").downsample('[[__interval]]','avg'));\noutput(bsin,out);"
+                "query": "bsin=fetch('proc.net.bytes', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nout=0;\nout=out.sub(fetch('proc.net.bytes', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg'));\noutput(bsin,out);"
               },
               "type": "Query"
             }
@@ -1196,7 +1203,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "load_avg_per_min=fetch('node.cpu.load.avg_1m').downsample('[[__interval]]', 'avg');"
+                "query": "load_avg_per_min=fetch('node.cpu.load.avg_1m')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               }
             ],
             "timeSeries": []
@@ -1353,7 +1360,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "load_avg_per_min=fetch('node.cpu.load.avg_1m').downsample('[[__interval]]', 'avg');"
+                "query": "load_avg_per_min=fetch('node.cpu.load.avg_1m')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               },
               "type": "Query"
             }
@@ -1456,7 +1463,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "processes_spawn_rate=fetch('node.processes.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "processes_spawn_rate=fetch('node.processes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               }
             ],
             "timeSeries": []
@@ -1569,7 +1576,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "processes_spawn_rate=fetch('node.processes.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "processes_spawn_rate=fetch('node.processes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               },
               "type": "Query"
             }
@@ -1672,7 +1679,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "context_switch_rate=fetch('node.process.context_switches.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "context_switch_rate=fetch('node.process.context_switches.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               }
             ],
             "timeSeries": []
@@ -1781,7 +1788,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "context_switch_rate=fetch('node.process.context_switches.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "context_switch_rate=fetch('node.process.context_switches.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               },
               "type": "Query"
             }
@@ -1884,7 +1891,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "interrupt_execution_rate=fetch('node.process.interrupts.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "interrupt_execution_rate=fetch('node.process.interrupts.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               }
             ],
             "timeSeries": []
@@ -1993,7 +2000,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "interrupt_execution_rate=fetch('node.process.interrupts.count', rate='true').downsample('[[__interval]]', 'avg');"
+                "query": "interrupt_execution_rate=fetch('node.process.interrupts.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
               },
               "type": "Query"
             }
@@ -2162,7 +2169,7 @@
                 "lineStart": 1,
                 "numLines": 6,
                 "output": true,
-                "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true').tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\noutput(used_cpu_percent, idle_cpu_percent);"
+                "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true')$global_tag_filter.tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\noutput(used_cpu_percent, idle_cpu_percent);"
               }
             ],
             "timeSeries": []
@@ -2360,7 +2367,7 @@
                 "lineStart": 1,
                 "numLines": 6,
                 "output": true,
-                "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true').tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\noutput(used_cpu_percent, idle_cpu_percent);"
+                "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true')$global_tag_filter.tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\noutput(used_cpu_percent, idle_cpu_percent);"
               },
               "type": "Query"
             }
@@ -2660,7 +2667,7 @@
                 "lineStart": 1,
                 "numLines": 9,
                 "output": true,
-                "query": "memtotal=fetch('node.memory.total.bytes').downsample('[[__interval]]', 'avg').sum();\nmemfree=fetch('node.memory.bytes').tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmembuffers=fetch('node.memory.bytes').tag_filter('state==buffers').downsample('[[__interval]]', 'avg').sum();\nmemcached=fetch('node.memory.bytes').tag_filter('state==cached').downsample('[[__interval]]', 'avg').sum();\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\noutput(mem_used_percent, mem_available_percent);"
+                "query": "memtotal=fetch('node.memory.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemfree=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmembuffers=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==buffers').downsample('[[__interval]]', 'avg').sum();\nmemcached=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==cached').downsample('[[__interval]]', 'avg').sum();\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\noutput(mem_used_percent, mem_available_percent);"
               }
             ],
             "timeSeries": []
@@ -2990,7 +2997,7 @@
                 "lineStart": 1,
                 "numLines": 9,
                 "output": true,
-                "query": "memtotal=fetch('node.memory.total.bytes').downsample('[[__interval]]', 'avg').sum();\nmemfree=fetch('node.memory.bytes').tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmembuffers=fetch('node.memory.bytes').tag_filter('state==buffers').downsample('[[__interval]]', 'avg').sum();\nmemcached=fetch('node.memory.bytes').tag_filter('state==cached').downsample('[[__interval]]', 'avg').sum();\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\noutput(mem_used_percent, mem_available_percent);"
+                "query": "memtotal=fetch('node.memory.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemfree=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmembuffers=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==buffers').downsample('[[__interval]]', 'avg').sum();\nmemcached=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==cached').downsample('[[__interval]]', 'avg').sum();\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\noutput(mem_used_percent, mem_available_percent);"
               },
               "type": "Query"
             }
@@ -3105,7 +3112,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "node_disk_space=fetch('node.disk.used.percent').downsample('[[__interval]]','avg');"
+                "query": "node_disk_space=fetch('node.disk.used.percent')$global_tag_filter.downsample('[[__interval]]','avg');"
               }
             ],
             "timeSeries": []
@@ -3218,7 +3225,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "node_disk_space=fetch('node.disk.used.percent').downsample('[[__interval]]','avg');"
+                "query": "node_disk_space=fetch('node.disk.used.percent')$global_tag_filter.downsample('[[__interval]]','avg');"
               },
               "type": "Query"
             }
@@ -3319,7 +3326,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "node_disk_utilization=fetch('node.disk.uptime.percent').downsample('[[__interval]]','avg');"
+                "query": "node_disk_utilization=fetch('node.disk.uptime.percent')$global_tag_filter.downsample('[[__interval]]','avg');"
               }
             ],
             "timeSeries": []
@@ -3431,7 +3438,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "node_disk_utilization=fetch('node.disk.uptime.percent').downsample('[[__interval]]','avg');"
+                "query": "node_disk_utilization=fetch('node.disk.uptime.percent')$global_tag_filter.downsample('[[__interval]]','avg');"
               },
               "type": "Query"
             }
@@ -3600,7 +3607,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "network_in=fetch('node.network.bytes.count', rate='true').tag_filter(\"direction==in\").downsample('[[__interval]]', 'avg');\nnetwork_out=fetch('node.network.bytes.count', rate='true').tag_filter(\"direction==out\").downsample('[[__interval]]', 'avg');\nminus_one=-1;\nnetwork_out=minus_one.mult(network_out);\noutput(network_out, network_in);"
+                "query": "network_in=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]', 'avg');\nnetwork_out=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]', 'avg');\nminus_one=-1;\nnetwork_out=minus_one.mult(network_out);\noutput(network_out, network_in);"
               }
             ],
             "timeSeries": []
@@ -3806,7 +3813,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "network_in=fetch('node.network.bytes.count', rate='true').tag_filter(\"direction==in\").downsample('[[__interval]]', 'avg');\nnetwork_out=fetch('node.network.bytes.count', rate='true').tag_filter(\"direction==out\").downsample('[[__interval]]', 'avg');\nminus_one=-1;\nnetwork_out=minus_one.mult(network_out);\noutput(network_out, network_in);"
+                "query": "network_in=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]', 'avg');\nnetwork_out=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]', 'avg');\nminus_one=-1;\nnetwork_out=minus_one.mult(network_out);\noutput(network_out, network_in);"
               },
               "type": "Query"
             }
@@ -4021,7 +4028,7 @@
                 "lineStart": 1,
                 "numLines": 6,
                 "output": true,
-                "query": "swap_free=fetch('node.swap.bytes').tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nswap_total=fetch('node.swap.total.bytes').downsample('[[__interval]]', 'avg').sum();\nhundred=100;\nswap_used=swap_total.sub(swap_free, ignore='state');\nswap_usage_percent=swap_used.div(swap_total).mult(hundred);\noutput(swap_usage_percent);"
+                "query": "swap_free=fetch('node.swap.bytes')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nswap_total=fetch('node.swap.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nhundred=100;\nswap_used=swap_total.sub(swap_free, ignore='state');\nswap_usage_percent=swap_used.div(swap_total).mult(hundred);\noutput(swap_usage_percent);"
               }
             ],
             "timeSeries": []
@@ -4231,7 +4238,7 @@
                 "lineStart": 1,
                 "numLines": 6,
                 "output": true,
-                "query": "swap_free=fetch('node.swap.bytes').tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nswap_total=fetch('node.swap.total.bytes').downsample('[[__interval]]', 'avg').sum();\nhundred=100;\nswap_used=swap_total.sub(swap_free, ignore='state');\nswap_usage_percent=swap_used.div(swap_total).mult(hundred);\noutput(swap_usage_percent);"
+                "query": "swap_free=fetch('node.swap.bytes')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nswap_total=fetch('node.swap.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nhundred=100;\nswap_used=swap_total.sub(swap_free, ignore='state');\nswap_usage_percent=swap_used.div(swap_total).mult(hundred);\noutput(swap_usage_percent);"
               },
               "type": "Query"
             }
@@ -4378,7 +4385,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "node_swap_in=fetch('node.swap.bytes_per_second').tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nnode_swap_out=fetch('node.swap.bytes_per_second').tag_filter(\"direction==out\").downsample('[[__interval]]','avg');\nminus_one=-1;\nnode_swap_out=minus_one.mult(node_swap_out);"
+                "query": "node_swap_in=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nnode_swap_out=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg');\nminus_one=-1;\nnode_swap_out=minus_one.mult(node_swap_out);"
               }
             ],
             "timeSeries": []
@@ -4534,7 +4541,7 @@
                 "lineStart": 1,
                 "numLines": 1,
                 "output": true,
-                "query": "node_swap_in=fetch('node.swap.bytes_per_second').tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nnode_swap_out=fetch('node.swap.bytes_per_second').tag_filter(\"direction==out\").downsample('[[__interval]]','avg');\nminus_one=-1;\nnode_swap_out=minus_one.mult(node_swap_out);"
+                "query": "node_swap_in=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nnode_swap_out=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg');\nminus_one=-1;\nnode_swap_out=minus_one.mult(node_swap_out);"
               },
               "type": "Query"
             }
@@ -4588,7 +4595,45 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_APPTUIT}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "host",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "tag_values(node.cpu.ticks.count,host)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "value": "${VAR_GLOBAL_TAG_FILTER}",
+          "text": "${VAR_GLOBAL_TAG_FILTER}"
+        },
+        "hide": 2,
+        "label": "global_tag_filter",
+        "name": "global_tag_filter",
+        "options": [
+          {
+            "value": "${VAR_GLOBAL_TAG_FILTER}",
+            "text": "${VAR_GLOBAL_TAG_FILTER}"
+          }
+        ],
+        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "type": "constant"
+      }
+    ]
   },
   "time": {
     "from": "now-2d",

@@ -7,6 +7,13 @@
       "type": "datasource",
       "pluginId": "apptuit",
       "pluginName": "Apptuit"
+    },
+    {
+      "name": "VAR_GLOBAL_TAG_FILTER",
+      "type": "constant",
+      "label": "global_tag_filter",
+      "value": ".tag_filter('host==$host')",
+      "description": ""
     }
   ],
   "__requires": [
@@ -86,7 +93,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "A=fetch('http.requests.count', rate='true', align='15s').downsample('[[__interval]]', 'sum').sum(by='cloud_service, status');"
+                "query": "A=fetch('http.requests.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]', 'sum').sum(by='cloud_service, status');"
               }
             ],
             "timeSeries": []
@@ -154,7 +161,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "A=fetch('http.requests.count', rate='true', align='15s').downsample('[[__interval]]', 'sum').sum(by='cloud_service, status');"
+                "query": "A=fetch('http.requests.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]', 'sum').sum(by='cloud_service, status');"
               },
               "type": "Query"
             }
@@ -294,7 +301,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "factor=fetch('http.requests.count', rate='true', align='15s').downsample('[[__interval]]', 'sum').sum(by='cloud_service,method,status');\nfactor=factor.div(factor);\nduration=fetch('http.requests.duration', align='15s').tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').sum(by='cloud_service,method,status');\nduration=duration.mult(factor, on=\"cloud_service,method,status\");"
+                "query": "factor=fetch('http.requests.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]', 'sum').sum(by='cloud_service,method,status');\nfactor=factor.div(factor);\nduration=fetch('http.requests.duration', align='15s')$global_tag_filter.tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').sum(by='cloud_service,method,status');\nduration=duration.mult(factor, on=\"cloud_service,method,status\");"
               }
             ],
             "timeSeries": []
@@ -407,7 +414,7 @@
                 ],
                 "id": "A",
                 "output": true,
-                "query": "factor=fetch('http.requests.count', rate='true', align='15s').downsample('[[__interval]]', 'sum').sum(by='cloud_service,method,status');\nfactor=factor.div(factor);\nduration=fetch('http.requests.duration', align='15s').tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').sum(by='cloud_service,method,status');\nduration=duration.mult(factor, on=\"cloud_service,method,status\");"
+                "query": "factor=fetch('http.requests.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]', 'sum').sum(by='cloud_service,method,status');\nfactor=factor.div(factor);\nduration=fetch('http.requests.duration', align='15s')$global_tag_filter.tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').sum(by='cloud_service,method,status');\nduration=duration.mult(factor, on=\"cloud_service,method,status\");"
               },
               "type": "Query"
             }
@@ -463,7 +470,45 @@
     "jinsight"
   ],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_APPTUIT}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "host",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "tag_values(http.requests.count,host)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "value": "${VAR_GLOBAL_TAG_FILTER}",
+          "text": "${VAR_GLOBAL_TAG_FILTER}"
+        },
+        "hide": 2,
+        "label": "global_tag_filter",
+        "name": "global_tag_filter",
+        "options": [
+          {
+            "value": "${VAR_GLOBAL_TAG_FILTER}",
+            "text": "${VAR_GLOBAL_TAG_FILTER}"
+          }
+        ],
+        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "type": "constant"
+      }
+    ]
   },
   "time": {
     "from": "now-6h",
