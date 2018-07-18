@@ -208,7 +208,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           }
         ],
         "timeSeries": []
@@ -334,7 +334,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           },
           "type": "Query"
         }
@@ -493,7 +493,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_docs', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_docs', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           }
         ],
         "timeSeries": []
@@ -619,7 +619,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_docs', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_docs', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           },
           "type": "Query"
         }
@@ -786,7 +786,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.evictions', rate='counter', dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.evictions', rate='counter', dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.evictions', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.evictions', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           }
         ],
         "timeSeries": []
@@ -928,7 +928,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.evictions', rate='counter', dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.evictions', rate='counter', dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.evictions', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.evictions', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           },
           "type": "Query"
         }
@@ -1205,7 +1205,7 @@
             ],
             "id": "C",
             "output": true,
-            "query": "tcr=fetch('elasticsearch.indices.byindex.primaries.query_cache.total_count', rate='counter').tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.query_cache.hit_count', rate=\"counter\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhr=hcr.div(tcr);\ntcr1=fetch('elasticsearch.indices.byindex.total.query_cache.total_count', rate='counter').tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.query_cache.hit_count', rate=\"counter\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhr1=hcr1.div(tcr1);\noutput(hr,hr1)"
+            "query": "tcr=fetch('elasticsearch.indices.byindex.primaries.query_cache.total_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.query_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhr=hcr.div(tcr);\ntcr1=fetch('elasticsearch.indices.byindex.total.query_cache.total_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.query_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhr1=hcr1.div(tcr1);\noutput(hr,hr1)"
           }
         ],
         "timeSeries": []
@@ -1455,7 +1455,7 @@
             ],
             "id": "C",
             "output": true,
-            "query": "tcr=fetch('elasticsearch.indices.byindex.primaries.query_cache.total_count', rate='counter').tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.query_cache.hit_count', rate=\"counter\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhr=hcr.div(tcr);\ntcr1=fetch('elasticsearch.indices.byindex.total.query_cache.total_count', rate='counter').tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.query_cache.hit_count', rate=\"counter\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhr1=hcr1.div(tcr1);\noutput(hr,hr1)"
+            "query": "tcr=fetch('elasticsearch.indices.byindex.primaries.query_cache.total_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.query_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhr=hcr.div(tcr);\ntcr1=fetch('elasticsearch.indices.byindex.total.query_cache.total_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.query_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhr1=hcr1.div(tcr1);\noutput(hr,hr1)"
           },
           "type": "Query"
         }
@@ -1624,7 +1624,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.total_count', rate=\"counter\", dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.total_count', rate=\"counter\", dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.total_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.total_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           }
         ],
         "timeSeries": []
@@ -1766,7 +1766,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.total_count', rate=\"counter\", dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.total_count', rate=\"counter\", dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.total_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.total_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           },
           "type": "Query"
         }
@@ -1935,7 +1935,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.memory_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.memory_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           }
         ],
         "timeSeries": []
@@ -2077,7 +2077,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.memory_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.memory_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           },
           "type": "Query"
         }
@@ -2260,7 +2260,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.request_cache.evictions', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.request_cache.evictions', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.request_cache.evictions', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.request_cache.evictions', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           }
         ],
         "timeSeries": []
@@ -2402,7 +2402,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.request_cache.evictions', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.request_cache.evictions', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.request_cache.evictions', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.request_cache.evictions', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           },
           "type": "Query"
         }
@@ -2709,7 +2709,7 @@
             ],
             "id": "C",
             "output": true,
-            "query": "mcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.miss_count', rate='counter').tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.hit_count', rate=\"counter\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr=hcr.add(mcr);\nhr=hcr.div(tcr);\nmcr1=fetch('elasticsearch.indices.byindex.total.request_cache.miss_count', rate='counter').tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.request_cache.hit_count', rate=\"counter\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr1=hcr1.add(mcr1);\nhr1=hcr1.div(tcr1);\noutput(hr,hr1)\n"
+            "query": "mcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.miss_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr=hcr.add(mcr);\nhr=hcr.div(tcr);\nmcr1=fetch('elasticsearch.indices.byindex.total.request_cache.miss_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.request_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr1=hcr1.add(mcr1);\nhr1=hcr1.div(tcr1);\noutput(hr,hr1)\n"
           }
         ],
         "timeSeries": []
@@ -2991,7 +2991,7 @@
             ],
             "id": "C",
             "output": true,
-            "query": "mcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.miss_count', rate='counter').tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.hit_count', rate=\"counter\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr=hcr.add(mcr);\nhr=hcr.div(tcr);\nmcr1=fetch('elasticsearch.indices.byindex.total.request_cache.miss_count', rate='counter').tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.request_cache.hit_count', rate=\"counter\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr1=hcr1.add(mcr1);\nhr1=hcr1.div(tcr1);\noutput(hr,hr1)\n"
+            "query": "mcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.miss_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr=hcr.add(mcr);\nhr=hcr.div(tcr);\nmcr1=fetch('elasticsearch.indices.byindex.total.request_cache.miss_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.request_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr1=hcr1.add(mcr1);\nhr1=hcr1.div(tcr1);\noutput(hr,hr1)\n"
           },
           "type": "Query"
         }
@@ -3278,7 +3278,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "mcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.miss_count', rate='counter', dropcounterresets=\"true\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.hit_count', rate=\"counter\", dropcounterresets=\"true\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr=hcr.add(mcr);\nmcr1=fetch('elasticsearch.indices.byindex.total.request_cache.miss_count', rate='counter', dropcounterresets=\"true\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.request_cache.hit_count', rate=\"counter\", dropcounterresets=\"true\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr1=hcr1.add(mcr1);\noutput(tcr,tcr1)\n"
+            "query": "mcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.miss_count', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.hit_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr=hcr.add(mcr);\nmcr1=fetch('elasticsearch.indices.byindex.total.request_cache.miss_count', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.request_cache.hit_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr1=hcr1.add(mcr1);\noutput(tcr,tcr1)\n"
           }
         ],
         "timeSeries": []
@@ -3538,7 +3538,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "mcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.miss_count', rate='counter', dropcounterresets=\"true\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.hit_count', rate=\"counter\", dropcounterresets=\"true\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr=hcr.add(mcr);\nmcr1=fetch('elasticsearch.indices.byindex.total.request_cache.miss_count', rate='counter', dropcounterresets=\"true\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.request_cache.hit_count', rate=\"counter\", dropcounterresets=\"true\").tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr1=hcr1.add(mcr1);\noutput(tcr,tcr1)\n"
+            "query": "mcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.miss_count', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.hit_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr=hcr.add(mcr);\nmcr1=fetch('elasticsearch.indices.byindex.total.request_cache.miss_count', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.request_cache.hit_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr1=hcr1.add(mcr1);\noutput(tcr,tcr1)\n"
           },
           "type": "Query"
         }
@@ -3707,7 +3707,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.request_cache.memory_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.request_cache.memory_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.request_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.request_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           }
         ],
         "timeSeries": []
@@ -3851,7 +3851,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.request_cache.memory_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.request_cache.memory_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.request_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.request_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           },
           "type": "Query"
         }
@@ -4044,7 +4044,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)\n"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)\n"
           }
         ],
         "timeSeries": []
@@ -4196,7 +4196,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)\n"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)\n"
           },
           "type": "Query"
         }
@@ -4473,7 +4473,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.indexing.index_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.indexing.index_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)"
           }
         ],
         "timeSeries": []
@@ -4728,7 +4728,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.indexing.index_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.indexing.index_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)"
           },
           "type": "Query"
         }
@@ -5015,7 +5015,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.search.query_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.search.query_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.search.query_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.search.query_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)\n"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.search.query_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.search.query_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.search.query_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.search.query_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)\n"
           }
         ],
         "timeSeries": []
@@ -5280,7 +5280,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.search.query_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.search.query_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.search.query_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.search.query_total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)\n"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.search.query_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.search.query_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.search.query_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.search.query_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)\n"
           },
           "type": "Query"
         }
@@ -5449,7 +5449,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_docs', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_docs', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           }
         ],
         "timeSeries": []
@@ -5591,7 +5591,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_docs', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_docs', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           },
           "type": "Query"
         }
@@ -5868,7 +5868,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.merges.total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.merges.total_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.merges.total_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)"
           }
         ],
         "timeSeries": []
@@ -6125,7 +6125,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.merges.total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.merges.total_time_in_millis', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.merges.total_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)"
           },
           "type": "Query"
         }
@@ -6304,7 +6304,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)\n"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)\n"
           }
         ],
         "timeSeries": []
@@ -6456,7 +6456,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total_size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)\n"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)\n"
           },
           "type": "Query"
         }
@@ -6723,7 +6723,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.translog.operations').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.translog.operations').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.primaries.translog.size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.translog.size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D)\n"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.translog.operations')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.translog.operations')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.primaries.translog.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.translog.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D)\n"
           }
         ],
         "timeSeries": []
@@ -6963,7 +6963,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.translog.operations').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.translog.operations').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.primaries.translog.size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.translog.size_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D)\n"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.translog.operations')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.translog.operations')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.primaries.translog.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.translog.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D)\n"
           },
           "type": "Query"
         }
@@ -7220,7 +7220,7 @@
             ],
             "id": "B",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.docs.count', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.docs.deleted', rate='counter', dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.total.docs.count', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.docs.deleted', rate='counter', dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.docs.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.docs.deleted', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.total.docs.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.docs.deleted', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D)"
           }
         ],
         "timeSeries": []
@@ -7459,7 +7459,7 @@
             ],
             "id": "B",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.docs.count', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.docs.deleted', rate='counter', dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.total.docs.count', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.docs.deleted', rate='counter', dropcounterresets=\"true\").tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.docs.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.docs.deleted', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.total.docs.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.docs.deleted', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D)"
           },
           "type": "Query"
         }
@@ -7628,7 +7628,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.segments.count', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.segments.count', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.segments.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.segments.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           }
         ],
         "timeSeries": []
@@ -7775,7 +7775,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.segments.count', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.segments.count', rate='true').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.segments.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.segments.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
           },
           "type": "Query"
         }
@@ -8394,7 +8394,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.segments.doc_values_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.segments.doc_values_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.primaries.segments.index_writer_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.segments.index_writer_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.primaries.segments.memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=fetch('elasticsearch.indices.byindex.total.segments.memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\n\nG=fetch('elasticsearch.indices.byindex.primaries.segments.stored_fields_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nH=fetch('elasticsearch.indices.byindex.total.segments.stored_fields_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nI=fetch('elasticsearch.indices.byindex.primaries.segments.terms_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nJ=fetch('elasticsearch.indices.byindex.total.segments.terms_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nK=fetch('elasticsearch.indices.byindex.primaries.segments.version_map_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nL=fetch('elasticsearch.indices.byindex.total.segments.version_map_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D,E,F,G,H,I,J,K,L)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.segments.doc_values_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.segments.doc_values_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.primaries.segments.index_writer_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.segments.index_writer_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.primaries.segments.memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=fetch('elasticsearch.indices.byindex.total.segments.memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\n\nG=fetch('elasticsearch.indices.byindex.primaries.segments.stored_fields_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nH=fetch('elasticsearch.indices.byindex.total.segments.stored_fields_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nI=fetch('elasticsearch.indices.byindex.primaries.segments.terms_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nJ=fetch('elasticsearch.indices.byindex.total.segments.terms_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nK=fetch('elasticsearch.indices.byindex.primaries.segments.version_map_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nL=fetch('elasticsearch.indices.byindex.total.segments.version_map_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D,E,F,G,H,I,J,K,L)"
           }
         ],
         "timeSeries": []
@@ -8986,7 +8986,7 @@
             ],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.segments.doc_values_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.segments.doc_values_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.primaries.segments.index_writer_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.segments.index_writer_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.primaries.segments.memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=fetch('elasticsearch.indices.byindex.total.segments.memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\n\nG=fetch('elasticsearch.indices.byindex.primaries.segments.stored_fields_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nH=fetch('elasticsearch.indices.byindex.total.segments.stored_fields_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nI=fetch('elasticsearch.indices.byindex.primaries.segments.terms_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nJ=fetch('elasticsearch.indices.byindex.total.segments.terms_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nK=fetch('elasticsearch.indices.byindex.primaries.segments.version_map_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nL=fetch('elasticsearch.indices.byindex.total.segments.version_map_memory_in_bytes').tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D,E,F,G,H,I,J,K,L)"
+            "query": "A=fetch('elasticsearch.indices.byindex.primaries.segments.doc_values_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.segments.doc_values_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.primaries.segments.index_writer_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.segments.index_writer_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.primaries.segments.memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=fetch('elasticsearch.indices.byindex.total.segments.memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\n\nG=fetch('elasticsearch.indices.byindex.primaries.segments.stored_fields_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nH=fetch('elasticsearch.indices.byindex.total.segments.stored_fields_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nI=fetch('elasticsearch.indices.byindex.primaries.segments.terms_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nJ=fetch('elasticsearch.indices.byindex.total.segments.terms_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nK=fetch('elasticsearch.indices.byindex.primaries.segments.version_map_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nL=fetch('elasticsearch.indices.byindex.total.segments.version_map_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D,E,F,G,H,I,J,K,L)"
           },
           "type": "Query"
         }
@@ -9090,7 +9090,7 @@
         "multi": false,
         "name": "host",
         "options": [],
-        "query": "tag_values(elasticsearch.node.os.cpu.percent,host)",
+        "query": "tag_values(elasticsearch.node.process.cpu.percent,node)",
         "refresh": 1,
         "regex": "",
         "sort": 0,

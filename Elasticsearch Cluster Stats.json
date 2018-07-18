@@ -2231,17 +2231,17 @@
       "valueMaps": [
         {
           "op": "=",
-          "text": "♡",
+          "text": "Ok",
           "value": "0"
         },
         {
           "op": "=",
-          "text": "♡",
+          "text": "Critical",
           "value": "1"
         },
         {
           "op": "=",
-          "text": "💔",
+          "text": "💔Down",
           "value": "2"
         }
       ],
@@ -9875,7 +9875,7 @@
         "multi": false,
         "name": "host",
         "options": [],
-        "query": "tag_values(elasticsearch.node.os.cpu.percent,host)",
+        "query": "tag_values(elasticsearch.node.process.cpu.percent,node)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
