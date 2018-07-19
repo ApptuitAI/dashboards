@@ -2227,7 +2227,7 @@
       "thresholds": "1,2",
       "title": "Status",
       "type": "singlestat",
-      "valueFontSize": "150%",
+      "valueFontSize": "80%",
       "valueMaps": [
         {
           "op": "=",
