@@ -57,46 +57,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1525433511396,
-            "queries": [
-              {
-                "alias": "A:$t(cloud_service) : $t(level)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 69,
-                      "origStart": 0,
-                      "targetEnd": 69,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 84,
-                      "origStart": 70,
-                      "targetEnd": 71,
-                      "targetStart": 69,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 122,
-                      "origStart": 84,
-                      "targetEnd": 109,
-                      "targetStart": 72,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "output": true,
-                "query": "A=fetch('logger.appends.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]','sum').sum(by='cloud_service,level');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 1,
           "legend": {
             "alignAsTable": true,
@@ -131,33 +91,6 @@
               "ts": {
                 "alias": "A:$t(cloud_service) : $t(level)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 69,
-                      "origStart": 0,
-                      "targetEnd": 69,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 84,
-                      "origStart": 70,
-                      "targetEnd": 71,
-                      "targetStart": 69,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 122,
-                      "origStart": 84,
-                      "targetEnd": 109,
-                      "targetStart": 72,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "output": true,
                 "query": "A=fetch('logger.appends.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]','sum').sum(by='cloud_service,level');"
@@ -220,46 +153,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1525433511396,
-            "queries": [
-              {
-                "alias": "A: $t(cloud_service)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 78,
-                      "origStart": 0,
-                      "targetEnd": 78,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 93,
-                      "origStart": 79,
-                      "targetEnd": 80,
-                      "targetStart": 78,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 125,
-                      "origStart": 93,
-                      "targetEnd": 112,
-                      "targetStart": 81,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "output": true,
-                "query": "A=fetch('logger.throwables.total.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]','sum').sum(by='cloud_service');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 2,
           "legend": {
             "alignAsTable": true,
@@ -292,33 +185,6 @@
               "ts": {
                 "alias": "A: $t(cloud_service)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 78,
-                      "origStart": 0,
-                      "targetEnd": 78,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 93,
-                      "origStart": 79,
-                      "targetEnd": 80,
-                      "targetStart": 78,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 125,
-                      "origStart": 93,
-                      "targetEnd": 112,
-                      "targetStart": 81,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "output": true,
                 "query": "A=fetch('logger.throwables.total.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]','sum').sum(by='cloud_service');"
@@ -381,46 +247,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1525433511397,
-            "queries": [
-              {
-                "alias": "e:$t(cloud_service)-$t(class)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 89,
-                      "origStart": 0,
-                      "targetEnd": 89,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 104,
-                      "origStart": 90,
-                      "targetEnd": 91,
-                      "targetStart": 89,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 113,
-                      "origStart": 104,
-                      "targetEnd": 100,
-                      "targetStart": 92,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "output": true,
-                "query": "e=fetch('logger.throwables.count', rate='true')$global_tag_filter.sum(by='cloud_service,class').downsample('[[__interval]]', 'sum');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 3,
           "legend": {
             "alignAsTable": true,
@@ -455,33 +281,6 @@
               "ts": {
                 "alias": "e:$t(cloud_service)-$t(class)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 89,
-                      "origStart": 0,
-                      "targetEnd": 89,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 104,
-                      "origStart": 90,
-                      "targetEnd": 91,
-                      "targetStart": 89,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 113,
-                      "origStart": 104,
-                      "targetEnd": 100,
-                      "targetStart": 92,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "output": true,
                 "query": "e=fetch('logger.throwables.count', rate='true')$global_tag_filter.sum(by='cloud_service,class').downsample('[[__interval]]', 'sum');"
@@ -562,21 +361,21 @@
         "useTags": false
       },
       {
-      "current": {
-      "value": "${VAR_GLOBAL_TAG_FILTER}",
-      "text": "${VAR_GLOBAL_TAG_FILTER}"
-      },
-      "hide": 2,
-      "label": "global_tag_filter",
-      "name": "global_tag_filter",
-      "options": [
-      {
-      "value": "${VAR_GLOBAL_TAG_FILTER}",
-      "text": "${VAR_GLOBAL_TAG_FILTER}"
-      }
-      ],
-      "query": "${VAR_GLOBAL_TAG_FILTER}",
-      "type": "constant"
+        "current": {
+          "value": "${VAR_GLOBAL_TAG_FILTER}",
+          "text": "${VAR_GLOBAL_TAG_FILTER}"
+        },
+        "hide": 2,
+        "label": "global_tag_filter",
+        "name": "global_tag_filter",
+        "options": [
+          {
+            "value": "${VAR_GLOBAL_TAG_FILTER}",
+            "text": "${VAR_GLOBAL_TAG_FILTER}"
+          }
+        ],
+        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "type": "constant"
       }
     ]
   },

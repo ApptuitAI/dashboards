@@ -58,46 +58,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1525434987954,
-            "queries": [
-              {
-                "alias": "A:$t(cloud_service):$t(status)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 68,
-                      "origStart": 0,
-                      "targetEnd": 68,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 83,
-                      "origStart": 69,
-                      "targetEnd": 71,
-                      "targetStart": 68,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 12,
-                      "origEnd": 124,
-                      "origStart": 83,
-                      "targetEnd": 112,
-                      "targetStart": 72,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "output": true,
-                "query": "A=fetch('http.requests.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]', 'sum').sum(by='cloud_service, status');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 1,
           "legend": {
             "alignAsTable": true,
@@ -132,33 +92,6 @@
               "ts": {
                 "alias": "A:$t(cloud_service):$t(status)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 68,
-                      "origStart": 0,
-                      "targetEnd": 68,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 83,
-                      "origStart": 69,
-                      "targetEnd": 71,
-                      "targetStart": 68,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 12,
-                      "origEnd": 124,
-                      "origStart": 83,
-                      "targetEnd": 112,
-                      "targetStart": 72,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "output": true,
                 "query": "A=fetch('http.requests.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]', 'sum').sum(by='cloud_service, status');"
@@ -221,91 +154,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1525434987954,
-            "queries": [
-              {
-                "alias": "duration:$t(cloud_service) $t(method) $t(status)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 73,
-                      "origStart": 0,
-                      "targetEnd": 73,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 88,
-                      "origStart": 74,
-                      "targetEnd": 76,
-                      "targetStart": 73,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 12,
-                      "origEnd": 135,
-                      "origStart": 88,
-                      "targetEnd": 123,
-                      "targetStart": 77,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 25,
-                      "origStart": 0,
-                      "targetEnd": 25,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 93,
-                      "origStart": 0,
-                      "targetEnd": 93,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 108,
-                      "origStart": 94,
-                      "targetEnd": 96,
-                      "targetStart": 93,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 12,
-                      "origEnd": 155,
-                      "origStart": 108,
-                      "targetEnd": 143,
-                      "targetStart": 97,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 64,
-                      "origStart": 0,
-                      "targetEnd": 64,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "output": true,
-                "query": "factor=fetch('http.requests.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]', 'sum').sum(by='cloud_service,method,status');\nfactor=factor.div(factor);\nduration=fetch('http.requests.duration', align='15s')$global_tag_filter.tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').sum(by='cloud_service,method,status');\nduration=duration.mult(factor, on=\"cloud_service,method,status\");"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 2,
           "legend": {
             "alignAsTable": true,
@@ -340,78 +188,6 @@
               "ts": {
                 "alias": "duration:$t(cloud_service) $t(method) $t(status)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 73,
-                      "origStart": 0,
-                      "targetEnd": 73,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 88,
-                      "origStart": 74,
-                      "targetEnd": 76,
-                      "targetStart": 73,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 12,
-                      "origEnd": 135,
-                      "origStart": 88,
-                      "targetEnd": 123,
-                      "targetStart": 77,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 25,
-                      "origStart": 0,
-                      "targetEnd": 25,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 93,
-                      "origStart": 0,
-                      "targetEnd": 93,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 108,
-                      "origStart": 94,
-                      "targetEnd": 96,
-                      "targetStart": 93,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 12,
-                      "origEnd": 155,
-                      "origStart": 108,
-                      "targetEnd": 143,
-                      "targetStart": 97,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 64,
-                      "origStart": 0,
-                      "targetEnd": 64,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "output": true,
                 "query": "factor=fetch('http.requests.count', rate='true', align='15s')$global_tag_filter.downsample('[[__interval]]', 'sum').sum(by='cloud_service,method,status');\nfactor=factor.div(factor);\nduration=fetch('http.requests.duration', align='15s')$global_tag_filter.tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').sum(by='cloud_service,method,status');\nduration=duration.mult(factor, on=\"cloud_service,method,status\");"

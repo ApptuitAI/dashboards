@@ -58,65 +58,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1524203971360,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "fillPolicies": [
-              "null",
-              "zero",
-              "none"
-            ],
-            "gDSAgg": "avg",
-            "gDSFill": "none",
-            "line": 1,
-            "queries": [
-              {
-                "alias": "tomcat_request_count:$t(host)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 75,
-                      "origStart": 0,
-                      "targetEnd": 75,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 90,
-                      "origStart": 76,
-                      "targetEnd": 77,
-                      "targetStart": 75,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 114,
-                      "origStart": 90,
-                      "targetEnd": 101,
-                      "targetStart": 78,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "tomcat_request_count=fetch('tomcat.request.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 1,
           "legend": {
             "avg": false,
@@ -257,33 +198,6 @@
               "ts": {
                 "alias": "tomcat_request_count:$t(host)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 75,
-                      "origStart": 0,
-                      "targetEnd": 75,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 90,
-                      "origStart": 76,
-                      "targetEnd": 77,
-                      "targetStart": 75,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 114,
-                      "origStart": 90,
-                      "targetEnd": 101,
-                      "targetStart": 78,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "lineStart": 1,
                 "numLines": 1,
@@ -350,65 +264,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1524203971360,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "fillPolicies": [
-              "null",
-              "zero",
-              "none"
-            ],
-            "gDSAgg": "avg",
-            "gDSFill": "none",
-            "line": 1,
-            "queries": [
-              {
-                "alias": "tomcat_error_rate:$t(host)-$t(status)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 105,
-                      "origStart": 0,
-                      "targetEnd": 105,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 120,
-                      "origStart": 106,
-                      "targetEnd": 107,
-                      "targetStart": 105,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 146,
-                      "origStart": 120,
-                      "targetEnd": 133,
-                      "targetStart": 108,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "tomcat_error_rate=fetch('tomcat.response.count', rate='true')$global_tag_filter.tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 4,
           "legend": {
             "avg": false,
@@ -549,33 +404,6 @@
               "ts": {
                 "alias": "tomcat_error_rate:$t(host)-$t(status)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 105,
-                      "origStart": 0,
-                      "targetEnd": 105,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 120,
-                      "origStart": 106,
-                      "targetEnd": 107,
-                      "targetStart": 105,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 146,
-                      "origStart": 120,
-                      "targetEnd": 133,
-                      "targetStart": 108,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "lineStart": 1,
                 "numLines": 1,
@@ -640,65 +468,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1524203971360,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "fillPolicies": [
-              "null",
-              "zero",
-              "none"
-            ],
-            "gDSAgg": "avg",
-            "gDSFill": "none",
-            "line": 1,
-            "queries": [
-              {
-                "alias": "tomcat_response_latency:p$t(quantile)-$t(method)-$t(status)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 77,
-                      "origStart": 0,
-                      "targetEnd": 77,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 92,
-                      "origStart": 78,
-                      "targetEnd": 79,
-                      "targetStart": 77,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 101,
-                      "origStart": 92,
-                      "targetEnd": 88,
-                      "targetStart": 80,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "tomcat_response_latency=fetch('tomcat.response.duration.seconds')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 5,
           "legend": {
             "avg": false,
@@ -837,33 +606,6 @@
               "ts": {
                 "alias": "tomcat_response_latency:p$t(quantile)-$t(method)-$t(status)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 77,
-                      "origStart": 0,
-                      "targetEnd": 77,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 92,
-                      "origStart": 78,
-                      "targetEnd": 79,
-                      "targetStart": 77,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 101,
-                      "origStart": 92,
-                      "targetEnd": 88,
-                      "targetStart": 80,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "lineStart": 1,
                 "numLines": 1,
@@ -928,65 +670,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1524203971360,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "fillPolicies": [
-              "null",
-              "zero",
-              "none"
-            ],
-            "gDSAgg": "avg",
-            "gDSFill": "none",
-            "line": 1,
-            "queries": [
-              {
-                "alias": "tomcat_request_count_by_method:$t(method)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 85,
-                      "origStart": 0,
-                      "targetEnd": 85,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 100,
-                      "origStart": 86,
-                      "targetEnd": 87,
-                      "targetStart": 85,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 126,
-                      "origStart": 100,
-                      "targetEnd": 113,
-                      "targetStart": 88,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "tomcat_request_count_by_method=fetch('tomcat.request.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='method');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 6,
           "legend": {
             "avg": false,
@@ -1127,33 +810,6 @@
               "ts": {
                 "alias": "tomcat_request_count_by_method:$t(method)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 85,
-                      "origStart": 0,
-                      "targetEnd": 85,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 100,
-                      "origStart": 86,
-                      "targetEnd": 87,
-                      "targetStart": 85,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 126,
-                      "origStart": 100,
-                      "targetEnd": 113,
-                      "targetStart": 88,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "lineStart": 1,
                 "numLines": 1,
