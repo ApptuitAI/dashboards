@@ -58,85 +58,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174496,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "alias": "cpu_pct:$t(cloud_service)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 99,
-                      "origStart": 0,
-                      "targetEnd": 99,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 114,
-                      "origStart": 100,
-                      "targetEnd": 101,
-                      "targetStart": 99,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 124,
-                      "origStart": 114,
-                      "targetEnd": 111,
-                      "targetStart": 102,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 17,
-                      "origStart": 0,
-                      "targetEnd": 17,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 45,
-                      "origStart": 0,
-                      "targetEnd": 45,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 15,
-                      "origStart": 0,
-                      "targetEnd": 15,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "output": true,
-                "query": "A=fetch('jvm.process.cpu.nanos', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.downsample('[[__interval]]', 'p95');\r\nnanos=1000000000;\r\ncpu_pct=A.div(nanos).max(by='cloud_service');\r\noutput(cpu_pct);"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 5,
           "legend": {
             "avg": false,
@@ -167,63 +88,6 @@
               "ts": {
                 "alias": "cpu_pct:$t(cloud_service)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 99,
-                      "origStart": 0,
-                      "targetEnd": 99,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 114,
-                      "origStart": 100,
-                      "targetEnd": 101,
-                      "targetStart": 99,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 124,
-                      "origStart": 114,
-                      "targetEnd": 111,
-                      "targetStart": 102,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 17,
-                      "origStart": 0,
-                      "targetEnd": 17,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 45,
-                      "origStart": 0,
-                      "targetEnd": 45,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 15,
-                      "origStart": 0,
-                      "targetEnd": 15,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "output": true,
                 "query": "A=fetch('jvm.process.cpu.nanos', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.downsample('[[__interval]]', 'p95');\r\nnanos=1000000000;\r\ncpu_pct=A.div(nanos).max(by='cloud_service');\r\noutput(cpu_pct);"
@@ -274,85 +138,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174497,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "alias": "gc_pct:$t(cloud_service)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 96,
-                      "origStart": 0,
-                      "targetEnd": 96,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 111,
-                      "origStart": 97,
-                      "targetEnd": 98,
-                      "targetStart": 96,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 136,
-                      "origStart": 111,
-                      "targetEnd": 123,
-                      "targetStart": 99,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 7,
-                      "origStart": 0,
-                      "targetEnd": 7,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 42,
-                      "origStart": 0,
-                      "targetEnd": 42,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 14,
-                      "origStart": 0,
-                      "targetEnd": 14,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "output": true,
-                "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.downsample('[[__interval]]', 'p95').sum(by=\"host\");\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 6,
           "legend": {
             "avg": false,
@@ -383,63 +168,6 @@
               "ts": {
                 "alias": "gc_pct:$t(cloud_service)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 96,
-                      "origStart": 0,
-                      "targetEnd": 96,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 111,
-                      "origStart": 97,
-                      "targetEnd": 98,
-                      "targetStart": 96,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 136,
-                      "origStart": 111,
-                      "targetEnd": 123,
-                      "targetStart": 99,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 7,
-                      "origStart": 0,
-                      "targetEnd": 7,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 42,
-                      "origStart": 0,
-                      "targetEnd": 42,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 14,
-                      "origStart": 0,
-                      "targetEnd": 14,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "output": true,
                 "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.downsample('[[__interval]]', 'p95').sum(by=\"host\");\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
@@ -502,55 +230,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174497,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.thread.deadlock.count')$global_tag_filter.tag_filter('cloud_service=*').downsample('[[__interval]]','avg').sum(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 78,
-                      "targetStart": 0,
-                      "targetEnd": 78,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 79,
-                      "origEnd": 93,
-                      "targetStart": 78,
-                      "targetEnd": 80
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 93,
-                      "origEnd": 124,
-                      "offset": 13,
-                      "targetStart": 81,
-                      "targetEnd": 111
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 4,
           "legend": {
             "avg": false,
@@ -583,33 +262,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 78,
-                      "targetStart": 0,
-                      "targetEnd": 78,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 79,
-                      "origEnd": 93,
-                      "targetStart": 78,
-                      "targetEnd": 80
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 93,
-                      "origEnd": 124,
-                      "offset": 13,
-                      "targetStart": 81,
-                      "targetEnd": 111
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -670,55 +322,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174497,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.fd.open')$global_tag_filter.tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 64,
-                      "targetStart": 0,
-                      "targetEnd": 64,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 65,
-                      "origEnd": 79,
-                      "targetStart": 64,
-                      "targetEnd": 66
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 79,
-                      "origEnd": 110,
-                      "offset": 13,
-                      "targetStart": 67,
-                      "targetEnd": 97
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 1,
           "legend": {
             "avg": false,
@@ -751,33 +354,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 64,
-                      "targetStart": 0,
-                      "targetEnd": 64,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 65,
-                      "origEnd": 79,
-                      "targetStart": 64,
-                      "targetEnd": 66
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 79,
-                      "origEnd": 110,
-                      "offset": 13,
-                      "targetStart": 67,
-                      "targetEnd": 97
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -826,90 +402,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174497,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "alias": "C:$t(cloud_service)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 46,
-                      "origStart": 0,
-                      "targetEnd": 46,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 61,
-                      "origStart": 47,
-                      "targetEnd": 48,
-                      "targetStart": 46,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 69,
-                      "origStart": 61,
-                      "targetEnd": 56,
-                      "targetStart": 49,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 48,
-                      "origStart": 0,
-                      "targetEnd": 48,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 63,
-                      "origStart": 49,
-                      "targetEnd": 50,
-                      "targetStart": 48,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 71,
-                      "origStart": 63,
-                      "targetEnd": 58,
-                      "targetStart": 51,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 34,
-                      "origStart": 0,
-                      "targetEnd": 34,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "output": true,
-                "query": "A=fetch('jvm.classloading.loaded')$global_tag_filter.downsample('[[__interval]]','avg');\nB=fetch('jvm.classloading.unloaded')$global_tag_filter.downsample('[[__interval]]','avg');\nC=A.sub(B).max(by=\"cloud_service\");"
-              }
-            ],
-            "timeSeries": []
-          },
           "height": "250px",
           "id": 2,
           "legend": {
@@ -943,68 +435,6 @@
               "ts": {
                 "alias": "C:$t(cloud_service)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 46,
-                      "origStart": 0,
-                      "targetEnd": 46,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 61,
-                      "origStart": 47,
-                      "targetEnd": 48,
-                      "targetStart": 46,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 69,
-                      "origStart": 61,
-                      "targetEnd": 56,
-                      "targetStart": 49,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 48,
-                      "origStart": 0,
-                      "targetEnd": 48,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 63,
-                      "origStart": 49,
-                      "targetEnd": 50,
-                      "targetStart": 48,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 71,
-                      "origStart": 63,
-                      "targetEnd": 58,
-                      "targetStart": 51,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 34,
-                      "origStart": 0,
-                      "targetEnd": 34,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "output": true,
                 "query": "A=fetch('jvm.classloading.loaded')$global_tag_filter.downsample('[[__interval]]','avg');\nB=fetch('jvm.classloading.unloaded')$global_tag_filter.downsample('[[__interval]]','avg');\nC=A.sub(B).max(by=\"cloud_service\");"
@@ -1067,55 +497,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174498,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.thread.count')$global_tag_filter.tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 69,
-                      "targetStart": 0,
-                      "targetEnd": 69,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 70,
-                      "origEnd": 84,
-                      "targetStart": 69,
-                      "targetEnd": 71
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 84,
-                      "origEnd": 115,
-                      "offset": 13,
-                      "targetStart": 72,
-                      "targetEnd": 102
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 3,
           "legend": {
             "avg": false,
@@ -1148,33 +529,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 69,
-                      "targetStart": 0,
-                      "targetEnd": 69,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 70,
-                      "origEnd": 84,
-                      "targetStart": 69,
-                      "targetEnd": 71
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 84,
-                      "origEnd": 115,
-                      "offset": 13,
-                      "targetStart": 72,
-                      "targetEnd": 102
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -1235,55 +589,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174498,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.memory.usage')$global_tag_filter.tag_filter('type=heap').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 93,
-                      "targetStart": 0,
-                      "targetEnd": 93,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 94,
-                      "origEnd": 108,
-                      "targetStart": 93,
-                      "targetEnd": 95
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 108,
-                      "origEnd": 139,
-                      "offset": 13,
-                      "targetStart": 96,
-                      "targetEnd": 126
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 7,
           "legend": {
             "avg": false,
@@ -1316,33 +621,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 93,
-                      "targetStart": 0,
-                      "targetEnd": 93,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 94,
-                      "origEnd": 108,
-                      "targetStart": 93,
-                      "targetEnd": 95
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 108,
-                      "origEnd": 139,
-                      "offset": 13,
-                      "targetStart": 96,
-                      "targetEnd": 126
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -1391,55 +669,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174498,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.memory.used.bytes')$global_tag_filter.tag_filter('type=non_heap').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 102,
-                      "targetStart": 0,
-                      "targetEnd": 102,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 103,
-                      "origEnd": 117,
-                      "targetStart": 102,
-                      "targetEnd": 104
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 117,
-                      "origEnd": 148,
-                      "offset": 13,
-                      "targetStart": 105,
-                      "targetEnd": 135
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 8,
           "legend": {
             "avg": false,
@@ -1472,33 +701,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 102,
-                      "targetStart": 0,
-                      "targetEnd": 102,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 103,
-                      "origEnd": 117,
-                      "targetStart": 102,
-                      "targetEnd": 104
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 117,
-                      "origEnd": 148,
-                      "offset": 13,
-                      "targetStart": 105,
-                      "targetEnd": 135
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -1547,85 +749,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174498,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "alias": "gc_pct:$t(cloud_service)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 128,
-                      "origStart": 0,
-                      "targetEnd": 128,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 143,
-                      "origStart": 129,
-                      "targetEnd": 130,
-                      "targetStart": 128,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 153,
-                      "origStart": 143,
-                      "targetEnd": 140,
-                      "targetStart": 131,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 7,
-                      "origStart": 0,
-                      "targetEnd": 7,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 42,
-                      "origStart": 0,
-                      "targetEnd": 42,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 14,
-                      "origStart": 0,
-                      "targetEnd": 14,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "output": true,
-                "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.tag_filter(\"generation==young\").downsample('[[__interval]]', 'p95');\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 9,
           "legend": {
             "avg": false,
@@ -1656,63 +779,6 @@
               "ts": {
                 "alias": "gc_pct:$t(cloud_service)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 128,
-                      "origStart": 0,
-                      "targetEnd": 128,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 143,
-                      "origStart": 129,
-                      "targetEnd": 130,
-                      "targetStart": 128,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 153,
-                      "origStart": 143,
-                      "targetEnd": 140,
-                      "targetStart": 131,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 7,
-                      "origStart": 0,
-                      "targetEnd": 7,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 42,
-                      "origStart": 0,
-                      "targetEnd": 42,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 14,
-                      "origStart": 0,
-                      "targetEnd": 14,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "output": true,
                 "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.tag_filter(\"generation==young\").downsample('[[__interval]]', 'p95');\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
@@ -1763,85 +829,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174498,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "alias": "gc_pct:$t(cloud_service)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 126,
-                      "origStart": 0,
-                      "targetEnd": 126,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 141,
-                      "origStart": 127,
-                      "targetEnd": 128,
-                      "targetStart": 126,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 151,
-                      "origStart": 141,
-                      "targetEnd": 138,
-                      "targetStart": 129,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 7,
-                      "origStart": 0,
-                      "targetEnd": 7,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 42,
-                      "origStart": 0,
-                      "targetEnd": 42,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 14,
-                      "origStart": 0,
-                      "targetEnd": 14,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "output": true,
-                "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.tag_filter(\"generation==old\").downsample('[[__interval]]', 'p95');\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 10,
           "legend": {
             "avg": false,
@@ -1872,63 +859,6 @@
               "ts": {
                 "alias": "gc_pct:$t(cloud_service)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 126,
-                      "origStart": 0,
-                      "targetEnd": 126,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 141,
-                      "origStart": 127,
-                      "targetEnd": 128,
-                      "targetStart": 126,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 151,
-                      "origStart": 141,
-                      "targetEnd": 138,
-                      "targetStart": 129,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 7,
-                      "origStart": 0,
-                      "targetEnd": 7,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 42,
-                      "origStart": 0,
-                      "targetEnd": 42,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 14,
-                      "origStart": 0,
-                      "targetEnd": 14,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "output": true,
                 "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.tag_filter(\"generation==old\").downsample('[[__interval]]', 'p95');\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
@@ -1991,55 +921,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174499,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=eden').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 99,
-                      "targetStart": 0,
-                      "targetEnd": 99,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 100,
-                      "origEnd": 114,
-                      "targetStart": 99,
-                      "targetEnd": 101
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 114,
-                      "origEnd": 145,
-                      "offset": 13,
-                      "targetStart": 102,
-                      "targetEnd": 132
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 15,
           "legend": {
             "avg": false,
@@ -2072,33 +953,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 99,
-                      "targetStart": 0,
-                      "targetEnd": 99,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 100,
-                      "origEnd": 114,
-                      "targetStart": 99,
-                      "targetEnd": 101
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 114,
-                      "origEnd": 145,
-                      "offset": 13,
-                      "targetStart": 102,
-                      "targetEnd": 132
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -2147,55 +1001,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174499,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=survivor').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 103,
-                      "targetStart": 0,
-                      "targetEnd": 103,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 104,
-                      "origEnd": 118,
-                      "targetStart": 103,
-                      "targetEnd": 105
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 118,
-                      "origEnd": 149,
-                      "offset": 13,
-                      "targetStart": 106,
-                      "targetEnd": 136
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 13,
           "legend": {
             "avg": false,
@@ -2228,33 +1033,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 103,
-                      "targetStart": 0,
-                      "targetEnd": 103,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 104,
-                      "origEnd": 118,
-                      "targetStart": 103,
-                      "targetEnd": 105
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 118,
-                      "origEnd": 149,
-                      "offset": 13,
-                      "targetStart": 106,
-                      "targetEnd": 136
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -2303,55 +1081,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174499,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=old').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 98,
-                      "targetStart": 0,
-                      "targetEnd": 98,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 99,
-                      "origEnd": 113,
-                      "targetStart": 98,
-                      "targetEnd": 100
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 113,
-                      "origEnd": 144,
-                      "offset": 13,
-                      "targetStart": 101,
-                      "targetEnd": 131
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 14,
           "legend": {
             "avg": false,
@@ -2384,33 +1113,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 98,
-                      "targetStart": 0,
-                      "targetEnd": 98,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 99,
-                      "origEnd": 113,
-                      "targetStart": 98,
-                      "targetEnd": 100
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 113,
-                      "origEnd": 144,
-                      "offset": 13,
-                      "targetStart": 101,
-                      "targetEnd": 131
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -2459,55 +1161,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174499,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=code_cache').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 105,
-                      "targetStart": 0,
-                      "targetEnd": 105,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 106,
-                      "origEnd": 120,
-                      "targetStart": 105,
-                      "targetEnd": 107
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 120,
-                      "origEnd": 151,
-                      "offset": 13,
-                      "targetStart": 108,
-                      "targetEnd": 138
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 16,
           "legend": {
             "avg": false,
@@ -2540,33 +1193,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 105,
-                      "targetStart": 0,
-                      "targetEnd": 105,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 106,
-                      "origEnd": 120,
-                      "targetStart": 105,
-                      "targetEnd": 107
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 120,
-                      "origEnd": 151,
-                      "offset": 13,
-                      "targetStart": 108,
-                      "targetEnd": 138
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -2615,55 +1241,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174499,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=compressed_class_space').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 117,
-                      "targetStart": 0,
-                      "targetEnd": 117,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 118,
-                      "origEnd": 132,
-                      "targetStart": 117,
-                      "targetEnd": 119
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 132,
-                      "origEnd": 163,
-                      "offset": 13,
-                      "targetStart": 120,
-                      "targetEnd": 150
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 17,
           "legend": {
             "avg": false,
@@ -2696,33 +1273,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 117,
-                      "targetStart": 0,
-                      "targetEnd": 117,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 118,
-                      "origEnd": 132,
-                      "targetStart": 117,
-                      "targetEnd": 119
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 132,
-                      "origEnd": 163,
-                      "offset": 13,
-                      "targetStart": 120,
-                      "targetEnd": 150
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -2771,55 +1321,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1531735174500,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "queries": [
-              {
-                "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=metaspace').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')",
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 104,
-                      "targetStart": 0,
-                      "targetEnd": 104,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 105,
-                      "origEnd": 119,
-                      "targetStart": 104,
-                      "targetEnd": 106
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 119,
-                      "origEnd": 150,
-                      "offset": 13,
-                      "targetStart": 107,
-                      "targetEnd": 137
-                    }
-                  ]
-                ],
-                "alias": "A:$t(cloud_service)"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 18,
           "legend": {
             "avg": false,
@@ -2852,33 +1353,6 @@
                 "errors": [],
                 "id": "A",
                 "output": true,
-                "genMap": [
-                  [
-                    {
-                      "type": "segment",
-                      "origStart": 0,
-                      "origEnd": 104,
-                      "targetStart": 0,
-                      "targetEnd": 104,
-                      "offset": 0
-                    },
-                    {
-                      "type": "var",
-                      "origStart": 105,
-                      "origEnd": 119,
-                      "targetStart": 104,
-                      "targetEnd": 106
-                    },
-                    {
-                      "type": "segment",
-                      "origStart": 119,
-                      "origEnd": 150,
-                      "offset": 13,
-                      "targetStart": 107,
-                      "targetEnd": 137
-                    }
-                  ]
-                ],
                 "alias": "A:$t(cloud_service)"
               },
               "type": "Query"
@@ -2957,21 +1431,21 @@
         "useTags": false
       },
       {
-      "current": {
-      "value": "${VAR_GLOBAL_TAG_FILTER}",
-      "text": "${VAR_GLOBAL_TAG_FILTER}"
-      },
-      "hide": 2,
-      "label": "global_tag_filter",
-      "name": "global_tag_filter",
-      "options": [
-      {
-      "value": "${VAR_GLOBAL_TAG_FILTER}",
-      "text": "${VAR_GLOBAL_TAG_FILTER}"
-      }
-      ],
-      "query": "${VAR_GLOBAL_TAG_FILTER}",
-      "type": "constant"
+        "current": {
+          "value": "${VAR_GLOBAL_TAG_FILTER}",
+          "text": "${VAR_GLOBAL_TAG_FILTER}"
+        },
+        "hide": 2,
+        "label": "global_tag_filter",
+        "name": "global_tag_filter",
+        "options": [
+          {
+            "value": "${VAR_GLOBAL_TAG_FILTER}",
+            "text": "${VAR_GLOBAL_TAG_FILTER}"
+          }
+        ],
+        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "type": "constant"
       }
     ]
   },

@@ -58,65 +58,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1524203533545,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "fillPolicies": [
-              "null",
-              "zero",
-              "none"
-            ],
-            "gDSAgg": "avg",
-            "gDSFill": "none",
-            "line": 1,
-            "queries": [
-              {
-                "alias": "nginx_request_rate:$t(host)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 72,
-                      "origStart": 0,
-                      "targetEnd": 72,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 87,
-                      "origStart": 73,
-                      "targetEnd": 74,
-                      "targetStart": 72,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 111,
-                      "origStart": 87,
-                      "targetEnd": 98,
-                      "targetStart": 75,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "nginx_request_rate=fetch('nginx.request.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 1,
           "legend": {
             "avg": false,
@@ -257,33 +198,6 @@
               "ts": {
                 "alias": "nginx_request_rate:$t(host)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 72,
-                      "origStart": 0,
-                      "targetEnd": 72,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 87,
-                      "origStart": 73,
-                      "targetEnd": 74,
-                      "targetStart": 72,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 111,
-                      "origStart": 87,
-                      "targetEnd": 98,
-                      "targetStart": 75,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "lineStart": 1,
                 "numLines": 1,
@@ -350,65 +264,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1524203533545,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "fillPolicies": [
-              "null",
-              "zero",
-              "none"
-            ],
-            "gDSAgg": "avg",
-            "gDSFill": "none",
-            "line": 1,
-            "queries": [
-              {
-                "alias": "nginx_error_rate:$t(host)-$t(status)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 103,
-                      "origStart": 0,
-                      "targetEnd": 103,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 118,
-                      "origStart": 104,
-                      "targetEnd": 105,
-                      "targetStart": 103,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 144,
-                      "origStart": 118,
-                      "targetEnd": 131,
-                      "targetStart": 106,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "nginx_error_rate=fetch('nginx.response.count', rate='true')$global_tag_filter.tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 4,
           "legend": {
             "avg": false,
@@ -549,33 +404,6 @@
               "ts": {
                 "alias": "nginx_error_rate:$t(host)-$t(status)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 103,
-                      "origStart": 0,
-                      "targetEnd": 103,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 118,
-                      "origStart": 104,
-                      "targetEnd": 105,
-                      "targetStart": 103,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 144,
-                      "origStart": 118,
-                      "targetEnd": 131,
-                      "targetStart": 106,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "lineStart": 1,
                 "numLines": 1,
@@ -640,65 +468,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1524203533546,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "fillPolicies": [
-              "null",
-              "zero",
-              "none"
-            ],
-            "gDSAgg": "avg",
-            "gDSFill": "none",
-            "line": 1,
-            "queries": [
-              {
-                "alias": "nginx_response_latency:p$t(quantile)-$t(method)-$t(status)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 75,
-                      "origStart": 0,
-                      "targetEnd": 75,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 90,
-                      "origStart": 76,
-                      "targetEnd": 77,
-                      "targetStart": 75,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 99,
-                      "origStart": 90,
-                      "targetEnd": 86,
-                      "targetStart": 78,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "nginx_response_latency=fetch('nginx.response.duration.seconds')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 5,
           "legend": {
             "avg": false,
@@ -837,33 +606,6 @@
               "ts": {
                 "alias": "nginx_response_latency:p$t(quantile)-$t(method)-$t(status)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 75,
-                      "origStart": 0,
-                      "targetEnd": 75,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 90,
-                      "origStart": 76,
-                      "targetEnd": 77,
-                      "targetStart": 75,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 99,
-                      "origStart": 90,
-                      "targetEnd": 86,
-                      "targetStart": 78,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "lineStart": 1,
                 "numLines": 1,
@@ -928,100 +670,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1524203533546,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "fillPolicies": [
-              "null",
-              "zero",
-              "none"
-            ],
-            "gDSAgg": "avg",
-            "gDSFill": "none",
-            "line": 1,
-            "queries": [
-              {
-                "alias": "nginx_response_latency:$t(host) - nginx latency;nginx_upstream_response_latency:$(host) - upstream latency",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 92,
-                      "origStart": 0,
-                      "targetEnd": 92,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 107,
-                      "origStart": 93,
-                      "targetEnd": 94,
-                      "targetStart": 92,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 131,
-                      "origStart": 107,
-                      "targetEnd": 118,
-                      "targetStart": 95,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 110,
-                      "origStart": 0,
-                      "targetEnd": 110,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 125,
-                      "origStart": 111,
-                      "targetEnd": 112,
-                      "targetStart": 110,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 149,
-                      "origStart": 125,
-                      "targetEnd": 136,
-                      "targetStart": 113,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 63,
-                      "origStart": 0,
-                      "targetEnd": 63,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "nginx_response_latency=fetch('nginx.response.duration.sum.seconds', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host');\nnginx_upstream_response_latency=fetch('nginx.response.upstream.duration.sum.seconds', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host');\noutput(nginx_response_latency, nginx_upstream_response_latency);"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 6,
           "legend": {
             "avg": false,
@@ -1184,68 +832,6 @@
               "ts": {
                 "alias": "nginx_response_latency:$t(host) - nginx latency;nginx_upstream_response_latency:$(host) - upstream latency",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 92,
-                      "origStart": 0,
-                      "targetEnd": 92,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 107,
-                      "origStart": 93,
-                      "targetEnd": 94,
-                      "targetStart": 92,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 131,
-                      "origStart": 107,
-                      "targetEnd": 118,
-                      "targetStart": 95,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 110,
-                      "origStart": 0,
-                      "targetEnd": 110,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 125,
-                      "origStart": 111,
-                      "targetEnd": 112,
-                      "targetStart": 110,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 149,
-                      "origStart": 125,
-                      "targetEnd": 136,
-                      "targetStart": 113,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 63,
-                      "origStart": 0,
-                      "targetEnd": 63,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "lineStart": 1,
                 "numLines": 3,
@@ -1310,120 +896,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1524203533546,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "fillPolicies": [
-              "null",
-              "zero",
-              "none"
-            ],
-            "gDSAgg": "avg",
-            "gDSFill": "none",
-            "line": 1,
-            "queries": [
-              {
-                "alias": "nginx_bytes_in:$t(host)-in;nginx_bytes_out:$t(host)-out",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 101,
-                      "origStart": 0,
-                      "targetEnd": 101,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 116,
-                      "origStart": 102,
-                      "targetEnd": 103,
-                      "targetStart": 101,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 140,
-                      "origStart": 116,
-                      "targetEnd": 127,
-                      "targetStart": 104,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 103,
-                      "origStart": 0,
-                      "targetEnd": 103,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 118,
-                      "origStart": 104,
-                      "targetEnd": 105,
-                      "targetStart": 103,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 142,
-                      "origStart": 118,
-                      "targetEnd": 129,
-                      "targetStart": 106,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 11,
-                      "origStart": 0,
-                      "targetEnd": 11,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 46,
-                      "origStart": 0,
-                      "targetEnd": 46,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 39,
-                      "origStart": 0,
-                      "targetEnd": 39,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 5,
-                "output": true,
-                "query": "nginx_bytes_in=fetch('nginx.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction=in').downsample('[[__interval]]', 'avg').sum(by='host');\nnginx_bytes_out=fetch('nginx.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction=out').downsample('[[__interval]]', 'avg').sum(by='host');\nminusone=-1;\nnginx_bytes_out=nginx_bytes_out.mult(minusone);\noutput(nginx_bytes_in, nginx_bytes_out);"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 2,
           "legend": {
             "avg": false,
@@ -1600,88 +1072,6 @@
               "ts": {
                 "alias": "nginx_bytes_in:$t(host)-in;nginx_bytes_out:$t(host)-out",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 101,
-                      "origStart": 0,
-                      "targetEnd": 101,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 116,
-                      "origStart": 102,
-                      "targetEnd": 103,
-                      "targetStart": 101,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 140,
-                      "origStart": 116,
-                      "targetEnd": 127,
-                      "targetStart": 104,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 103,
-                      "origStart": 0,
-                      "targetEnd": 103,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 118,
-                      "origStart": 104,
-                      "targetEnd": 105,
-                      "targetStart": 103,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 142,
-                      "origStart": 118,
-                      "targetEnd": 129,
-                      "targetStart": 106,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 11,
-                      "origStart": 0,
-                      "targetEnd": 11,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 46,
-                      "origStart": 0,
-                      "targetEnd": 46,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ],
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 39,
-                      "origStart": 0,
-                      "targetEnd": 39,
-                      "targetStart": 1,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "lineStart": 1,
                 "numLines": 5,
@@ -1746,65 +1136,6 @@
           "dashes": false,
           "datasource": "${DS_APPTUIT}",
           "fill": 1,
-          "gQuery": {
-            "aTime": 1524203533546,
-            "dsFunctions": [
-              "avg",
-              "count",
-              "max",
-              "min",
-              "stddev",
-              "stdvar",
-              "sum"
-            ],
-            "fillPolicies": [
-              "null",
-              "zero",
-              "none"
-            ],
-            "gDSAgg": "avg",
-            "gDSFill": "none",
-            "line": 1,
-            "queries": [
-              {
-                "alias": "nginx_request_count_by_method:$t(method)",
-                "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 83,
-                      "origStart": 0,
-                      "targetEnd": 83,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 98,
-                      "origStart": 84,
-                      "targetEnd": 85,
-                      "targetStart": 83,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 124,
-                      "origStart": 98,
-                      "targetEnd": 111,
-                      "targetStart": 86,
-                      "type": "segment"
-                    }
-                  ]
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "nginx_request_count_by_method=fetch('nginx.request.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='method');"
-              }
-            ],
-            "timeSeries": []
-          },
           "id": 7,
           "legend": {
             "avg": false,
@@ -1945,33 +1276,6 @@
               "ts": {
                 "alias": "nginx_request_count_by_method:$t(method)",
                 "errors": [],
-                "genMap": [
-                  [
-                    {
-                      "offset": 0,
-                      "origEnd": 83,
-                      "origStart": 0,
-                      "targetEnd": 83,
-                      "targetStart": 0,
-                      "type": "segment"
-                    },
-                    {
-                      "origEnd": 98,
-                      "origStart": 84,
-                      "targetEnd": 85,
-                      "targetStart": 83,
-                      "type": "var"
-                    },
-                    {
-                      "offset": 13,
-                      "origEnd": 124,
-                      "origStart": 98,
-                      "targetEnd": 111,
-                      "targetStart": 86,
-                      "type": "segment"
-                    }
-                  ]
-                ],
                 "id": "A",
                 "lineStart": 1,
                 "numLines": 1,
