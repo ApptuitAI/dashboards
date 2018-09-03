@@ -426,12 +426,12 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.node.jvm.gc.collectors.old.collection_count')$global_tag_filter.series_max();"
+            "query": "A=fetch('elasticsearch.node.jvm.gc.collectors.old.collection_count')$global_tag_filter.series_max().top5();"
           },
           "type": "Query"
         }
       ],
-      "title": "JVM GC",
+      "title": "Top 5 JVM GC",
       "transform": "timeseries_aggregations",
       "type": "table"
     },

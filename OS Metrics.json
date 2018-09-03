@@ -988,6 +988,284 @@
               "show": true
             }
           ]
+        },
+        {
+          "aliasColors": {
+            "avg": "rgb(158, 166, 155)"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 7
+          },
+          "id": 19,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "used_cpu_percent:avg; top3:$t(host)",
+                "errors": [],
+                "genMap": [],
+                "id": "A",
+                "output": true,
+                "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true').tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\ntop3 = hundred.sub(idle_cpu).top3();\noutput(top3, used_cpu_percent);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top 3 Used CPU",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "ade-scoring-group-1-95-4wp2": "#bf1b00",
+            "avg": "rgb(158, 166, 155)"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 8,
+            "y": 7
+          },
+          "id": 20,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "avg_mem_used_percent:avg; top3:$t(host)",
+                "errors": [],
+                "genMap": [],
+                "id": "A",
+                "output": true,
+                "query": "memtotal=fetch('node.memory.total.bytes').downsample('[[__interval]]', 'avg');\nmemfree=fetch('node.memory.bytes').tag_filter('state==free').downsample('[[__interval]]', 'avg');\nmembuffers=fetch('node.memory.bytes').tag_filter('state==buffers').downsample('[[__interval]]', 'avg');\nmemcached=fetch('node.memory.bytes').tag_filter('state==cached').downsample('[[__interval]]', 'avg');\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\navg_mem_available_percent=memunused.sum().div(memtotal.sum()).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\navg_mem_used_percent=hundred.sub(avg_mem_available_percent);\ntop3=mem_used_percent.top3();\noutput(avg_mem_used_percent, top3);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top 3 Memory Usages",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "ade-scoring-group-1-95-4wp2": "#bf1b00",
+            "avg": "rgb(158, 166, 155)"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_APPTUIT}",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 16,
+            "y": 7
+          },
+          "id": 21,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "metrics": [],
+              "refId": "A",
+              "ts": {
+                "alias": "avg_node_disk_utilization:avg; top3:$t(host)",
+                "errors": [],
+                "genMap": [],
+                "id": "A",
+                "output": true,
+                "query": "node_disk_utilization=fetch('node.disk.uptime.percent').downsample('[[__interval]]','avg');\navg_node_disk_utilization=node_disk_utilization.avg();\ntop3=node_disk_utilization.top3();\noutput(avg_node_disk_utilization, top3);"
+              },
+              "type": "Query"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top 3 Disc Utilization",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
         }
       ],
       "repeat": null,
