@@ -1004,7 +1004,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.node.thread_pool.rejected', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','max').sum()"
+            "query": "A=fetch('elasticsearch.node.thread_pool.rejected', rate='delta')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','sum').sum()"
           },
           "type": "Query"
         }
@@ -1147,7 +1147,7 @@
       "datasource": "${DS_APPTUIT}",
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 8,
         "x": 0,
         "y": 6
       },
@@ -1213,8 +1213,8 @@
       "datasource": "${DS_APPTUIT}",
       "gridPos": {
         "h": 7,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 8,
         "y": 6
       },
       "heatmap": {},
@@ -1241,7 +1241,7 @@
       "title": "Node JVM Heap Usage",
       "tooltip": {
         "show": true,
-        "showHistogram": false
+        "showHistogram": true
       },
       "type": "heatmap",
       "xAxis": {
@@ -1270,12 +1270,12 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_APPTUIT}",
-      "fill": 1,
+      "fill": 0,
       "gridPos": {
         "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 13
+        "w": 8,
+        "x": 16,
+        "y": 6
       },
       "id": 89,
       "legend": {
@@ -1295,7 +1295,12 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "avg",
+          "fill": 1
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
@@ -3432,7 +3437,7 @@
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false
+        "show": true
       },
       "tableColumn": "",
       "targets": [
@@ -3459,7 +3464,7 @@
           "value": "null"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -3517,7 +3522,7 @@
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false
+        "show": true
       },
       "tableColumn": "",
       "targets": [
@@ -3544,7 +3549,7 @@
           "value": "null"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -3602,7 +3607,7 @@
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false
+        "show": true
       },
       "tableColumn": "",
       "targets": [
@@ -3629,7 +3634,7 @@
           "value": "null"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -3687,7 +3692,7 @@
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false
+        "show": true
       },
       "tableColumn": "",
       "targets": [
@@ -3714,7 +3719,7 @@
           "value": "null"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
     }
   ],
   "refresh": "5m",
