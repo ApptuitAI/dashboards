@@ -55,7 +55,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1540393200000,
+  "iteration": 1540396684482,
   "links": [],
   "panels": [
     {
@@ -1588,7 +1588,12 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/^out/",
+          "transform": "negative-Y"
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
@@ -1597,13 +1602,13 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "alias": "network_in:$t(direction); network_out:$t(direction)",
+            "alias": "network_in:$t(direction)($t(host)); network_out:$t(direction)($t(host))",
             "errors": [],
             "id": "A",
             "lineStart": 1,
             "numLines": 1,
             "output": true,
-            "query": "network_in=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]', 'avg');\nnetwork_out=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]', 'avg');\nminus_one=-1;\nnetwork_out=minus_one.mult(network_out);\noutput(network_out, network_in);"
+            "query": "network_in=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]', 'avg');\nnetwork_out=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]', 'avg');\noutput(network_out, network_in);"
           },
           "type": "Query"
         }
@@ -1808,7 +1813,12 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/^out/",
+          "transform": "negative-Y"
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
@@ -1823,7 +1833,7 @@
             "lineStart": 1,
             "numLines": 1,
             "output": true,
-            "query": "node_swap_in=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nnode_swap_out=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg');\nminus_one=-1;\nnode_swap_out=minus_one.mult(node_swap_out);"
+            "query": "node_swap_in=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nnode_swap_out=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg');\noutput(node_swap_in, node_swap_out);"
           },
           "type": "Query"
         }
