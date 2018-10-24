@@ -27,19 +27,19 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "4.4.3"
+      "version": "5.2.1"
     },
     {
       "type": "panel",
       "id": "graph",
       "name": "Graph",
-      "version": ""
+      "version": "5.0.0"
     },
     {
       "type": "panel",
       "id": "singlestat",
       "name": "Singlestat",
-      "version": ""
+      "version": "5.0.0"
     }
   ],
   "annotations": {
@@ -48,2607 +48,2706 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "hideControls": false,
   "id": null,
+  "iteration": 1540393200000,
   "links": [],
-  "refresh": false,
-  "rows": [
+  "panels": [
     {
-      "collapse": false,
-      "height": 150,
-      "panels": [
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
-          "format": "none",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 23,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "mysql_query_rate=fetch('mysql.queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]','max').sum();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "QPS",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
-          "format": "none",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 25,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "mysql_connection_rate=fetch('mysql.connections.total.count', rate='true')$global_tag_filter.downsample('$__interval','max').sum();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "Connections/sec",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
-          "format": "none",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 24,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "Slow Queries",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
-          "format": "none",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 26,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmysql_aborted_connects=fetch('mysql.connections.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmysql_aborted_total_connections=mysql_aborted_clients.add(mysql_aborted_connects, ignore='state');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "Aborted Clients/Connects",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
-          "format": "percentunit",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 27,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 4,
-                "output": true,
-                "query": "mysql_bufpool_read_req=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read_req').downsample('[[__interval]]', 'min');\nmysql_bufpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read').downsample('[[__interval]]', 'min');\nmysql_bufpool_total_reads=mysql_bufpool_read_req.add(mysql_bufpool_reads, ignore='state');\nmysql_bufpool_hit_ratio=mysql_bufpool_read_req.div(mysql_bufpool_total_reads, ignore='state').avg();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "Buffer Pool Hit Ratio",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
-          "format": "percentunit",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 28,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "mysql_dirty_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==dirty').downsample('[[__interval]]', 'max');\nmysql_total_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'max');\nmysql_dirty_page_percent=mysql_total_data_pages.div(mysql_total_data_pages, ignore='state').max();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "% Dirty Pages",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        }
-      ],
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 29,
+      "panels": [],
       "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
       "title": "Overview",
-      "titleSize": "h6"
+      "type": "row"
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 1
+      },
+      "id": 23,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
         {
-          "aliasColors": {
-            "Total Queries": "#0A437C"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 5,
-          "legend": {
-            "alignAsTable": true,
-            "avg": false,
-            "current": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "Total Queries",
-              "yaxis": 1
-            }
-          ],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_all_commands:$t(command);mysql_total_commands:Total Commands;mysql_total_queries:Total Queries",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 4,
-                "output": true,
-                "query": "mysql_all_commands=fetch('mysql.commands.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='command');\nmysql_total_commands=fetch('mysql.commands.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(without='command');\nmysql_total_queries=fetch('mysql.queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_all_commands, mysql_total_commands, mysql_total_queries);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Common Commands",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "name": "value to text",
+          "value": 1
         },
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 9,
-          "legend": {
-            "alignAsTable": true,
-            "avg": false,
-            "current": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_select_scan_types:$t(select_type)",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "mysql_select_scan_types=fetch('mysql.commands.select.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='select_type');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Select command types",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 12,
-          "legend": {
-            "alignAsTable": true,
-            "avg": false,
-            "current": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_handlers:$t(handler)",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "mysql_handlers=fetch('mysql.handlers.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Handler",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 13,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Slow Queries",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 4,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_num_merge_passes:Merge Passes;mysql_sort_types:$t(sort_type);mysql_sort_scanned_rows:Rows Scanned",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 4,
-                "output": true,
-                "query": "mysql_num_merge_passes=fetch('mysql.queries.sort.merge_passes.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\nmysql_sort_types=fetch('mysql.queries.sort.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\nmysql_sort_scanned_rows=fetch('mysql.queries.sort.rows.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\noutput(mysql_num_merge_passes, mysql_sort_types, mysql_sort_scanned_rows);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Sorts",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "name": "range to text",
+          "value": 2
         }
       ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "mysql_query_rate=fetch('mysql.queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]','max').sum();"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "QPS",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 1
+      },
+      "id": 25,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "mysql_connection_rate=fetch('mysql.connections.total.count', rate='true')$global_tag_filter.downsample('$__interval','max').sum();"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "Connections/sec",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 1
+      },
+      "id": 24,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "Slow Queries",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 1
+      },
+      "id": 26,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 3,
+            "output": true,
+            "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmysql_aborted_connects=fetch('mysql.connections.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmysql_aborted_total_connections=mysql_aborted_clients.add(mysql_aborted_connects, ignore='state');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "Aborted Clients/Connects",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "id": 27,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 4,
+            "output": true,
+            "query": "mysql_bufpool_read_req=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read_req').downsample('[[__interval]]', 'min');\nmysql_bufpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read').downsample('[[__interval]]', 'min');\nmysql_bufpool_total_reads=mysql_bufpool_read_req.add(mysql_bufpool_reads, ignore='state');\nmysql_bufpool_hit_ratio=mysql_bufpool_read_req.div(mysql_bufpool_total_reads, ignore='state').avg();"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "Buffer Pool Hit Ratio",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 1
+      },
+      "id": 28,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 3,
+            "output": true,
+            "query": "mysql_dirty_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==dirty').downsample('[[__interval]]', 'max');\nmysql_total_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'max');\nmysql_dirty_page_percent=mysql_total_data_pages.div(mysql_total_data_pages, ignore='state').max();"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "% Dirty Pages",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 30,
+      "panels": [],
       "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": true,
       "title": "Commands",
-      "titleSize": "h3"
+      "type": "row"
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "aliasColors": {
+        "Total Queries": "#0A437C"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 5,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 2,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "mysql_connections=fetch('mysql.connections.total.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Connections/sec",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {
-            "aborted clients": "#EF843C"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 8,
-          "legend": {
-            "alignAsTable": true,
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_aborted_clients:Aborted Clients;mysql_aborted_connections:Aborted Connections",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_aborted_connections=fetch('mysql.connections.count', rate='true')$global_tag_filter.tag_filter('state=aborted').downsample('[[__interval]]', 'max');\noutput(mysql_aborted_clients, mysql_aborted_connections);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Aborted Clients/Connects",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "alias": "Total Queries",
+          "yaxis": 1
         }
       ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_all_commands:$t(command);mysql_total_commands:Total Commands;mysql_total_queries:Total Queries",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 4,
+            "output": true,
+            "query": "mysql_all_commands=fetch('mysql.commands.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='command');\nmysql_total_commands=fetch('mysql.commands.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(without='command');\nmysql_total_queries=fetch('mysql.queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_all_commands, mysql_total_commands, mysql_total_queries);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Common Commands",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 9,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_select_scan_types:$t(select_type)",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "mysql_select_scan_types=fetch('mysql.commands.select.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='select_type');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Select command types",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 12,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_handlers:$t(handler)",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "mysql_handlers=fetch('mysql.handlers.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Handler",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "id": 13,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Slow Queries",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_num_merge_passes:Merge Passes;mysql_sort_types:$t(sort_type);mysql_sort_scanned_rows:Rows Scanned",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 4,
+            "output": true,
+            "query": "mysql_num_merge_passes=fetch('mysql.queries.sort.merge_passes.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\nmysql_sort_types=fetch('mysql.queries.sort.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\nmysql_sort_scanned_rows=fetch('mysql.queries.sort.rows.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\noutput(mysql_num_merge_passes, mysql_sort_types, mysql_sort_scanned_rows);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Sorts",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 41
+      },
+      "id": 31,
+      "panels": [],
       "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": true,
       "title": "Connections",
-      "titleSize": "h3"
+      "type": "row"
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 42
+      },
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 10,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "mysql_connections=fetch('mysql.connections.total.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
           },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_table_locks_rate:$t(status)",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "mysql_table_locks_rate=fetch('mysql.table_locks.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Table Locks",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "type": "Query"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
-    },
-    {
-      "collapse": false,
-      "height": "250px",
-      "panels": [
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Connections/sec",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
         {
-          "aliasColors": {},
-          "bars": true,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 1,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": false,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_network_incoming:in;mysql_network_outgoing:out",
-                "errors": [
-                  {
-                    "eCol": 0,
-                    "line": 3,
-                    "message": "Invalid argument value. Expected non-empty Data Frame on RHS for operation 'sub', got empty RHS.",
-                    "original": {
-                      "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                      "message": "Invalid argument value. Expected non-empty Data Frame on RHS for operation 'sub', got empty RHS.",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 4
-                    },
-                    "sCol": 0
-                  }
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 5,
-                "output": true,
-                "query": "mysql_network_incoming=fetch('mysql.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmysql_network_out=fetch('mysql.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmysql_network_outgoing=zero.sub(mysql_network_out);\noutput(mysql_network_incoming, mysql_network_outgoing);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Network IO",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "Bps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
-    },
-    {
-      "collapse": false,
-      "height": 250,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 3,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_running_threads:running;mysql_connected_threads:connected",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "mysql_running_threads=fetch('mysql.threads.running')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_connected_threads=fetch('mysql.threads.connected')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_running_threads, mysql_connected_threads);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Threads",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
-    },
-    {
-      "collapse": false,
-      "height": 250,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 6,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_qcache_free_blocks:free blocks;mysql_qcache_total_blocks:total blocks",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "mysql_qcache_free_blocks=fetch('mysql.queries.cache.blocks')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_total_blocks=fetch('mysql.queries.cache.blocks.total')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_free_blocks, mysql_qcache_total_blocks);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Query Cache Memory",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
         },
         {
-          "aliasColors": {
-            "queries in cache": "#82B5D8"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 7,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_qcache_hits:hits;mysql_qcache_inserts:inserts;mysql_qcache_prunes:lowmem prunes;mysql_qcache_notcached:not cached;mysql_qcache_queries_in_cache:queries in cache",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 6,
-                "output": true,
-                "query": "mysql_qcache_hits=fetch('mysql.queries.cache.hits.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_inserts=fetch('mysql.queries.cache.inserts.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_prunes=fetch('mysql.queries.cache.lowmem_prunes.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_notcached=fetch('mysql.queries.cache.not_cached.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_queries_in_cache=fetch('mysql.queries.cache.queries_in_cache.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_hits, mysql_qcache_inserts, mysql_qcache_prunes, mysql_qcache_notcached, mysql_qcache_queries_in_cache);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Query Cache Activity",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         }
       ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "aborted clients": "#EF843C"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 42
+      },
+      "id": 8,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_aborted_clients:Aborted Clients;mysql_aborted_connections:Aborted Connections",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 3,
+            "output": true,
+            "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_aborted_connections=fetch('mysql.connections.count', rate='true')$global_tag_filter.tag_filter('state=aborted').downsample('[[__interval]]', 'max');\noutput(mysql_aborted_clients, mysql_aborted_connections);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Aborted Clients/Connects",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 49
+      },
+      "id": 32,
+      "panels": [],
       "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": true,
+      "title": "Dashboard Row",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 50
+      },
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_table_locks_rate:$t(status)",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "mysql_table_locks_rate=fetch('mysql.table_locks.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Table Locks",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 57
+      },
+      "id": 33,
+      "panels": [],
+      "repeat": null,
+      "title": "Dashboard Row",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 58
+      },
+      "id": 1,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_network_incoming:in;mysql_network_outgoing:out",
+            "errors": [
+              {
+                "eCol": 0,
+                "line": 3,
+                "message": "Invalid argument value. Expected non-empty Data Frame on RHS for operation 'sub', got empty RHS.",
+                "original": {
+                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
+                  "message": "Invalid argument value. Expected non-empty Data Frame on RHS for operation 'sub', got empty RHS.",
+                  "queryColumnOffset": -1,
+                  "queryLineNo": 4
+                },
+                "sCol": 0
+              }
+            ],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 5,
+            "output": true,
+            "query": "mysql_network_incoming=fetch('mysql.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmysql_network_out=fetch('mysql.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmysql_network_outgoing=zero.sub(mysql_network_out);\noutput(mysql_network_incoming, mysql_network_outgoing);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Network IO",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 65
+      },
+      "id": 34,
+      "panels": [],
+      "repeat": null,
+      "title": "Dashboard Row",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 66
+      },
+      "id": 3,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_running_threads:running;mysql_connected_threads:connected",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 3,
+            "output": true,
+            "query": "mysql_running_threads=fetch('mysql.threads.running')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_connected_threads=fetch('mysql.threads.connected')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_running_threads, mysql_connected_threads);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Threads",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 73
+      },
+      "id": 35,
+      "panels": [],
+      "repeat": null,
       "title": "Query Cache",
-      "titleSize": "h3"
+      "type": "row"
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 74
+      },
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
         {
-          "aliasColors": {
-            "mysql.innodb_buffer_pool_pages_misc{host: centos6, schema: default}": "#1F78C1"
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_qcache_free_blocks:free blocks;mysql_qcache_total_blocks:total blocks",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 3,
+            "output": true,
+            "query": "mysql_qcache_free_blocks=fetch('mysql.queries.cache.blocks')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_total_blocks=fetch('mysql.queries.cache.blocks.total')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_free_blocks, mysql_qcache_total_blocks);"
           },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 14,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_buffer_pool_free_pages:free;mysql_buffer_pool_data_pages:data;mysql_buffer_pool_misc_pages:misc",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 5,
-                "output": true,
-                "query": "mysql_buffer_pool_page_size=fetch('mysql.innodb.page_size.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_buffer_pool_free_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_misc_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==misc').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\noutput(mysql_buffer_pool_free_pages, mysql_buffer_pool_data_pages, mysql_buffer_pool_misc_pages);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Buffer Pool",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "bytes",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 16,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 4,
-                "output": true,
-                "query": "mysql_bpool_read_reqs=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read_req').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_total_reads=mysql_bpool_read_reqs.add(mysql_bpool_reads, ignore='state');\nmysql_bpool_hit_ratio=mysql_bpool_read_reqs.div(mysql_bpool_total_reads, ignore='state');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Buffer Pool Hit Ratio",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percentunit",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 15,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 4,
-                "output": true,
-                "query": "mysql_bpool_dirty_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==dirty').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'avg').sum();\nmysql_dirty_page_percent=mysql_bpool_dirty_pages.div(mysql_bpool_data_pages, ignore='state');\noutput(mysql_dirty_page_percent);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "% Dirty Pages",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percentunit",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "description": "Normally, writes to the InnoDB Buffer Pool happen in the background. However, if it is necessary to read or create a page and no clean pages are available, it is also necessary to wait for pages to be flushed first. The Innodb_buffer_pool_wait_free counter counts how many times this has happened. Innodb_buffer_pool_wait_free greater than 0 is a strong indicator that the InnoDB Buffer Pool is too small.",
-          "fill": 1,
-          "id": 17,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "mysql_buffer_pool_wait_free=fetch('mysql.innodb.buffer_pool.wait_free.count')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Waiting for flush",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "description": "A value much higher that 1 is an indicator of a good locality of data",
-          "fill": 1,
-          "id": 18,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "mysql_bpool_write_requests=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==write_req').downsample('[[__interval]]','max');\nmysql_bpool_pages_flushed=fetch('mysql.innodb.buffer_pool.pages.flush.count', rate='true')$global_tag_filter.downsample('[[__interval]]','max');\nmysql_bpool_changed_rows_per_block=mysql_bpool_write_requests.div(mysql_bpool_pages_flushed,ignore='state');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Changed rows per block",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 11,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_innodb_locks_os_waits:os_waits;mysql_innodb_locks_rounds:rounds;mysql_innodb_locks_spin_waits:spin_waits",
-                "errors": [
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 0,
-                    "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                    "original": {
-                      "errorType": "ERROR_FETCHING_FROM_DATASOURCE",
-                      "message": "Requested metrics(mysql.innodb.locks.os_waits.count) not found",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 1
-                    },
-                    "sCol": 0
-                  }
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 4,
-                "output": true,
-                "query": "mysql_innodb_locks_os_waits=fetch('mysql.innodb.locks.os_waits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_innodb_locks_rounds=fetch('mysql.innodb.locks.rounds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_innodb_locks_spin_waits=fetch('mysql.innodb.locks.mutex_spin_waits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_innodb_locks_os_waits, mysql_innodb_locks_rounds, mysql_innodb_locks_spin_waits);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "InnoDB Locks",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 19,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_row_operations:$t(operation)",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "mysql_row_operations=fetch('mysql.innodb.row_operations.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Row operations",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 20,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "/waits/",
-              "yaxis": 2
-            }
-          ],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_row_lock_time:$t(host) (lock time);mysql_row_lock_waits:$t(host) (waits)",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "mysql_row_lock_time=fetch('mysql.innodb.row_lock.milliseconds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');\nmysql_row_lock_waits=fetch('mysql.innodb_row_lock_waits', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');\noutput(mysql_row_lock_time, mysql_row_lock_waits);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Row Locks",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {
-            "fsyncs": "#1F78C1",
-            "log waits": "#E24D42",
-            "mysql.innodb_log_waits{host: centos6, schema: default}": "#E24D42"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 22,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "fsyncs",
-              "yaxis": 2
-            }
-          ],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_os_logs_written:written;mysql_os_log_fsyncs=fsyncs;mysql_innodb_log_waits=log_waits",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 4,
-                "output": true,
-                "query": "mysql_os_logs_written=fetch('mysql.innodb.redo_log.os_file.bytes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_os_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true')$global_tag_filter.tag_filter('stat==os_log').downsample('[[__interval]]', 'max');\nmysql_innodb_log_waits=fetch('mysql.innodb.redo_log_buffer.log_wait.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_os_logs_written, mysql_os_log_fsyncs, mysql_innodb_log_waits);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Redo Log I/O",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {
-            "fsyncs": "#1F78C1"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 21,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "fsyncs",
-              "yaxis": 2
-            }
-          ],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mysql_innodb_data_bytes:$t(stat);mysql_innodb_log_fsyncs:fsyncs",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "mysql_innodb_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true')$global_tag_filter.tag_filter('stat==innodb').downsample('[[__interval]]', 'max');\nmysql_innodb_data_bytes=fetch('mysql.innodb.data.bytes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_innodb_data_bytes, mysql_innodb_log_fsyncs);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Datafile I/O",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "type": "Query"
         }
       ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Query Cache Memory",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "queries in cache": "#82B5D8"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 74
+      },
+      "id": 7,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_qcache_hits:hits;mysql_qcache_inserts:inserts;mysql_qcache_prunes:lowmem prunes;mysql_qcache_notcached:not cached;mysql_qcache_queries_in_cache:queries in cache",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 6,
+            "output": true,
+            "query": "mysql_qcache_hits=fetch('mysql.queries.cache.hits.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_inserts=fetch('mysql.queries.cache.inserts.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_prunes=fetch('mysql.queries.cache.lowmem_prunes.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_notcached=fetch('mysql.queries.cache.not_cached.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_queries_in_cache=fetch('mysql.queries.cache.queries_in_cache.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_hits, mysql_qcache_inserts, mysql_qcache_prunes, mysql_qcache_notcached, mysql_qcache_queries_in_cache);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Query Cache Activity",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 81
+      },
+      "id": 36,
+      "panels": [],
       "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": true,
       "title": "InnoDB",
-      "titleSize": "h3"
+      "type": "row"
+    },
+    {
+      "aliasColors": {
+        "mysql.innodb_buffer_pool_pages_misc{host: centos6, schema: default}": "#1F78C1"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 82
+      },
+      "id": 14,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_buffer_pool_free_pages:free;mysql_buffer_pool_data_pages:data;mysql_buffer_pool_misc_pages:misc",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 5,
+            "output": true,
+            "query": "mysql_buffer_pool_page_size=fetch('mysql.innodb.page_size.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_buffer_pool_free_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_misc_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==misc').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\noutput(mysql_buffer_pool_free_pages, mysql_buffer_pool_data_pages, mysql_buffer_pool_misc_pages);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Buffer Pool",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 82
+      },
+      "id": 16,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 4,
+            "output": true,
+            "query": "mysql_bpool_read_reqs=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read_req').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_total_reads=mysql_bpool_read_reqs.add(mysql_bpool_reads, ignore='state');\nmysql_bpool_hit_ratio=mysql_bpool_read_reqs.div(mysql_bpool_total_reads, ignore='state');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Buffer Pool Hit Ratio",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 89
+      },
+      "id": 15,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 4,
+            "output": true,
+            "query": "mysql_bpool_dirty_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==dirty').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'avg').sum();\nmysql_dirty_page_percent=mysql_bpool_dirty_pages.div(mysql_bpool_data_pages, ignore='state');\noutput(mysql_dirty_page_percent);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "% Dirty Pages",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "description": "Normally, writes to the InnoDB Buffer Pool happen in the background. However, if it is necessary to read or create a page and no clean pages are available, it is also necessary to wait for pages to be flushed first. The Innodb_buffer_pool_wait_free counter counts how many times this has happened. Innodb_buffer_pool_wait_free greater than 0 is a strong indicator that the InnoDB Buffer Pool is too small.",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 89
+      },
+      "id": 17,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "mysql_buffer_pool_wait_free=fetch('mysql.innodb.buffer_pool.wait_free.count')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Waiting for flush",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "description": "A value much higher that 1 is an indicator of a good locality of data",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 96
+      },
+      "id": 18,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 3,
+            "output": true,
+            "query": "mysql_bpool_write_requests=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==write_req').downsample('[[__interval]]','max');\nmysql_bpool_pages_flushed=fetch('mysql.innodb.buffer_pool.pages.flush.count', rate='true')$global_tag_filter.downsample('[[__interval]]','max');\nmysql_bpool_changed_rows_per_block=mysql_bpool_write_requests.div(mysql_bpool_pages_flushed,ignore='state');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Changed rows per block",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 96
+      },
+      "id": 11,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_innodb_locks_os_waits:os_waits;mysql_innodb_locks_rounds:rounds;mysql_innodb_locks_spin_waits:spin_waits",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 4,
+            "output": true,
+            "query": "mysql_innodb_locks_os_waits=fetch('mysql.innodb.locks.os_waits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_innodb_locks_rounds=fetch('mysql.innodb.locks.rounds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_innodb_locks_spin_waits=fetch('mysql.innodb.locks.mutex_spin_waits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_innodb_locks_os_waits, mysql_innodb_locks_rounds, mysql_innodb_locks_spin_waits);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "InnoDB Locks",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 103
+      },
+      "id": 19,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_row_operations:$t(operation)",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "mysql_row_operations=fetch('mysql.innodb.row_operations.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Row operations",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 103
+      },
+      "id": 20,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/waits/",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_row_lock_time:$t(host) (lock time);mysql_row_lock_waits:$t(host) (waits)",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 3,
+            "output": true,
+            "query": "mysql_row_lock_time=fetch('mysql.innodb.row_lock.milliseconds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');\nmysql_row_lock_waits=fetch('mysql.innodb_row_lock_waits', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');\noutput(mysql_row_lock_time, mysql_row_lock_waits);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Row Locks",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "fsyncs": "#1F78C1",
+        "log waits": "#E24D42",
+        "mysql.innodb_log_waits{host: centos6, schema: default}": "#E24D42"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 110
+      },
+      "id": 22,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "fsyncs",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_os_logs_written:written;mysql_os_log_fsyncs=fsyncs;mysql_innodb_log_waits=log_waits",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 4,
+            "output": true,
+            "query": "mysql_os_logs_written=fetch('mysql.innodb.redo_log.os_file.bytes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_os_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true')$global_tag_filter.tag_filter('stat==os_log').downsample('[[__interval]]', 'max');\nmysql_innodb_log_waits=fetch('mysql.innodb.redo_log_buffer.log_wait.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_os_logs_written, mysql_os_log_fsyncs, mysql_innodb_log_waits);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Redo Log I/O",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "fsyncs": "#1F78C1"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 110
+      },
+      "id": 21,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "fsyncs",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mysql_innodb_data_bytes:$t(stat);mysql_innodb_log_fsyncs:fsyncs",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 3,
+            "output": true,
+            "query": "mysql_innodb_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true')$global_tag_filter.tag_filter('stat==innodb').downsample('[[__interval]]', 'max');\nmysql_innodb_data_bytes=fetch('mysql.innodb.data.bytes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_innodb_data_bytes, mysql_innodb_log_fsyncs);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Datafile I/O",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
-  "schemaVersion": 14,
+  "refresh": false,
+  "schemaVersion": 16,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -2723,5 +2822,6 @@
   },
   "timezone": "",
   "title": "MySQL Metrics",
-  "version": 4
+  "uid": "SEscuYxik",
+  "version": 1
 }

@@ -49,7 +49,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1531828272536,
+  "iteration": 1540393200000,
   "links": [
     {
       "asDropdown": false,
@@ -2004,5 +2004,6 @@
   },
   "timezone": "",
   "title": "Elasticsearch Index Stats",
-  "version": 86
+  "uid": "tKdOuLbmk",
+  "version": 1
 }
