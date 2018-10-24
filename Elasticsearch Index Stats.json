@@ -12,7 +12,7 @@
       "name": "VAR_GLOBAL_TAG_FILTER",
       "type": "constant",
       "label": "global_tag_filter",
-      "value": ".tag_filter('host==$host')",
+      "value": "",
       "description": ""
     }
   ],
@@ -49,7 +49,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1540393200000,
+  "iteration": 1540399183891,
   "links": [
     {
       "asDropdown": false,
@@ -111,6 +111,7 @@
           "refId": "A",
           "ts": {
             "errors": [],
+            "genMap": [],
             "id": "A",
             "output": true,
             "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
@@ -1926,28 +1927,8 @@
         "options": [],
         "query": "tag_values(elasticsearch.indices.byindex.primaries.query_cache.total_count,index,cluster=$cluster)",
         "refresh": 1,
-        "regex": "/^filebeat-2018.*/",
-        "sort": 2,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "host",
-        "multi": false,
-        "name": "host",
-        "options": [],
-        "query": "tag_values(elasticsearch.node.process.cpu.percent,node)",
-        "refresh": 1,
         "regex": "",
-        "sort": 0,
+        "sort": 2,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
