@@ -125,7 +125,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('node.cpu.ticks.count')$global_tag_filter.tag_filter(\"type==idle\").downsample('[[__interval]]','max').count();"
+            "query": "A=fetch('node.cpu.ticks.count')$global_tag_filter.tag_filter('type==idle').downsample('[[__interval]]','max').count(by='host').count();"
           },
           "type": "Query"
         }
