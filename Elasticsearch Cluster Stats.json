@@ -152,7 +152,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.indices.docs.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').avg()"
+            "query": "A=fetch('elasticsearch.cluster.indices.docs.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
           },
           "type": "Query"
         }
@@ -237,7 +237,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.indices.store.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').avg()"
+            "query": "A=fetch('elasticsearch.cluster.indices.store.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
           },
           "type": "Query"
         }
@@ -322,7 +322,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.nodes.fs.total_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.cluster.nodes.fs.available_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg');\none=1;\nC=one.sub(B.div(A)).avg();"
+            "query": "A=fetch('elasticsearch.cluster.nodes.fs.total_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg').sum();\nB=fetch('elasticsearch.cluster.nodes.fs.available_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg').sum();\none=1;\nC=one.sub(B.div(A));"
           },
           "type": "Query"
         }
