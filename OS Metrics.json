@@ -27,25 +27,25 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "4.4.3"
+      "version": "5.2.1"
     },
     {
       "type": "panel",
       "id": "graph",
       "name": "Graph",
-      "version": ""
+      "version": "5.0.0"
     },
     {
       "type": "panel",
       "id": "heatmap",
       "name": "Heatmap",
-      "version": ""
+      "version": "5.0.0"
     },
     {
       "type": "panel",
       "id": "singlestat",
       "name": "Singlestat",
-      "version": ""
+      "version": "5.0.0"
     }
   ],
   "annotations": {
@@ -54,2390 +54,1833 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "hideControls": false,
   "id": null,
+  "iteration": 1540396684482,
   "links": [],
-  "refresh": false,
-  "rows": [
+  "panels": [
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
         {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
-          "format": "none",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 2,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "query": "A=fetch('node.cpu.ticks.count')$global_tag_filter.tag_filter(\"type==idle\").downsample('[[__interval]]','max').count();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "Number of instances",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
+          "name": "value to text",
+          "value": 1
         },
         {
-          "cards": {
-            "cardPadding": null,
-            "cardRound": null
-          },
-          "color": {
-            "cardColor": "#b4ff00",
-            "colorScale": "sqrt",
-            "colorScheme": "interpolateOranges",
-            "exponent": 0.5,
-            "mode": "spectrum"
-          },
-          "dataFormat": "timeseries",
-          "datasource": "${DS_APPTUIT}",
-          "heatmap": {},
-          "highlightCards": true,
-          "id": 5,
-          "links": [],
-          "span": 2,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "query": "fetch('node.uptime.seconds.count')$global_tag_filter.downsample('[[__interval]]','avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "title": "Instance uptime",
-          "tooltip": {
-            "show": true,
-            "showHistogram": true
-          },
-          "type": "heatmap",
-          "xAxis": {
-            "show": true
-          },
-          "xBucketNumber": null,
-          "xBucketSize": null,
-          "yAxis": {
-            "decimals": null,
-            "format": "s",
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true,
-            "splitFactor": null
-          },
-          "yBucketNumber": null,
-          "yBucketSize": null
-        },
-        {
-          "cards": {
-            "cardPadding": null,
-            "cardRound": null
-          },
-          "color": {
-            "cardColor": "#b4ff00",
-            "colorScale": "sqrt",
-            "colorScheme": "interpolateBlues",
-            "exponent": 0.5,
-            "mode": "spectrum"
-          },
-          "dataFormat": "timeseries",
-          "datasource": "${DS_APPTUIT}",
-          "heatmap": {},
-          "highlightCards": true,
-          "id": 4,
-          "links": [],
-          "span": 2,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "query": "idle=fetch('node.cpu.ticks.count', rate='true')$global_tag_filter.tag_filter(\"type==idle\").downsample(\"[[__interval]]\", \"avg\");\nused=100;\nused=used.sub(idle);"
-              },
-              "type": "Query"
-            }
-          ],
-          "title": "CPU usage",
-          "tooltip": {
-            "show": true,
-            "showHistogram": true
-          },
-          "type": "heatmap",
-          "xAxis": {
-            "show": true
-          },
-          "xBucketNumber": null,
-          "xBucketSize": null,
-          "yAxis": {
-            "decimals": null,
-            "format": "short",
-            "logBase": 1,
-            "max": "100",
-            "min": "0",
-            "show": true,
-            "splitFactor": null
-          },
-          "yBucketNumber": null,
-          "yBucketSize": 5
-        },
-        {
-          "cards": {
-            "cardPadding": null,
-            "cardRound": null
-          },
-          "color": {
-            "cardColor": "#b4ff00",
-            "colorScale": "sqrt",
-            "colorScheme": "interpolateBlues",
-            "exponent": 0.5,
-            "mode": "spectrum"
-          },
-          "dataFormat": "timeseries",
-          "datasource": "${DS_APPTUIT}",
-          "heatmap": {},
-          "highlightCards": true,
-          "id": 7,
-          "links": [],
-          "span": 2,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "query": "free=fetch('node.memory.bytes')$global_tag_filter.tag_filter(\"state==free\").downsample('[[__interval]]','avg');\ntotal=fetch('node.memory.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg');\nfree_perc = free.div(total, on=\"host\");\nusage = 1;\nusage= usage.sub(free_perc);\noutput(usage);"
-              },
-              "type": "Query"
-            }
-          ],
-          "title": "Memory usage",
-          "tooltip": {
-            "show": true,
-            "showHistogram": true
-          },
-          "type": "heatmap",
-          "xAxis": {
-            "show": true
-          },
-          "xBucketNumber": null,
-          "xBucketSize": null,
-          "yAxis": {
-            "decimals": null,
-            "format": "percentunit",
-            "logBase": 1,
-            "max": "1",
-            "min": "0",
-            "show": true,
-            "splitFactor": null
-          },
-          "yBucketNumber": null,
-          "yBucketSize": 0.05
-        },
-        {
-          "cards": {
-            "cardPadding": null,
-            "cardRound": null
-          },
-          "color": {
-            "cardColor": "#b4ff00",
-            "colorScale": "sqrt",
-            "colorScheme": "interpolatePurples",
-            "exponent": 0.5,
-            "mode": "spectrum"
-          },
-          "dataFormat": "timeseries",
-          "datasource": "${DS_APPTUIT}",
-          "heatmap": {},
-          "highlightCards": true,
-          "id": 8,
-          "links": [],
-          "span": 2,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "query": "fetch('node.disk.used.percent')$global_tag_filter.downsample('[[__interval]]', 'avg')"
-              },
-              "type": "Query"
-            }
-          ],
-          "title": "Disk used",
-          "tooltip": {
-            "show": true,
-            "showHistogram": true
-          },
-          "tooltipDecimals": null,
-          "type": "heatmap",
-          "xAxis": {
-            "show": true
-          },
-          "xBucketNumber": null,
-          "xBucketSize": "",
-          "yAxis": {
-            "decimals": null,
-            "format": "percent",
-            "logBase": 1,
-            "max": "100",
-            "min": "0",
-            "show": true,
-            "splitFactor": null
-          },
-          "yBucketNumber": null,
-          "yBucketSize": 5
-        },
-        {
-          "cards": {
-            "cardPadding": null,
-            "cardRound": null
-          },
-          "color": {
-            "cardColor": "rgb(0, 30, 255)",
-            "colorScale": "linear",
-            "colorScheme": "interpolateOranges",
-            "exponent": 0.5,
-            "mode": "spectrum"
-          },
-          "dataFormat": "timeseries",
-          "datasource": "${DS_APPTUIT}",
-          "heatmap": {},
-          "highlightCards": true,
-          "id": 6,
-          "links": [],
-          "span": 2,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "output": true,
-                "query": "bsin=fetch('proc.net.bytes', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nout=0;\nout=out.sub(fetch('proc.net.bytes', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg'));\noutput(bsin,out);"
-              },
-              "type": "Query"
-            }
-          ],
-          "title": "Network IO",
-          "tooltip": {
-            "show": true,
-            "showHistogram": true
-          },
-          "type": "heatmap",
-          "xAxis": {
-            "show": true
-          },
-          "xBucketNumber": null,
-          "xBucketSize": null,
-          "yAxis": {
-            "decimals": null,
-            "format": "Bps",
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true,
-            "splitFactor": null
-          },
-          "yBucketNumber": null,
-          "yBucketSize": null
+          "name": "range to text",
+          "value": 2
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "output": true,
+            "query": "A=fetch('node.cpu.ticks.count')$global_tag_filter.tag_filter('type==idle').downsample('[[__interval]]','max').count(by='host').count();"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "Number of instances",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "cards": {
+        "cardPadding": null,
+        "cardRound": null
+      },
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateOranges",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "timeseries",
+      "datasource": "${DS_APPTUIT}",
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "heatmap": {},
+      "highlightCards": true,
+      "id": 5,
+      "legend": {
+        "show": false
+      },
+      "links": [],
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 9,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "output": true,
+            "query": "fetch('node.uptime.seconds.count')$global_tag_filter.downsample('[[__interval]]','avg');"
           },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gDSAgg": "max",
-              "timeSeries": [
-                {
-                  "alias": "",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "line": 1,
-                  "metric": "proc.loadavg.1min",
-                  "output": true
-                }
-              ]
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "downsampleFillPolicy": "none",
-              "metric": "proc.loadavg.1min",
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "load_avg_per_min=fetch('node.cpu.load.avg_1m')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Load Average [1m]",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {
-            "proc.stat.processes{host: nook}": "#052B51"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 10,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gRate": true,
-              "timeSeries": []
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "downsampleFillPolicy": "none",
-              "metric": "proc.stat.processes",
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "processes_spawn_rate=fetch('node.processes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Processes",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {
-            "proc.stat.ctxt{host: nook}": "#614D93"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 11,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gRate": true,
-              "timeSeries": []
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "context_switch_rate=fetch('node.process.context_switches.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Context Switches",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {
-            "proc.stat.intr{host: nook}": "#BA43A9"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 12,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gRate": true,
-              "timeSeries": []
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "interrupt_execution_rate=fetch('node.process.interrupts.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Interrupts",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {
-            "avg": "rgb(158, 166, 155)"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "gridPos": {
-            "h": 7,
-            "w": 8,
-            "x": 0,
-            "y": 7
-          },
-          "id": 19,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "used_cpu_percent:avg; top3:$t(host)",
-                "errors": [],
-                "genMap": [],
-                "id": "A",
-                "output": true,
-                "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true').tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\ntop3 = hundred.sub(idle_cpu).top3();\noutput(top3, used_cpu_percent);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Top 3 Used CPU",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percent",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {
-            "ade-scoring-group-1-95-4wp2": "#bf1b00",
-            "avg": "rgb(158, 166, 155)"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "gridPos": {
-            "h": 7,
-            "w": 8,
-            "x": 8,
-            "y": 7
-          },
-          "id": 20,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "avg_mem_used_percent:avg; top3:$t(host)",
-                "errors": [],
-                "genMap": [],
-                "id": "A",
-                "output": true,
-                "query": "memtotal=fetch('node.memory.total.bytes').downsample('[[__interval]]', 'avg');\nmemfree=fetch('node.memory.bytes').tag_filter('state==free').downsample('[[__interval]]', 'avg');\nmembuffers=fetch('node.memory.bytes').tag_filter('state==buffers').downsample('[[__interval]]', 'avg');\nmemcached=fetch('node.memory.bytes').tag_filter('state==cached').downsample('[[__interval]]', 'avg');\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\navg_mem_available_percent=memunused.sum().div(memtotal.sum()).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\navg_mem_used_percent=hundred.sub(avg_mem_available_percent);\ntop3=mem_used_percent.top3();\noutput(avg_mem_used_percent, top3);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Top 3 Memory Usages",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percent",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {
-            "ade-scoring-group-1-95-4wp2": "#bf1b00",
-            "avg": "rgb(158, 166, 155)"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "gridPos": {
-            "h": 7,
-            "w": 8,
-            "x": 16,
-            "y": 7
-          },
-          "id": 21,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "avg_node_disk_utilization:avg; top3:$t(host)",
-                "errors": [],
-                "genMap": [],
-                "id": "A",
-                "output": true,
-                "query": "node_disk_utilization=fetch('node.disk.uptime.percent').downsample('[[__interval]]','avg');\navg_node_disk_utilization=node_disk_utilization.avg();\ntop3=node_disk_utilization.top3();\noutput(avg_node_disk_utilization, top3);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Top 3 Disc Utilization",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percent",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
+          "type": "Query"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "title": "Instance uptime",
+      "tooltip": {
+        "show": true,
+        "showHistogram": true
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "xBucketNumber": null,
+      "xBucketSize": null,
+      "yAxis": {
+        "decimals": null,
+        "format": "s",
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true,
+        "splitFactor": null
+      },
+      "yBucketBound": "auto",
+      "yBucketNumber": null,
+      "yBucketSize": null
     },
     {
-      "collapse": false,
-      "height": 353,
-      "panels": [
+      "cards": {
+        "cardPadding": null,
+        "cardRound": null
+      },
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateBlues",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "timeseries",
+      "datasource": "${DS_APPTUIT}",
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "heatmap": {},
+      "highlightCards": true,
+      "id": 4,
+      "legend": {
+        "show": false
+      },
+      "links": [],
+      "targets": [
         {
-          "aliasColors": {
-            "% Idle": "#E0F9D7",
-            "% Used": "#E24D42"
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "output": true,
+            "query": "idle=fetch('node.cpu.ticks.count', rate='true')$global_tag_filter.tag_filter(\"type==idle\").downsample(\"[[__interval]]\", \"avg\");\nused=100;\nused=used.sub(idle);"
           },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 1,
-          "legend": {
-            "alignAsTable": true,
-            "avg": false,
-            "current": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "none",
-              "gDSAgg": "min",
-              "gDSInterval": "60s",
-              "gRate": true,
-              "timeSeries": []
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "used_cpu_percent:%Used;idle_cpu_percent:%Idle",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 6,
-                "output": true,
-                "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true')$global_tag_filter.tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\noutput(used_cpu_percent, idle_cpu_percent);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "CPU Usage",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "type": "Query"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "title": "CPU usage",
+      "tooltip": {
+        "show": true,
+        "showHistogram": true
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "xBucketNumber": null,
+      "xBucketSize": null,
+      "yAxis": {
+        "decimals": null,
+        "format": "short",
+        "logBase": 1,
+        "max": "100",
+        "min": "0",
+        "show": true,
+        "splitFactor": null
+      },
+      "yBucketBound": "auto",
+      "yBucketNumber": null,
+      "yBucketSize": 5
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "cards": {
+        "cardPadding": null,
+        "cardRound": null
+      },
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateBlues",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "timeseries",
+      "datasource": "${DS_APPTUIT}",
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "heatmap": {},
+      "highlightCards": true,
+      "id": 7,
+      "legend": {
+        "show": false
+      },
+      "links": [],
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 3,
-          "legend": {
-            "alignAsTable": true,
-            "avg": false,
-            "current": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": true
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "output": true,
+            "query": "free=fetch('node.memory.bytes')$global_tag_filter.tag_filter(\"state==free\").downsample('[[__interval]]','avg');\ntotal=fetch('node.memory.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg');\nfree_perc = free.div(total, on=\"host\");\nusage = 1;\nusage= usage.sub(free_perc);\noutput(usage);"
           },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 1,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "timeSeries": []
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "mem_used_percent:Used %; mem_available_percent: Available %",
-                "errors": [
-                  {
-                    "eCol": 0,
-                    "line": 5,
-                    "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                    "original": {
-                      "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                      "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 6
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 4,
-                    "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                    "original": {
-                      "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                      "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 5
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 4,
-                    "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                    "original": {
-                      "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                      "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 5
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 4,
-                    "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                    "original": {
-                      "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                      "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 5
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 4,
-                    "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                    "original": {
-                      "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                      "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 5
-                    },
-                    "sCol": 0
-                  }
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 9,
-                "output": true,
-                "query": "memtotal=fetch('node.memory.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemfree=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmembuffers=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==buffers').downsample('[[__interval]]', 'avg').sum();\nmemcached=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==cached').downsample('[[__interval]]', 'avg').sum();\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\noutput(mem_used_percent, mem_available_percent);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Memory",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percent",
-              "label": "",
-              "logBase": 1,
-              "max": "100",
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "type": "Query"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "title": "Memory usage",
+      "tooltip": {
+        "show": true,
+        "showHistogram": true
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "xBucketNumber": null,
+      "xBucketSize": null,
+      "yAxis": {
+        "decimals": null,
+        "format": "percentunit",
+        "logBase": 1,
+        "max": "1",
+        "min": "0",
+        "show": true,
+        "splitFactor": null
+      },
+      "yBucketBound": "auto",
+      "yBucketNumber": null,
+      "yBucketSize": 0.05
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "cards": {
+        "cardPadding": null,
+        "cardRound": null
+      },
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolatePurples",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "timeseries",
+      "datasource": "${DS_APPTUIT}",
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 16,
+        "y": 0
+      },
+      "heatmap": {},
+      "highlightCards": true,
+      "id": 8,
+      "legend": {
+        "show": false
+      },
+      "links": [],
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "decimals": 2,
-          "fill": 1,
-          "id": 13,
-          "legend": {
-            "alignAsTable": true,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": true
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "output": true,
+            "query": "fetch('node.disk.used.percent')$global_tag_filter.downsample('[[__interval]]', 'avg')"
           },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "timeSeries": []
-            }
+          "type": "Query"
+        }
+      ],
+      "title": "Disk used",
+      "tooltip": {
+        "show": true,
+        "showHistogram": true
+      },
+      "tooltipDecimals": null,
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "xBucketNumber": null,
+      "xBucketSize": "",
+      "yAxis": {
+        "decimals": null,
+        "format": "percent",
+        "logBase": 1,
+        "max": "100",
+        "min": "0",
+        "show": true,
+        "splitFactor": null
+      },
+      "yBucketBound": "auto",
+      "yBucketNumber": null,
+      "yBucketSize": 5
+    },
+    {
+      "cards": {
+        "cardPadding": null,
+        "cardRound": null
+      },
+      "color": {
+        "cardColor": "rgb(0, 30, 255)",
+        "colorScale": "linear",
+        "colorScheme": "interpolateOranges",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "timeseries",
+      "datasource": "${DS_APPTUIT}",
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "heatmap": {},
+      "highlightCards": true,
+      "id": 6,
+      "legend": {
+        "show": false
+      },
+      "links": [],
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "output": true,
+            "query": "bsin=fetch('proc.net.bytes', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nout=0;\nout=out.sub(fetch('proc.net.bytes', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg'));\noutput(bsin,out);"
           },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "node_disk_space:$t(mount)",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "node_disk_space=fetch('node.disk.used.percent')$global_tag_filter.downsample('[[__interval]]','avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Disc Space",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
+          "type": "Query"
+        }
+      ],
+      "title": "Network IO",
+      "tooltip": {
+        "show": true,
+        "showHistogram": true
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "xBucketNumber": null,
+      "xBucketSize": null,
+      "yAxis": {
+        "decimals": null,
+        "format": "Bps",
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true,
+        "splitFactor": null
+      },
+      "yBucketBound": "auto",
+      "yBucketNumber": null,
+      "yBucketSize": null
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 7
+      },
+      "id": 9,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "aggregator": "none",
+          "downsampleAggregator": "avg",
+          "downsampleFillPolicy": "none",
+          "metric": "proc.loadavg.1min",
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "load_avg_per_min=fetch('node.cpu.load.avg_1m')$global_tag_filter.downsample('[[__interval]]', 'avg');"
           },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percent",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Load Average [1m]",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         },
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 14,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 3,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gDSAgg": "avg",
-              "timeSeries": []
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "aggregator": "sum",
-              "downsampleAggregator": "avg",
-              "downsampleFillPolicy": "none",
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "node_disk_utilization=fetch('node.disk.uptime.percent')$global_tag_filter.downsample('[[__interval]]','avg');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Disc Utilization",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percent",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "aliasColors": {
+        "proc.stat.processes{host: nook}": "#052B51"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 7
+      },
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 15,
-          "legend": {
-            "alignAsTable": true,
-            "avg": false,
-            "current": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": true
+          "aggregator": "none",
+          "downsampleAggregator": "avg",
+          "downsampleFillPolicy": "none",
+          "metric": "proc.stat.processes",
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "processes_spawn_rate=fetch('node.processes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
           },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "none",
-              "gDSAgg": "avg",
-              "gDSAutoDisable": false,
-              "gDSFill": "none",
-              "gDSInterval": "",
-              "gRate": true,
-              "timeSeries": []
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "network_in:$t(direction); network_out:$t(direction)",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "network_in=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]', 'avg');\nnetwork_out=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]', 'avg');\nminus_one=-1;\nnetwork_out=minus_one.mult(network_out);\noutput(network_out, network_in);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Network IO",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "Bps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "type": "Query"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
-    },
-    {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Processes",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 16,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "timeSeries": []
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [
-                  {
-                    "eCol": 0,
-                    "line": 4,
-                    "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                    "original": {
-                      "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                      "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 5
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 4,
-                    "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                    "original": {
-                      "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                      "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 5
-                    },
-                    "sCol": 0
-                  },
-                  {
-                    "eCol": 0,
-                    "line": 4,
-                    "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                    "original": {
-                      "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                      "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                      "queryColumnOffset": -1,
-                      "queryLineNo": 5
-                    },
-                    "sCol": 0
-                  }
-                ],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 6,
-                "output": true,
-                "query": "swap_free=fetch('node.swap.bytes')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nswap_total=fetch('node.swap.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nhundred=100;\nswap_used=swap_total.sub(swap_free, ignore='state');\nswap_usage_percent=swap_used.div(swap_total).mult(hundred);\noutput(swap_usage_percent);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Swap Usage",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percent",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
         },
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 17,
-          "legend": {
-            "alignAsTable": true,
-            "avg": false,
-            "current": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "timeSeries": []
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "node_swap_in:in($t(host));node_swap_out:out($t(host))",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "node_swap_in=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nnode_swap_out=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg');\nminus_one=-1;\nnode_swap_out=minus_one.mult(node_swap_out);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Swap IO",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "proc.stat.ctxt{host: nook}": "#614D93"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 7
+      },
+      "id": 11,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "context_switch_rate=fetch('node.process.context_switches.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Context Switches",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "proc.stat.intr{host: nook}": "#BA43A9"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 7
+      },
+      "id": 12,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "interrupt_execution_rate=fetch('node.process.interrupts.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Interrupts",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "avg": "rgb(158, 166, 155)"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 14
+      },
+      "id": 19,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "used_cpu_percent:avg; top3:$t(host)",
+            "errors": [],
+            "genMap": [],
+            "id": "A",
+            "output": true,
+            "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true').tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\ntop3 = hundred.sub(idle_cpu).top3();\noutput(top3, used_cpu_percent);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Top 3 Used CPU",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "ade-scoring-group-1-95-4wp2": "#bf1b00",
+        "avg": "rgb(158, 166, 155)"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 14
+      },
+      "id": 20,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "avg_mem_used_percent:avg; top3:$t(host)",
+            "errors": [],
+            "genMap": [],
+            "id": "A",
+            "output": true,
+            "query": "memtotal=fetch('node.memory.total.bytes').downsample('[[__interval]]', 'avg');\nmemfree=fetch('node.memory.bytes').tag_filter('state==free').downsample('[[__interval]]', 'avg');\nmembuffers=fetch('node.memory.bytes').tag_filter('state==buffers').downsample('[[__interval]]', 'avg');\nmemcached=fetch('node.memory.bytes').tag_filter('state==cached').downsample('[[__interval]]', 'avg');\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\navg_mem_available_percent=memunused.sum().div(memtotal.sum()).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\navg_mem_used_percent=hundred.sub(avg_mem_available_percent);\ntop3=mem_used_percent.top3();\noutput(avg_mem_used_percent, top3);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Top 3 Memory Usages",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "ade-scoring-group-1-95-4wp2": "#bf1b00",
+        "avg": "rgb(158, 166, 155)"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 14
+      },
+      "id": 21,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "avg_node_disk_utilization:avg; top3:$t(host)",
+            "errors": [],
+            "genMap": [],
+            "id": "A",
+            "output": true,
+            "query": "node_disk_utilization=fetch('node.disk.uptime.percent').downsample('[[__interval]]','avg');\navg_node_disk_utilization=node_disk_utilization.avg();\ntop3=node_disk_utilization.top3();\noutput(avg_node_disk_utilization, top3);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Top 3 Disc Utilization",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "% Idle": "#E0F9D7",
+        "% Used": "#E24D42"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 1,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "used_cpu_percent:%Used;idle_cpu_percent:%Idle",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 6,
+            "output": true,
+            "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true')$global_tag_filter.tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\noutput(used_cpu_percent, idle_cpu_percent);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "CPU Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "id": 3,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 1,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "mem_used_percent:Used %; mem_available_percent: Available %",
+            "errors": [
+              {
+                "eCol": 0,
+                "line": 5,
+                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
+                "original": {
+                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
+                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
+                  "queryColumnOffset": -1,
+                  "queryLineNo": 6
+                },
+                "sCol": 0
+              },
+              {
+                "eCol": 0,
+                "line": 4,
+                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
+                "original": {
+                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
+                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
+                  "queryColumnOffset": -1,
+                  "queryLineNo": 5
+                },
+                "sCol": 0
+              },
+              {
+                "eCol": 0,
+                "line": 4,
+                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
+                "original": {
+                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
+                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
+                  "queryColumnOffset": -1,
+                  "queryLineNo": 5
+                },
+                "sCol": 0
+              },
+              {
+                "eCol": 0,
+                "line": 4,
+                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
+                "original": {
+                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
+                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
+                  "queryColumnOffset": -1,
+                  "queryLineNo": 5
+                },
+                "sCol": 0
+              },
+              {
+                "eCol": 0,
+                "line": 4,
+                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
+                "original": {
+                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
+                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
+                  "queryColumnOffset": -1,
+                  "queryLineNo": 5
+                },
+                "sCol": 0
+              }
+            ],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 9,
+            "output": true,
+            "query": "memtotal=fetch('node.memory.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemfree=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmembuffers=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==buffers').downsample('[[__interval]]', 'avg').sum();\nmemcached=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==cached').downsample('[[__interval]]', 'avg').sum();\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\noutput(mem_used_percent, mem_available_percent);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Memory",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": "",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "decimals": 2,
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 37
+      },
+      "id": 13,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "node_disk_space:$t(mount)",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "node_disk_space=fetch('node.disk.used.percent')$global_tag_filter.downsample('[[__interval]]','avg');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Disc Space",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 37
+      },
+      "id": 14,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 3,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "aggregator": "sum",
+          "downsampleAggregator": "avg",
+          "downsampleFillPolicy": "none",
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "node_disk_utilization=fetch('node.disk.uptime.percent')$global_tag_filter.downsample('[[__interval]]','avg');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Disc Utilization",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 44
+      },
+      "id": 15,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/^out/",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "network_in:$t(direction)($t(host)); network_out:$t(direction)($t(host))",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "network_in=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]', 'avg');\nnetwork_out=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]', 'avg');\noutput(network_out, network_in);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Network IO",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 51
+      },
+      "id": 16,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [
+              {
+                "eCol": 0,
+                "line": 4,
+                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
+                "original": {
+                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
+                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
+                  "queryColumnOffset": -1,
+                  "queryLineNo": 5
+                },
+                "sCol": 0
+              },
+              {
+                "eCol": 0,
+                "line": 4,
+                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
+                "original": {
+                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
+                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
+                  "queryColumnOffset": -1,
+                  "queryLineNo": 5
+                },
+                "sCol": 0
+              },
+              {
+                "eCol": 0,
+                "line": 4,
+                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
+                "original": {
+                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
+                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
+                  "queryColumnOffset": -1,
+                  "queryLineNo": 5
+                },
+                "sCol": 0
+              }
+            ],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 6,
+            "output": true,
+            "query": "swap_free=fetch('node.swap.bytes')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nswap_total=fetch('node.swap.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nhundred=100;\nswap_used=swap_total.sub(swap_free, ignore='state');\nswap_usage_percent=swap_used.div(swap_total).mult(hundred);\noutput(swap_usage_percent);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Swap Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 51
+      },
+      "id": 17,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/^out/",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "node_swap_in:in($t(host));node_swap_out:out($t(host))",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "node_swap_in=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nnode_swap_out=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg');\noutput(node_swap_in, node_swap_out);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Swap IO",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
-  "schemaVersion": 14,
+  "refresh": false,
+  "schemaVersion": 16,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -2512,5 +1955,6 @@
   },
   "timezone": "",
   "title": "OS Metrics",
-  "version": 3
+  "uid": "5yJpuYxiz",
+  "version": 1
 }

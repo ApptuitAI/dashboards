@@ -55,7 +55,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1531828504144,
+  "iteration": 1540399769567,
   "links": [
     {
       "asDropdown": false,
@@ -647,8 +647,8 @@
           "metrics": [],
           "refId": "B",
           "ts": {
-            "query": "B=fetch('elasticsearch.cluster.nodes.process.cpu.percent')$global_tag_filter.downsample('[[__interval]]','avg')",
-            "errors": []
+            "errors": [],
+            "query": "B=fetch('elasticsearch.cluster.nodes.process.cpu.percent')$global_tag_filter.downsample('[[__interval]]','avg')"
           },
           "type": "Query"
         }
@@ -1465,11 +1465,11 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.node.indices.merges.total_size_in_bytes', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg')",
+            "alias": "$t(node)",
             "errors": [],
             "id": "A",
             "output": true,
-            "alias": "$t(node)"
+            "query": "A=fetch('elasticsearch.node.indices.merges.total_size_in_bytes', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg')"
           },
           "type": "Query"
         }
@@ -1738,9 +1738,9 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.node.http.total_opened', rate='true')$global_tag_filter.tag_filter('cluster==$node').tag_filter('node==$node').downsample('[[__interval]]','avg')",
+            "alias": "$t(node)-HTTP opened",
             "errors": [],
-            "alias": "$t(node)-HTTP opened"
+            "query": "A=fetch('elasticsearch.node.http.total_opened', rate='true')$global_tag_filter.tag_filter('cluster==$node').tag_filter('node==$node').downsample('[[__interval]]','avg')"
           },
           "type": "Query"
         }
@@ -3201,7 +3201,7 @@
         "multi": true,
         "name": "node",
         "options": [],
-        "query": "tag_values(elasticsearch.node.process.cpu.percent,node)",
+        "query": "tag_values(elasticsearch.node.process.cpu.percent,node,cluster=$cluster)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -3235,7 +3235,7 @@
         "allValue": "*",
         "current": {},
         "datasource": "${DS_APPTUIT}",
-        "hide": 0,
+        "hide": 2,
         "includeAll": true,
         "label": "host",
         "multi": false,
@@ -3301,5 +3301,6 @@
   },
   "timezone": "",
   "title": "Elasticsearch Node Stats",
-  "version": 2
+  "uid": "5MyduYbik",
+  "version": 1
 }

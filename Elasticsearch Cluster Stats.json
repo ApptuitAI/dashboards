@@ -55,7 +55,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1538730391182,
+  "iteration": 1540398614608,
   "links": [
     {
       "asDropdown": false,
@@ -149,10 +149,10 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.cluster.indices.docs.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').avg()",
             "errors": [],
             "id": "A",
-            "output": true
+            "output": true,
+            "query": "A=fetch('elasticsearch.cluster.indices.docs.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
           },
           "type": "Query"
         }
@@ -234,10 +234,10 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.cluster.indices.store.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').avg()",
             "errors": [],
             "id": "A",
-            "output": true
+            "output": true,
+            "query": "A=fetch('elasticsearch.cluster.indices.store.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
           },
           "type": "Query"
         }
@@ -322,7 +322,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.nodes.fs.total_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.cluster.nodes.fs.available_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg');\none=1;\nC=one.sub(B.div(A)).avg();"
+            "query": "A=fetch('elasticsearch.cluster.nodes.fs.total_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg').sum();\nB=fetch('elasticsearch.cluster.nodes.fs.available_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg').sum();\none=1;\nC=one.sub(B.div(A));"
           },
           "type": "Query"
         }
@@ -338,7 +338,7 @@
           "value": "null"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -404,10 +404,10 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.cluster.number_of_nodes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()",
             "errors": [],
             "id": "A",
-            "output": true
+            "output": true,
+            "query": "A=fetch('elasticsearch.cluster.number_of_nodes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
           },
           "type": "Query"
         }
@@ -489,10 +489,10 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.cluster.number_of_data_nodes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()",
             "errors": [],
             "id": "A",
-            "output": true
+            "output": true,
+            "query": "A=fetch('elasticsearch.cluster.number_of_data_nodes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
           },
           "type": "Query"
         }
@@ -575,10 +575,10 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.cluster.indices.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()",
             "errors": [],
             "id": "A",
-            "output": true
+            "output": true,
+            "query": "A=fetch('elasticsearch.cluster.indices.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
           },
           "type": "Query"
         }
@@ -661,10 +661,10 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.cluster.indices.segments.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()",
             "errors": [],
             "id": "A",
-            "output": true
+            "output": true,
+            "query": "A=fetch('elasticsearch.cluster.indices.segments.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
           },
           "type": "Query"
         }
@@ -746,10 +746,10 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.cluster.active_shards')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()",
             "errors": [],
             "id": "A",
-            "output": true
+            "output": true,
+            "query": "A=fetch('elasticsearch.cluster.active_shards')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
           },
           "type": "Query"
         }
@@ -831,10 +831,10 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.cluster.active_primary_shards')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()",
             "errors": [],
             "id": "A",
-            "output": true
+            "output": true,
+            "query": "A=fetch('elasticsearch.cluster.active_primary_shards')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
           },
           "type": "Query"
         }
@@ -1004,7 +1004,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.node.thread_pool.rejected', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','max').sum()"
+            "query": "A=fetch('elasticsearch.node.thread_pool.rejected', rate='delta')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','sum').sum()"
           },
           "type": "Query"
         }
@@ -1086,10 +1086,10 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "query": "A=fetch('elasticsearch.cluster.status')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').max()",
             "errors": [],
             "id": "A",
-            "output": true
+            "output": true,
+            "query": "A=fetch('elasticsearch.cluster.status')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').max()"
           },
           "type": "Query"
         }
@@ -1147,7 +1147,7 @@
       "datasource": "${DS_APPTUIT}",
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 8,
         "x": 0,
         "y": 6
       },
@@ -1213,8 +1213,8 @@
       "datasource": "${DS_APPTUIT}",
       "gridPos": {
         "h": 7,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 8,
         "y": 6
       },
       "heatmap": {},
@@ -1241,7 +1241,7 @@
       "title": "Node JVM Heap Usage",
       "tooltip": {
         "show": true,
-        "showHistogram": false
+        "showHistogram": true
       },
       "type": "heatmap",
       "xAxis": {
@@ -1270,12 +1270,12 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_APPTUIT}",
-      "fill": 1,
+      "fill": 0,
       "gridPos": {
         "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 13
+        "w": 8,
+        "x": 16,
+        "y": 6
       },
       "id": 89,
       "legend": {
@@ -1295,7 +1295,12 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "avg",
+          "fill": 1
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
@@ -3432,7 +3437,7 @@
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false
+        "show": true
       },
       "tableColumn": "",
       "targets": [
@@ -3459,7 +3464,7 @@
           "value": "null"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -3517,7 +3522,7 @@
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false
+        "show": true
       },
       "tableColumn": "",
       "targets": [
@@ -3544,7 +3549,7 @@
           "value": "null"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -3602,7 +3607,7 @@
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false
+        "show": true
       },
       "tableColumn": "",
       "targets": [
@@ -3629,7 +3634,7 @@
           "value": "null"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -3687,7 +3692,7 @@
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false
+        "show": true
       },
       "tableColumn": "",
       "targets": [
@@ -3714,7 +3719,7 @@
           "value": "null"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
     }
   ],
   "refresh": "5m",
@@ -3749,7 +3754,7 @@
         "allValue": "*",
         "current": {},
         "datasource": "${DS_APPTUIT}",
-        "hide": 0,
+        "hide": 2,
         "includeAll": true,
         "label": "host",
         "multi": false,
@@ -3815,5 +3820,6 @@
   },
   "timezone": "",
   "title": "Elasticsearch Cluster Stats",
-  "version": 3
+  "uid": "SMuvXLbmk",
+  "version": 1
 }

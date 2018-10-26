@@ -49,7 +49,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1531828272536,
+  "iteration": 1540399183891,
   "links": [
     {
       "asDropdown": false,
@@ -111,6 +111,7 @@
           "refId": "A",
           "ts": {
             "errors": [],
+            "genMap": [],
             "id": "A",
             "output": true,
             "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
@@ -1926,7 +1927,7 @@
         "options": [],
         "query": "tag_values(elasticsearch.indices.byindex.primaries.query_cache.total_count,index,cluster=$cluster)",
         "refresh": 1,
-        "regex": "/^filebeat-2018.*/",
+        "regex": "",
         "sort": 2,
         "tagValuesQuery": "",
         "tags": [],
@@ -1938,7 +1939,7 @@
         "allValue": "*",
         "current": {},
         "datasource": "${DS_APPTUIT}",
-        "hide": 0,
+        "hide": 2,
         "includeAll": true,
         "label": "host",
         "multi": false,
@@ -2004,5 +2005,6 @@
   },
   "timezone": "",
   "title": "Elasticsearch Index Stats",
-  "version": 86
+  "uid": "tKdOuLbmk",
+  "version": 1
 }

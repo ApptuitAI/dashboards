@@ -2,7 +2,7 @@
   "__inputs": [
     {
       "name": "DS_APPTUIT",
-      "label": "Apptuit Prod Query Engine - PG",
+      "label": "Apptuit",
       "description": "",
       "type": "datasource",
       "pluginId": "apptuit",
@@ -27,19 +27,19 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "4.4.3"
+      "version": "5.2.1"
     },
     {
       "type": "panel",
       "id": "graph",
       "name": "Graph",
-      "version": ""
+      "version": "5.0.0"
     },
     {
       "type": "panel",
       "id": "singlestat",
       "name": "Singlestat",
-      "version": ""
+      "version": "5.0.0"
     }
   ],
   "annotations": {
@@ -48,2717 +48,1200 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "hideControls": false,
   "id": null,
+  "iteration": 1540393200000,
   "links": [],
-  "refresh": false,
-  "rows": [
+  "panels": [
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
         {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
-          "format": "none",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 2,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "none",
-              "gDSAgg": "last",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.curr_connections",
-                  "output": true
-                }
-              ]
-            }
-          },
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "memcache_connections=fetch('memcached.connections')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "Connections",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
+          "name": "value to text",
+          "value": 1
         },
         {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
-          "format": "none",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "memcache_connections=fetch('memcached.connections')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
           },
-          "id": 3,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "none",
-              "gDSAgg": "last",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.curr_items",
-                  "output": true
-                }
-              ]
-            }
-          },
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "memcache_current_items=fetch('memcached.items')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "# Items",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "Connections",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 3,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
         },
         {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "memcache_current_items=fetch('memcached.items')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "# Items",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id": 6,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 5,
+            "output": true,
+            "query": "memcache_hits=fetch('memcached.commands.hits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_misses=fetch('memcached.commands.misses.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_total_ops=memcache_hits.add(memcache_misses, ignore='command');\nmemcache_hit_ratio=memcache_hits.div(memcache_total_ops, ignore='command').avg();\noutput(memcache_hit_ratio);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "Hit Ratio",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 4,
+            "output": true,
+            "query": "memcache_gets=fetch('memcached.commands.count', rate='true')$global_tag_filter.tag_filter('command==get').downsample('[[__interval]]', 'max').sum();\nmemcache_sets=fetch('memcached.commands.count', rate='true')$global_tag_filter.tag_filter('command==set').downsample('[[__interval]]', 'max').sum();\nmemcache_total_ops=memcache_gets.add(memcache_sets, ignore='command');\nmemcache_get_ratio=memcache_gets.div(memcache_total_ops, ignore='command');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "Get/Set Ratio",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "percentunit",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 16,
+        "y": 0
+      },
+      "id": 9,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 3,
+            "output": true,
+            "query": "memcache_bytes_used=fetch('memcached.memory.bytes')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmemcache_bytes_limit=fetch('memcached.memory.limit.bytes')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmemcache_fill_percent=memcache_bytes_used.div(memcache_bytes_limit, ignore='state');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "Fill %",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_APPTUIT}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 11,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "memcache_evictions=fetch('memcached.evictions.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": "",
+      "title": "Eviction Rate",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 1,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "memcache_hit_ratio:hit ratio",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 4,
+            "output": true,
+            "query": "memcache_hits=fetch('memcached.commands.hits.count')$global_tag_filter.downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_misses=fetch('memcached.commands.misses.count')$global_tag_filter.downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_total_ops=memcache_hits.add(memcache_misses);\nmemcache_hit_ratio=memcache_hits.div(memcache_total_ops);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Hit Ratio",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
           "format": "percentunit",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 6,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [
-                {
-                  "errors": [],
-                  "expr": "(a+b+c+d+e)/(a+b+c+d+e+f+g+i+j)",
-                  "id": "K",
-                  "join": {
-                    "operator": "union",
-                    "useAggTags": true,
-                    "useQueryTags": false
-                  },
-                  "output": true
-                }
-              ],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "last",
-              "gDSAgg": "last",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.cas_hits",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "B",
-                  "metric": "memcache.decr_hits",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "C",
-                  "metric": "memcache.incr_hits",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "D",
-                  "metric": "memcache.get_hits",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "E",
-                  "metric": "memcache.delete_hits",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "F",
-                  "metric": "memcache.cas_misses",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "G",
-                  "metric": "memcache.decr_misses",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "H",
-                  "metric": "memcache.incr_misses",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "I",
-                  "metric": "memcache.get_misses",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "J",
-                  "metric": "memcache.delete_misses",
-                  "output": false
-                }
-              ]
-            }
-          },
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 5,
-                "output": true,
-                "query": "memcache_hits=fetch('memcached.commands.hits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_misses=fetch('memcached.commands.misses.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_total_ops=memcache_hits.add(memcache_misses, ignore='command');\nmemcache_hit_ratio=memcache_hits.div(memcache_total_ops, ignore='command').avg();\noutput(memcache_hit_ratio);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "Hit Ratio",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         },
         {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 5,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 4,
+            "output": true,
+            "query": "memcache_gets=fetch('memcached.commands.count', align='30s', rate='true')$global_tag_filter.tag_filter('command==get').downsample('[[__interval]]', 'max').sum();\nmemcache_sets=fetch('memcached.commands.count', align='30s', rate='true')$global_tag_filter.tag_filter('command==set').downsample('[[__interval]]', 'max').sum();\nmemcache_total_ops=memcache_gets.add(memcache_sets, ignore='command');\nmemcache_get_ratio=memcache_gets.div(memcache_total_ops, ignore='command');"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Get/Set Ratio",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
           "format": "percentunit",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 4,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [
-                {
-                  "errors": [],
-                  "expr": "b/(a+b)",
-                  "id": "C",
-                  "join": {
-                    "operator": "union",
-                    "useAggTags": true,
-                    "useQueryTags": false
-                  },
-                  "output": true
-                }
-              ],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "last",
-              "gDSAgg": "last",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.cmd_set",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "B",
-                  "metric": "memcache.cmd_get",
-                  "output": false
-                }
-              ]
-            }
-          },
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 4,
-                "output": true,
-                "query": "memcache_gets=fetch('memcached.commands.count', rate='true')$global_tag_filter.tag_filter('command==get').downsample('[[__interval]]', 'max').sum();\nmemcache_sets=fetch('memcached.commands.count', rate='true')$global_tag_filter.tag_filter('command==set').downsample('[[__interval]]', 'max').sum();\nmemcache_total_ops=memcache_gets.add(memcache_sets, ignore='command');\nmemcache_get_ratio=memcache_gets.div(memcache_total_ops, ignore='command');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "Get/Set Ratio",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         },
         {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Items in memory": "#806EB7",
+        "Limit": "#F4D598"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 7,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Items in memory",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "memcache_fill_percent:fill %;memcache_current_items:Items in memory",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 5,
+            "output": true,
+            "query": "memcache_bytes_used=fetch('memcached.memory.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemcache_bytes_limit=fetch('memcached.memory.limit.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemcache_current_items=fetch('memcached.items')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemcache_fill_percent=memcache_bytes_used.div(memcache_bytes_limit, ignore='state');\noutput(memcache_fill_percent, memcache_current_items);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Memory Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
           "format": "percentunit",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 9,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [
-                {
-                  "errors": [],
-                  "expr": "a/b",
-                  "id": "C",
-                  "join": {
-                    "operator": "union",
-                    "useAggTags": true,
-                    "useQueryTags": false
-                  },
-                  "output": true
-                }
-              ],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "last",
-              "gDSAgg": "last",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.bytes",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "B",
-                  "metric": "memcache.limit_maxbytes",
-                  "output": false
-                }
-              ]
-            }
-          },
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "memcache_bytes_used=fetch('memcached.memory.bytes')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmemcache_bytes_limit=fetch('memcached.memory.limit.bytes')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmemcache_fill_percent=memcache_bytes_used.div(memcache_bytes_limit, ignore='state');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "Fill %",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         },
         {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "${DS_APPTUIT}",
-          "format": "none",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 11,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "last",
-              "gDSAgg": "last",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "gRate": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.evictions",
-                  "output": true
-                }
-              ]
-            }
-          },
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "memcache_evictions=fetch('memcached.evictions.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": "",
-          "title": "Eviction Rate",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
-      "collapse": false,
-      "height": "250px",
-      "panels": [
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 1,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "memcache_bytes_in:$t(host)-in;memcache_bytes_out:$t(host)-out",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 5,
+            "output": true,
+            "query": "memcache_bytes_in=fetch('memcached.network.bytes.count', align='30s', rate='true')$global_tag_filter.tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmemcache_bytes_out=fetch('memcached.network.bytes.count', align='30s', rate='true')$global_tag_filter.tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmemcache_bytes_out=zero.sub(memcache_bytes_out);\noutput(memcache_bytes_in, memcache_bytes_out);"
           },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [
-                {
-                  "alias": "Hit Ratio",
-                  "errors": [],
-                  "expr": "(a+b+c+d+e)/(a+b+c+d+e+f+g+h+i+j)",
-                  "id": "K",
-                  "join": {
-                    "operator": "union",
-                    "useAggTags": true,
-                    "useQueryTags": false
-                  },
-                  "output": true
-                }
-              ],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "none",
-              "gDSAgg": "avg",
-              "gDSAutoDisable": true,
-              "gDSFill": "none",
-              "gNewCode": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.get_hits",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "B",
-                  "metric": "memcache.delete_hits",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "C",
-                  "metric": "memcache.decr_hits",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "D",
-                  "metric": "memcache.incr_hits",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "E",
-                  "metric": "memcache.cas_hits",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "F",
-                  "metric": "memcache.get_misses",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "G",
-                  "metric": "memcache.delete_misses",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "H",
-                  "metric": "memcache.decr_misses",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "I",
-                  "metric": "memcache.incr_misses",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "J",
-                  "metric": "memcache.cas_misses",
-                  "output": false
-                }
-              ]
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "memcache_hit_ratio:hit ratio",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 4,
-                "output": true,
-                "query": "memcache_hits=fetch('memcached.commands.hits.count')$global_tag_filter.downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_misses=fetch('memcached.commands.misses.count')$global_tag_filter.downsample('[[__interval]]', 'max').sum(without='command');\nmemcache_total_ops=memcache_hits.add(memcache_misses);\nmemcache_hit_ratio=memcache_hits.div(memcache_total_ops);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Hit Ratio",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percentunit",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "type": "Query"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Network IO",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 5,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "memcache_evictions=fetch('memcached.evictions.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
           },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [
-                {
-                  "errors": [],
-                  "expr": "b/(a+b)",
-                  "id": "C",
-                  "join": {
-                    "operator": "union",
-                    "useAggTags": true,
-                    "useQueryTags": false
-                  },
-                  "output": true
-                }
-              ],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "sum",
-              "gDSAgg": "avg",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.cmd_set",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "B",
-                  "metric": "memcache.cmd_get",
-                  "output": false
-                }
-              ]
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 4,
-                "output": true,
-                "query": "memcache_gets=fetch('memcached.commands.count', align='30s', rate='true')$global_tag_filter.tag_filter('command==get').downsample('[[__interval]]', 'max').sum();\nmemcache_sets=fetch('memcached.commands.count', align='30s', rate='true')$global_tag_filter.tag_filter('command==set').downsample('[[__interval]]', 'max').sum();\nmemcache_total_ops=memcache_gets.add(memcache_sets, ignore='command');\nmemcache_get_ratio=memcache_gets.div(memcache_total_ops, ignore='command');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Get/Set Ratio",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percentunit",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "type": "Query"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Eviction Rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "aliasColors": {
+        "yields": "#967302"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 12,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
         {
-          "aliasColors": {
-            "Items in memory": "#806EB7",
-            "Limit": "#F4D598"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 7,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "expressions": [
-                {
-                  "alias": "Fill %",
-                  "errors": [],
-                  "expr": "a/b",
-                  "id": "D",
-                  "join": {
-                    "operator": "union",
-                    "useAggTags": true,
-                    "useQueryTags": false
-                  },
-                  "output": true
-                }
-              ],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "sum",
-              "gDSAgg": "avg",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "alias": "In Use",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.bytes",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "alias": "Limit",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "B",
-                  "metric": "memcache.limit_maxbytes",
-                  "output": false
-                },
-                {
-                  "agg": "global default",
-                  "alias": "Items in memory",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "C",
-                  "metric": "memcache.curr_items",
-                  "output": true
-                }
-              ]
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "Items in memory",
-              "yaxis": 2
-            }
-          ],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "memcache_fill_percent:fill %;memcache_current_items:Items in memory",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 5,
-                "output": true,
-                "query": "memcache_bytes_used=fetch('memcached.memory.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemcache_bytes_limit=fetch('memcached.memory.limit.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemcache_current_items=fetch('memcached.items')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemcache_fill_percent=memcache_bytes_used.div(memcache_bytes_limit, ignore='state');\noutput(memcache_fill_percent, memcache_current_items);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Memory Usage",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percentunit",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "alias": "memcache.listen_disabled_num{dataset: default, host: centos6}",
+          "yaxis": 2
+        },
+        {
+          "alias": "memcache.conn_yields{dataset: default, host: centos6}",
+          "yaxis": 2
+        },
+        {
+          "alias": "listen_disabled",
+          "yaxis": 2
+        },
+        {
+          "alias": "yields",
+          "yaxis": 2
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "memcache_curr_connections:$t(host)-connections;memcache_conn_errors:$t(host)-$t(state)",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 3,
+            "output": true,
+            "query": "memcache_curr_connections=fetch('memcached.connections')$global_tag_filter.downsample('[[__interval]]', 'max');\nmemcache_conn_errors=fetch('memcached.connections.error.count')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(memcache_curr_connections, memcache_conn_errors);"
+          },
+          "type": "Query"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Connections",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "aliasColors": {
+        "system": "#EF843C",
+        "user": "#7EB26D"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 49
+      },
+      "id": 13,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": true,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 8,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
+          "metrics": [],
+          "refId": "A",
+          "ts": {
+            "alias": "memcache_cpu_time:$t(host)-$t(stat)",
+            "errors": [],
+            "id": "A",
+            "lineStart": 1,
+            "numLines": 1,
+            "output": true,
+            "query": "memcache_cpu_time=fetch('memcached.cpu.seconds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host,stat');"
           },
-          "lines": false,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "none",
-              "gDSAgg": "avg",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "gRate": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "alias": "in",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.bytes_read",
-                  "output": true
-                },
-                {
-                  "agg": "global default",
-                  "alias": "out",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "B",
-                  "metric": "memcache.bytes_written",
-                  "output": true
-                }
-              ]
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "memcache_bytes_in:$t(host)-in;memcache_bytes_out:$t(host)-out",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 5,
-                "output": true,
-                "query": "memcache_bytes_in=fetch('memcached.network.bytes.count', align='30s', rate='true')$global_tag_filter.tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmemcache_bytes_out=fetch('memcached.network.bytes.count', align='30s', rate='true')$global_tag_filter.tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmemcache_bytes_out=zero.sub(memcache_bytes_out);\noutput(memcache_bytes_in, memcache_bytes_out);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Network IO",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "Bps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "type": "Query"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
-    },
-    {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Memcached CPU Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 10,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": false,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "none",
-              "gDSAgg": "max",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "gRate": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.evictions",
-                  "output": true
-                }
-              ]
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "memcache_evictions=fetch('memcached.evictions.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Eviction Rate",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
-    },
-    {
-      "collapse": false,
-      "height": 250,
-      "panels": [
-        {
-          "aliasColors": {
-            "yields": "#967302"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 12,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "none",
-              "gDSAgg": "max",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "gRate": false,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "alias": "connections",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.curr_connections",
-                  "output": true
-                },
-                {
-                  "agg": "global default",
-                  "alias": "listen_disabled",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "B",
-                  "metric": "memcache.listen_disabled_num",
-                  "output": true
-                },
-                {
-                  "agg": "global default",
-                  "alias": "yields",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "C",
-                  "metric": "memcache.conn_yields",
-                  "output": true
-                }
-              ]
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "memcache.listen_disabled_num{dataset: default, host: centos6}",
-              "yaxis": 2
-            },
-            {
-              "alias": "memcache.conn_yields{dataset: default, host: centos6}",
-              "yaxis": 2
-            },
-            {
-              "alias": "listen_disabled",
-              "yaxis": 2
-            },
-            {
-              "alias": "yields",
-              "yaxis": 2
-            }
-          ],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "memcache_curr_connections:$t(host)-connections;memcache_conn_errors:$t(host)-$t(state)",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 3,
-                "output": true,
-                "query": "memcache_curr_connections=fetch('memcached.connections')$global_tag_filter.downsample('[[__interval]]', 'max');\nmemcache_conn_errors=fetch('memcached.connections.error.count')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(memcache_curr_connections, memcache_conn_errors);"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Connections",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
-    },
-    {
-      "collapse": false,
-      "height": 250,
-      "panels": [
-        {
-          "aliasColors": {
-            "system": "#EF843C",
-            "user": "#7EB26D"
-          },
-          "bars": true,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_APPTUIT}",
-          "fill": 1,
-          "id": 13,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": false,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "scopedVars": {
-            "global": {
-              "aggregators": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "none",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "dsFunctions": [
-                "avg",
-                "count",
-                "dev",
-                "ep50r3",
-                "ep50r7",
-                "ep75r3",
-                "ep75r7",
-                "ep90r3",
-                "ep90r7",
-                "ep95r3",
-                "ep95r7",
-                "ep999r3",
-                "ep999r7",
-                "ep99r3",
-                "ep99r7",
-                "first",
-                "last",
-                "max",
-                "mimmax",
-                "mimmin",
-                "min",
-                "mult",
-                "p50",
-                "p75",
-                "p90",
-                "p95",
-                "p99",
-                "p999",
-                "sum",
-                "zimsum"
-              ],
-              "errors": [],
-              "expressions": [],
-              "fillPolicies": [
-                "null",
-                "zero",
-                "none"
-              ],
-              "gAgg": "none",
-              "gDSAgg": "avg",
-              "gDSFill": "none",
-              "gNewCode": true,
-              "gRate": true,
-              "timeSeries": [
-                {
-                  "agg": "global default",
-                  "alias": "system",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "A",
-                  "metric": "memcache.rusage_system",
-                  "output": true
-                },
-                {
-                  "agg": "global default",
-                  "alias": "user",
-                  "errors": [],
-                  "fill": "nan",
-                  "filters": [],
-                  "id": "B",
-                  "metric": "memcache.rusage_user",
-                  "output": true
-                }
-              ]
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "metrics": [],
-              "refId": "A",
-              "ts": {
-                "alias": "memcache_cpu_time:$t(host)-$t(stat)",
-                "errors": [],
-                "id": "A",
-                "lineStart": 1,
-                "numLines": 1,
-                "output": true,
-                "query": "memcache_cpu_time=fetch('memcached.cpu.seconds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='host,stat');"
-              },
-              "type": "Query"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Memcached CPU Usage",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percentunit",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
-  "schemaVersion": 14,
+  "refresh": false,
+  "schemaVersion": 16,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -2833,5 +1316,6 @@
   },
   "timezone": "",
   "title": "Memcache Metrics",
-  "version": 7
+  "uid": "kTd5uLxmk",
+  "version": 1
 }
