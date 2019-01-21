@@ -970,7 +970,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "prometheus-aws-mumbai",
+      "datasource": "PromQL",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1163,7 +1163,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "prometheus-aws-mumbai",
+      "datasource": "PromQL",
       "fill": 1,
       "gridPos": {
         "h": 7,
