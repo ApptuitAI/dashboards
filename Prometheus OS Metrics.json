@@ -1263,22 +1263,7 @@
                "intervalFactor":1,
                "legendFormat":"%used",
                "refId":"B",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"B",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -1724,22 +1709,7 @@
                "intervalFactor":1,
                "legendFormat":"out ({{instance}})",
                "refId":"B",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"B",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
