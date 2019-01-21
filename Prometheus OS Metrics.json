@@ -136,22 +136,7 @@
                "format":"time_series",
                "intervalFactor":1,
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -634,22 +619,7 @@
                "format":"time_series",
                "intervalFactor":1,
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -747,22 +717,7 @@
                "format":"time_series",
                "intervalFactor":1,
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -860,22 +815,7 @@
                "format":"time_series",
                "intervalFactor":1,
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -978,22 +918,7 @@
                "intervalFactor":1,
                "legendFormat":"avg",
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             },
             {
@@ -1002,22 +927,7 @@
                "intervalFactor":1,
                "legendFormat":"{{instance}}",
                "refId":"B",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"B",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -1119,22 +1029,7 @@
 
                ],
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             },
             {
@@ -1143,22 +1038,7 @@
                "intervalFactor":1,
                "legendFormat":"avg",
                "refId":"B",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"B",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -1260,22 +1140,7 @@
 
                ],
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             },
             {
@@ -1284,22 +1149,7 @@
                "intervalFactor":1,
                "legendFormat":"avg",
                "refId":"B",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"B",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -1404,22 +1254,7 @@
 
                ],
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             },
             {
@@ -1547,22 +1382,7 @@
 
                ],
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             },
             {
@@ -1571,22 +1391,7 @@
                "intervalFactor":1,
                "legendFormat":"used %",
                "refId":"B",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"B",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -1695,22 +1500,7 @@
 
                ],
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -1816,22 +1606,7 @@
 
                ],
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -1940,22 +1715,7 @@
 
                ],
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             },
             {
@@ -2081,22 +1841,7 @@
 
                ],
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
@@ -2203,22 +1948,7 @@
 
                ],
                "refId":"A",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"A",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             },
             {
@@ -2227,22 +1957,7 @@
                "intervalFactor":1,
                "legendFormat":"out({{instance}})",
                "refId":"B",
-               "ts":{
-                  "agg":"sum",
-                  "dsDisable":false,
-                  "dsFn":"avg",
-                  "errors":[
-
-                  ],
-                  "filters":[
-
-                  ],
-                  "genMap":[
-
-                  ],
-                  "id":"B",
-                  "rate":false
-               },
+               "ts":{},
                "type":"Time Series"
             }
          ],
