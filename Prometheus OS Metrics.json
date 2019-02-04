@@ -9,17 +9,17 @@
       "pluginName": "Prometheus"
     },
     {
+      "name": "VAR_SCRAPE_FREQUENCY",
+      "type": "constant",
+      "label": "scrape_frequency",
+      "value": "2m",
+      "description": ""
+    },
+    {
       "name": "VAR_GLOBAL_TAG_FILTER",
       "type": "constant",
       "label": "global_tag_filter",
       "value": "instance=~\".*\"",
-      "description": ""
-    },
-    {
-      "name": "VAR_ROLLING_INTERVAL",
-      "type": "constant",
-      "label": "rolling_interval",
-      "value": "10m",
       "description": ""
     }
   ],
@@ -62,7 +62,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1548766449166,
+  "iteration": 1549251680367,
   "links": [],
   "panels": [
     {
@@ -90,7 +90,7 @@
         "y": 0
       },
       "id": 2,
-      "interval": null,
+      "interval": "$scrape_frequency",
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
@@ -170,6 +170,7 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 5,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
@@ -230,13 +231,14 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 4,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
-          "expr": "100 - (avg by (instance) (100 * irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$rolling_interval])))",
+          "expr": "100 - (100 * irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$__interval]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -289,6 +291,7 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 7,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
@@ -348,6 +351,7 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 8,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
@@ -408,19 +412,20 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 6,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
-          "expr": "irate(node_network_receive_bytes_total{$global_tag_filter}[$rolling_interval])",
+          "expr": "irate(node_network_receive_bytes_total{$global_tag_filter}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
         },
         {
-          "expr": "0 - irate(node_network_transmit_bytes_total{$global_tag_filter}[$rolling_interval])",
+          "expr": "0 - irate(node_network_transmit_bytes_total{$global_tag_filter}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "B"
@@ -464,6 +469,7 @@
         "y": 7
       },
       "id": 9,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -548,6 +554,7 @@
         "y": 7
       },
       "id": 10,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -571,7 +578,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_forks_total[$rolling_interval])",
+          "expr": "irate(node_forks_total[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A",
@@ -634,6 +641,7 @@
         "y": 7
       },
       "id": 11,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -657,7 +665,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_context_switches_total{$global_tag_filter}[$rolling_interval])",
+          "expr": "irate(node_context_switches_total{$global_tag_filter}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A",
@@ -720,6 +728,7 @@
         "y": 7
       },
       "id": 12,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -743,7 +752,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_intr_total{$global_tag_filter}[$rolling_interval])",
+          "expr": "irate(node_intr_total{$global_tag_filter}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A",
@@ -808,6 +817,7 @@
         "y": 14
       },
       "id": 19,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -835,7 +845,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "100 - (sum(irate(node_cpu_seconds_total{mode='idle'}[$rolling_interval])) / count(irate(node_cpu_seconds_total{mode='idle'}[$rolling_interval])) * 100) ",
+          "expr": "100 - (sum(irate(node_cpu_seconds_total{mode='idle'}[$__interval])) / count(irate(node_cpu_seconds_total{mode='idle'}[$__interval])) * 100)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "avg",
@@ -844,7 +854,7 @@
           "type": "Time Series"
         },
         {
-          "expr": "topk(3,100 - irate(node_cpu_seconds_total{mode='idle'}[$rolling_interval]) *100)",
+          "expr": "topk(3,100 - irate(node_cpu_seconds_total{mode='idle'}[$__interval]) *100)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -910,6 +920,7 @@
         "y": 14
       },
       "id": 20,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1009,6 +1020,7 @@
         "y": 14
       },
       "id": 21,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1032,17 +1044,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(3,(sum(node_disk_io_time_seconds_total{$global_tag_filter}) by (instance) / avg(sum(node_cpu_seconds_total{$global_tag_filter}) by (instance,cpu)) by (instance)) * 100)",
+          "expr": "topk(3,irate(node_disk_io_time_seconds_total{$global_tag_filter}[$__interval]))",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{instance}}-{{node_name}}",
           "metrics": [],
           "refId": "A",
           "ts": {},
           "type": "Time Series"
         },
         {
-          "expr": "avg((sum(node_disk_io_time_seconds_total{$global_tag_filter}) by (instance) / avg(sum(node_cpu_seconds_total{$global_tag_filter}) by (instance,cpu)) by (instance)) * 100)",
+          "expr": "avg(irate(node_disk_io_time_seconds_total{$global_tag_filter}[$__interval]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "avg",
@@ -1071,7 +1083,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1109,6 +1121,7 @@
         "y": 21
       },
       "id": 1,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1134,7 +1147,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "((sum(irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$rolling_interval]))) / (count(irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$rolling_interval])))) * 100",
+          "expr": "((sum(irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$__interval]))) / (count(irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$__interval])))) * 100",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "%idle",
@@ -1144,7 +1157,7 @@
           "type": "Time Series"
         },
         {
-          "expr": "100 - (((sum(irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$rolling_interval]))) / (count(irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$rolling_interval])))) * 100)",
+          "expr": "100 - (((sum(irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$__interval]))) / (count(irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$__interval])))) * 100)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "%used",
@@ -1208,6 +1221,7 @@
         "y": 30
       },
       "id": 3,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1308,6 +1322,7 @@
         "y": 37
       },
       "id": 13,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1402,6 +1417,7 @@
         "y": 37
       },
       "id": 14,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1428,7 +1444,7 @@
           "aggregator": "sum",
           "downsampleAggregator": "avg",
           "downsampleFillPolicy": "none",
-          "expr": "(node_disk_io_time_seconds_total{$global_tag_filter} / ignoring(device) group_left(instance) sum(node_cpu_seconds_total{$global_tag_filter}) without (cpu,mode)) * 100",
+          "expr": "irate(node_disk_io_time_seconds_total{$global_tag_filter}[$__interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1459,7 +1475,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": "",
           "logBase": 1,
           "max": null,
@@ -1494,6 +1510,7 @@
         "y": 44
       },
       "id": 15,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1526,7 +1543,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_receive_bytes_total{$global_tag_filter}[$rolling_interval])",
+          "expr": "irate(node_network_receive_bytes_total{$global_tag_filter}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "in ({{instance}})",
@@ -1536,7 +1553,7 @@
           "type": "Time Series"
         },
         {
-          "expr": "irate(node_network_transmit_bytes_total{$global_tag_filter}[$rolling_interval])",
+          "expr": "irate(node_network_transmit_bytes_total{$global_tag_filter}[$__interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "out ({{instance}})",
@@ -1600,6 +1617,7 @@
         "y": 51
       },
       "id": 16,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1688,6 +1706,7 @@
         "y": 51
       },
       "id": 17,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1786,6 +1805,24 @@
   "templating": {
     "list": [
       {
+        "current": {
+          "value": "${VAR_SCRAPE_FREQUENCY}",
+          "text": "${VAR_SCRAPE_FREQUENCY}"
+        },
+        "hide": 0,
+        "label": null,
+        "name": "scrape_frequency",
+        "options": [
+          {
+            "value": "${VAR_SCRAPE_FREQUENCY}",
+            "text": "${VAR_SCRAPE_FREQUENCY}"
+          }
+        ],
+        "query": "${VAR_SCRAPE_FREQUENCY}",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_APPTUIT-PROMQL}",
@@ -1824,24 +1861,6 @@
         "query": "${VAR_GLOBAL_TAG_FILTER}",
         "skipUrlSync": false,
         "type": "constant"
-      },
-      {
-        "current": {
-          "value": "${VAR_ROLLING_INTERVAL}",
-          "text": "${VAR_ROLLING_INTERVAL}"
-        },
-        "hide": 2,
-        "label": "rolling_interval",
-        "name": "rolling_interval",
-        "options": [
-          {
-            "value": "${VAR_ROLLING_INTERVAL}",
-            "text": "${VAR_ROLLING_INTERVAL}"
-          }
-        ],
-        "query": "${VAR_ROLLING_INTERVAL}",
-        "skipUrlSync": false,
-        "type": "constant"
       }
     ]
   },
@@ -1877,5 +1896,5 @@
   "timezone": "",
   "title": "Prometheus OS Metrics",
   "uid": "5yJpuYxir",
-  "version": 2
+  "version": 4
 }
