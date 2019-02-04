@@ -1,12 +1,76 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_APPTUIT-PROMQL",
+      "label": "Apptuit-PromQL",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    },
+    {
+      "name": "DS_PROMETHEUS-AWS-MUMBAI",
+      "label": "prometheus-aws-mumbai",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    },
+    {
+      "name": "VAR_GLOBAL_TAG_FILTER",
+      "type": "constant",
+      "label": "Global tag filter",
+      "value": "",
+      "description": ""
+    },
+    {
+      "name": "VAR_SCRAPE_FREQUENCY",
+      "type": "constant",
+      "label": "scrape_frequency",
+      "value": "2m",
+      "description": ""
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.4.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "heatmap",
+      "name": "Heatmap",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": "5.0.0"
+    }
+  ],
   "annotations": {
     "list": []
   },
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 541,
-  "iteration": 1549021710081,
+  "id": null,
+  "iteration": 1549254306286,
   "links": [
     {
       "asDropdown": false,
@@ -44,7 +108,7 @@
         "rgba(246, 140, 15, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "decimals": 1,
       "format": "short",
       "gauge": {
@@ -106,7 +170,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.indices.docs.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -133,7 +197,7 @@
         "rgba(246, 140, 15, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "description": "",
       "format": "decbytes",
       "gauge": {
@@ -196,7 +260,7 @@
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.indices.store.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -223,7 +287,7 @@
         "rgba(246, 140, 15, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "percentunit",
       "gauge": {
         "maxValue": 1,
@@ -286,7 +350,7 @@
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.nodes.fs.total_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg').sum();\nB=fetch('elasticsearch.cluster.nodes.fs.available_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg').sum();\none=1;\nC=one.sub(B.div(A));"
+            "query": ""
           },
           "type": "Query"
         }
@@ -313,7 +377,7 @@
         "rgba(71, 108, 88, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -375,7 +439,7 @@
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.number_of_nodes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -402,7 +466,7 @@
         "rgba(95, 137, 114, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -464,7 +528,7 @@
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.number_of_data_nodes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -491,7 +555,7 @@
         "rgba(102, 153, 120, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -581,7 +645,7 @@
         "rgba(102, 153, 120, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "description": "cloud_service==operations is not present  \nes-dev not is node present",
       "format": "none",
       "gauge": {
@@ -644,7 +708,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.indices.segments.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -671,7 +735,7 @@
         "rgba(102, 147, 121, 0.89)",
         "rgba(142, 186, 140, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -732,7 +796,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.active_shards')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -759,7 +823,7 @@
         "rgba(95, 140, 95, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -821,7 +885,7 @@
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.active_primary_shards')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -848,7 +912,7 @@
         "rgba(109, 163, 115, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -909,7 +973,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.number_of_pending_tasks')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','sum').sum();"
+            "query": ""
           },
           "type": "Query"
         }
@@ -936,7 +1000,7 @@
         "rgba(109, 163, 115, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "prometheus-aws-mumbai",
+      "datasource": "${DS_PROMETHEUS-AWS-MUMBAI}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -997,7 +1061,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.node.thread_pool.rejected', rate='delta')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','sum').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -1018,7 +1082,7 @@
         "rgba(255, 194, 12, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1079,7 +1143,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.status')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').max()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -1134,7 +1198,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -1158,12 +1222,12 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "alias": "CPU",
+            "alias": "",
             "errors": [],
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.node.os.cpu.percent')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg')"
+            "query": ""
           },
           "type": "Query"
         }
@@ -1205,7 +1269,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -1260,7 +1324,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1374,7 +1438,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -1468,7 +1532,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -1564,7 +1628,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -1664,7 +1728,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -1766,7 +1830,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 0,
           "gridPos": {
             "h": 7,
@@ -1854,7 +1918,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 0,
           "gridPos": {
             "h": 7,
@@ -1941,7 +2005,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 0,
           "gridPos": {
             "h": 7,
@@ -2028,7 +2092,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 0,
           "gridPos": {
             "h": 7,
@@ -2138,7 +2202,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -2225,7 +2289,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -2312,7 +2376,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -2359,11 +2423,11 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "alias": "A:Primary; B:Total",
+            "alias": "",
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "mcr=fetch('elasticsearch.indices.primaries.request_cache.miss_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.primaries.request_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]', 'avg');\nA=hcr.add(mcr);\nmcr=fetch('elasticsearch.indices.total.request_cache.miss_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.total.request_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]', 'avg');\nB=hcr.add(mcr);\noutput(A,B)"
+            "query": ""
           },
           "type": "Query"
         }
@@ -2414,7 +2478,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -2520,7 +2584,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -2560,12 +2624,12 @@
           "metrics": [],
           "refId": "B",
           "ts": {
-            "alias": "Size",
+            "alias": "",
             "errors": [],
             "genMap": [],
             "id": "B",
             "output": true,
-            "query": "B=fetch('elasticsearch.cluster.indices.store.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').max()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -2616,7 +2680,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -2657,12 +2721,12 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "alias": "Docs Count",
+            "alias": "",
             "errors": [],
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.indices.docs.count')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -2713,7 +2777,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -2754,11 +2818,11 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "alias": "A:CPU",
+            "alias": "",
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.node.os.cpu.percent')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').max()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -2809,7 +2873,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -2850,12 +2914,12 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "alias": "C:used",
+            "alias": "",
             "errors": [],
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.nodes.fs.total_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.cluster.nodes.fs.available_in_bytes')$global_tag_filter.tag_filter(\"cluster=$cluster\").downsample('[[__interval]]','avg');\none=1;\nC=one.sub(B.div(A)).avg();"
+            "query": ""
           },
           "type": "Query"
         }
@@ -2906,7 +2970,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -2951,7 +3015,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.nodes.jvm.mem.heap_max_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.cluster.nodes.jvm.mem.heap_used_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\nC=B.div(A);"
+            "query": ""
           },
           "type": "Query"
         }
@@ -3016,7 +3080,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -3059,11 +3123,11 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "alias": "A:primary;B:Total",
+            "alias": "",
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.primaries.merges.total', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum();\nB=fetch('elasticsearch.indices.total.merges.total', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum();\noutput(A,B)"
+            "query": ""
           },
           "type": "Query"
         }
@@ -3114,7 +3178,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -3161,12 +3225,12 @@
           "metrics": [],
           "refId": "A",
           "ts": {
-            "alias": "prim_time:Primary; tot_time:Total",
+            "alias": "",
             "errors": [],
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.primaries.merges.total', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.total.merges.total', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\nAT=fetch('elasticsearch.indices.primaries.merges.total_time_in_millis', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\nBT=fetch('elasticsearch.indices.total.merges.total_time_in_millis', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\nprim_time=AT.div(A);\ntot_time=BT.div(B);\noutput(prim_time, tot_time);"
+            "query": ""
           },
           "type": "Query"
         }
@@ -3217,7 +3281,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 6,
@@ -3263,7 +3327,7 @@
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.indices.primaries.fielddata.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').max()    "
+            "query": ""
           },
           "type": "Query"
         }
@@ -3324,7 +3388,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 1,
           "gridPos": {
             "h": 6,
@@ -3420,7 +3484,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 1,
           "gridPos": {
             "h": 6,
@@ -3516,7 +3580,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 1,
           "gridPos": {
             "h": 6,
@@ -3612,7 +3676,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 1,
           "gridPos": {
             "h": 6,
@@ -3708,7 +3772,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 1,
           "gridPos": {
             "h": 6,
@@ -3804,7 +3868,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 1,
           "gridPos": {
             "h": 6,
@@ -3900,7 +3964,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 1,
           "gridPos": {
             "h": 6,
@@ -3996,7 +4060,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 1,
           "gridPos": {
             "h": 6,
@@ -4092,7 +4156,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Apptuit-PromQL",
+          "datasource": "${DS_APPTUIT-PROMQL}",
           "fill": 1,
           "gridPos": {
             "h": 6,
@@ -4210,7 +4274,7 @@
         "rgba(91, 135, 86, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -4274,7 +4338,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.initializing_shards')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -4302,7 +4366,7 @@
         "rgba(116, 167, 141, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -4365,7 +4429,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.delayed_unassigned_shards')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -4393,7 +4457,7 @@
         "rgba(112, 153, 140, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -4455,7 +4519,7 @@
             "genMap": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.relocating_shards')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -4482,7 +4546,7 @@
         "rgba(83, 139, 96, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Apptuit-PromQL",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -4543,7 +4607,7 @@
             "errors": [],
             "id": "A",
             "output": true,
-            "query": "A=fetch('elasticsearch.cluster.unassigned_shards')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum()"
+            "query": ""
           },
           "type": "Query"
         }
@@ -4572,11 +4636,8 @@
     "list": [
       {
         "allValue": ".*",
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Apptuit-PromQL",
+        "current": {},
+        "datasource": "${DS_APPTUIT-PROMQL}",
         "definition": "label_values(elasticsearch_cluster_health_status, cluster)",
         "hide": 0,
         "includeAll": true,
@@ -4597,39 +4658,37 @@
       },
       {
         "current": {
-          "text": "",
-          "value": ""
+          "value": "${VAR_GLOBAL_TAG_FILTER}",
+          "text": "${VAR_GLOBAL_TAG_FILTER}"
         },
         "hide": 2,
         "label": "Global tag filter",
         "name": "global_tag_filter",
         "options": [
           {
-            "selected": true,
-            "text": "",
-            "value": ""
+            "value": "${VAR_GLOBAL_TAG_FILTER}",
+            "text": "${VAR_GLOBAL_TAG_FILTER}"
           }
         ],
-        "query": "",
+        "query": "${VAR_GLOBAL_TAG_FILTER}",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "current": {
-          "text": "2m",
-          "value": "2m"
+          "value": "${VAR_SCRAPE_FREQUENCY}",
+          "text": "${VAR_SCRAPE_FREQUENCY}"
         },
         "hide": 0,
         "label": null,
         "name": "scrape_frequency",
         "options": [
           {
-            "selected": true,
-            "text": "2m",
-            "value": "2m"
+            "value": "${VAR_SCRAPE_FREQUENCY}",
+            "text": "${VAR_SCRAPE_FREQUENCY}"
           }
         ],
-        "query": "2m",
+        "query": "${VAR_SCRAPE_FREQUENCY}",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -4667,5 +4726,5 @@
   "timezone": "",
   "title": "Prometheus Elasticsearch Cluster Stats",
   "uid": "SMuvXLbml",
-  "version": 24
+  "version": 1
 }
