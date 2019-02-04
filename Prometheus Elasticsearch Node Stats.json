@@ -55,7 +55,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1549252843340,
+  "iteration": 1549262068167,
   "links": [
     {
       "asDropdown": false,
@@ -120,12 +120,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -195,12 +189,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -263,13 +251,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -332,12 +313,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -440,13 +415,6 @@
           "legendFormat": "{{name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -490,12 +458,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -576,13 +538,6 @@
           "legendFormat": "{{cluster}}-{{type}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -686,13 +641,6 @@
           "legendFormat": "{{name}}-OS",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -703,10 +651,6 @@
           "legendFormat": "{{name}}-Process",
           "metrics": [],
           "refId": "B",
-          "ts": {
-            "errors": [],
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -788,15 +732,6 @@
       "targets": [
         {
           "refId": "A",
-          "ts": {
-            "agg": "sum",
-            "dsDisable": false,
-            "dsFn": "avg",
-            "errors": [],
-            "filters": [],
-            "genMap": [],
-            "rate": false
-          },
           "type": "Time Series"
         }
       ],
@@ -882,15 +817,6 @@
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A",
-          "ts": {
-            "agg": "sum",
-            "dsDisable": false,
-            "dsFn": "avg",
-            "errors": [],
-            "filters": [],
-            "genMap": [],
-            "rate": false
-          },
           "type": "Time Series"
         }
       ],
@@ -985,13 +911,6 @@
           "legendFormat": "{{name}}_receive",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -1102,13 +1021,6 @@
           "legendFormat": "{{name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1197,13 +1109,6 @@
           "legendFormat": "{{name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1293,13 +1198,6 @@
           "legendFormat": "{{name}}-Query_Time_In_Millis",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -1402,13 +1300,6 @@
           "legendFormat": "Primary",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -1510,13 +1401,6 @@
           "legendFormat": "{{name}}-Docs",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -1614,13 +1498,6 @@
           "legendFormat": "{{name}}-Merges size",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1711,13 +1588,6 @@
           "legendFormat": "{{name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1811,13 +1681,6 @@
           "legendFormat": "{{name}}-operations",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -1907,15 +1770,6 @@
       "targets": [
         {
           "refId": "A",
-          "ts": {
-            "agg": "sum",
-            "dsDisable": false,
-            "dsFn": "avg",
-            "errors": [],
-            "filters": [],
-            "genMap": [],
-            "rate": false
-          },
           "type": "Time Series"
         }
       ],
@@ -2010,13 +1864,6 @@
           "legendFormat": "{{instance}}-Docs",
           "metrics": [],
           "refId": "B",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "B",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -2113,13 +1960,6 @@
           "legendFormat": "{{name}}-segment_count",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -2208,13 +2048,6 @@
           "legendFormat": "{{name}}-Parent Estimated Size",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -2332,13 +2165,6 @@
           "legendFormat": "{{instance}}-Doc_value_memory",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -2470,13 +2296,6 @@
           "legendFormat": "{{name}}-{{type}}-queue",
           "metrics": [],
           "refId": "C",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "C",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -2594,13 +2413,6 @@
           "legendFormat": "{{name}}-{{type}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -2711,13 +2523,6 @@
           "legendFormat": "{{name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -2821,13 +2626,6 @@
           "legendFormat": "{{name}}-% GC",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -2931,13 +2729,6 @@
           "legendFormat": "{{name}}-% GC",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -3119,13 +2910,6 @@
           "legendFormat": "{{name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -3214,13 +2998,6 @@
           "legendFormat": "{{name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -3309,13 +3086,6 @@
           "legendFormat": "{{name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -3404,13 +3174,6 @@
           "legendFormat": "{{name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -3460,6 +3223,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -3491,16 +3255,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 1,
           "refId": "A",
-          "ts": {
-            "agg": "sum",
-            "dsDisable": false,
-            "dsFn": "avg",
-            "errors": [],
-            "filters": [],
-            "genMap": [],
-            "rate": false
-          },
           "type": "Time Series"
         }
       ],
@@ -3695,5 +3453,5 @@
   "timezone": "",
   "title": "Prometheus Elasticsearch Node Stats",
   "uid": "5MyduYbit",
-  "version": 45
+  "version": 48
 }

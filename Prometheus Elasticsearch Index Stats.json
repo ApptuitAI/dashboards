@@ -57,7 +57,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1549254459339,
+  "iteration": 1549262275848,
   "links": [
     {
       "asDropdown": false,
@@ -122,13 +122,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -191,12 +184,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -282,13 +269,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -377,14 +357,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "C",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "C",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -473,14 +445,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -569,14 +533,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -679,13 +635,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -776,14 +725,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "C",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "C",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -872,13 +813,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -969,14 +903,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1079,14 +1005,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1180,14 +1098,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1281,13 +1191,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1376,14 +1279,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1479,14 +1374,6 @@
           "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1536,6 +1423,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1567,16 +1455,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 1,
           "refId": "A",
-          "ts": {
-            "agg": "sum",
-            "dsDisable": false,
-            "dsFn": "avg",
-            "errors": [],
-            "filters": [],
-            "genMap": [],
-            "rate": false
-          },
           "type": "Time Series"
         }
       ],
@@ -1626,6 +1508,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1657,16 +1540,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 1,
           "refId": "A",
-          "ts": {
-            "agg": "sum",
-            "dsDisable": false,
-            "dsFn": "avg",
-            "errors": [],
-            "filters": [],
-            "genMap": [],
-            "rate": false
-          },
           "type": "Time Series"
         }
       ],
@@ -1764,13 +1641,6 @@
           "legendFormat": "{{index}}-Total_Docs_Rate",
           "metrics": [],
           "refId": "B",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "B",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -1866,13 +1736,6 @@
           "legendFormat": "{{cluster}}-Total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -1968,14 +1831,6 @@
           "legendFormat": "{{index}}-Primary_Doc_Memory",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         },
         {
@@ -2248,5 +2103,5 @@
   "timezone": "",
   "title": "Prometheus Elasticsearch Index Stats",
   "uid": "tKdOuLbmp",
-  "version": 22
+  "version": 24
 }

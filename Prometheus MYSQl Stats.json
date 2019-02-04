@@ -56,7 +56,7 @@
     "gnetId": null,
     "graphTooltip": 0,
     "id": null,
-    "iteration": 1549254920862,
+    "iteration": 1549262494262,
     "links": [],
     "panels": [
       {
@@ -98,7 +98,7 @@
           "y": 1
         },
         "id": 23,
-        "interval": null,
+        "interval": "$scrape_frequency",
         "links": [],
         "mappingType": 1,
         "mappingTypes": [
@@ -139,14 +139,6 @@
             "intervalFactor": 1,
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 1,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -188,7 +180,7 @@
           "y": 1
         },
         "id": 25,
-        "interval": null,
+        "interval": "$scrape_frequency",
         "links": [],
         "mappingType": 1,
         "mappingTypes": [
@@ -229,14 +221,6 @@
             "intervalFactor": 1,
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 1,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -278,7 +262,7 @@
           "y": 1
         },
         "id": 24,
-        "interval": null,
+        "interval": "$scrape_frequency",
         "links": [],
         "mappingType": 1,
         "mappingTypes": [
@@ -319,14 +303,6 @@
             "intervalFactor": 1,
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 1,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -368,7 +344,7 @@
           "y": 1
         },
         "id": 26,
-        "interval": null,
+        "interval": "$scrape_frequency",
         "links": [],
         "mappingType": 1,
         "mappingTypes": [
@@ -409,14 +385,6 @@
             "intervalFactor": 1,
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 3,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -458,7 +426,7 @@
           "y": 1
         },
         "id": 27,
-        "interval": null,
+        "interval": "$scrape_frequency",
         "links": [],
         "mappingType": 1,
         "mappingTypes": [
@@ -499,14 +467,6 @@
             "intervalFactor": 1,
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 4,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -548,7 +508,7 @@
           "y": 1
         },
         "id": 28,
-        "interval": null,
+        "interval": "$scrape_frequency",
         "links": [],
         "mappingType": 1,
         "mappingTypes": [
@@ -589,14 +549,6 @@
             "intervalFactor": 1,
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 3,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -629,6 +581,7 @@
           "y": 5
         },
         "id": 5,
+        "interval": "$scrape_frequency",
         "legend": {
           "alignAsTable": true,
           "avg": false,
@@ -667,16 +620,6 @@
             "legendFormat": "{{command}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "genMap": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 4,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -685,16 +628,6 @@
             "intervalFactor": 1,
             "legendFormat": "Total Commands",
             "refId": "B",
-            "ts": {
-              "dsFn": "avg",
-              "dsDisable": false,
-              "agg": "sum",
-              "filters": [],
-              "rate": false,
-              "id": "B",
-              "errors": [],
-              "genMap": []
-            },
             "type": "Time Series"
           },
           {
@@ -703,16 +636,6 @@
             "intervalFactor": 1,
             "legendFormat": "Total Queries",
             "refId": "C",
-            "ts": {
-              "dsFn": "avg",
-              "dsDisable": false,
-              "agg": "sum",
-              "filters": [],
-              "rate": false,
-              "id": "C",
-              "errors": [],
-              "genMap": []
-            },
             "type": "Time Series"
           }
         ],
@@ -736,7 +659,7 @@
         },
         "yaxes": [
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -785,6 +708,7 @@
           "y": 13
         },
         "id": 9,
+        "interval": "$scrape_frequency",
         "legend": {
           "alignAsTable": true,
           "avg": false,
@@ -818,15 +742,6 @@
             "legendFormat": "full_join",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 1,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -878,7 +793,7 @@
         },
         "yaxes": [
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -913,6 +828,7 @@
           "y": 20
         },
         "id": 12,
+        "interval": "$scrape_frequency",
         "legend": {
           "alignAsTable": true,
           "avg": false,
@@ -946,15 +862,6 @@
             "legendFormat": "{{handler}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 1,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -978,7 +885,7 @@
         },
         "yaxes": [
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -1013,6 +920,7 @@
           "y": 27
         },
         "id": 13,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -1039,16 +947,9 @@
             "expr": "rate(mysql_global_status_slow_queries [$__interval])",
             "format": "time_series",
             "intervalFactor": 1,
+            "legendFormat": "Slow_queries",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 1,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -1072,7 +973,7 @@
         },
         "yaxes": [
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -1107,6 +1008,7 @@
           "y": 34
         },
         "id": 4,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -1136,16 +1038,6 @@
             "legendFormat": "Merge Passes",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "genMap": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 4,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -1240,6 +1132,7 @@
           "y": 42
         },
         "id": 2,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -1266,16 +1159,9 @@
             "expr": "rate(mysql_global_status_connections [$__interval])",
             "format": "time_series",
             "intervalFactor": 1,
+            "legendFormat": "connection rate",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 1,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -1299,7 +1185,7 @@
         },
         "yaxes": [
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -1336,6 +1222,7 @@
           "y": 42
         },
         "id": 8,
+        "interval": "$scrape_frequency",
         "legend": {
           "alignAsTable": true,
           "avg": false,
@@ -1367,16 +1254,6 @@
             "legendFormat": "Aborted Clients",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "genMap": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 3,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -1385,16 +1262,6 @@
             "intervalFactor": 1,
             "legendFormat": "Aborted Connects",
             "refId": "B",
-            "ts": {
-              "agg": "sum",
-              "dsDisable": false,
-              "dsFn": "avg",
-              "errors": [],
-              "filters": [],
-              "genMap": [],
-              "id": "B",
-              "rate": false
-            },
             "type": "Time Series"
           }
         ],
@@ -1467,6 +1334,7 @@
           "y": 50
         },
         "id": 10,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -1496,15 +1364,6 @@
             "legendFormat": "Immedeate",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 1,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -1535,7 +1394,7 @@
         },
         "yaxes": [
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -1570,6 +1429,7 @@
           "y": 57
         },
         "id": 1,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -1599,16 +1459,6 @@
             "legendFormat": "in",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "genMap": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 5,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -1617,16 +1467,6 @@
             "intervalFactor": 1,
             "legendFormat": "out",
             "refId": "B",
-            "ts": {
-              "agg": "sum",
-              "dsDisable": false,
-              "dsFn": "avg",
-              "errors": [],
-              "filters": [],
-              "genMap": [],
-              "id": "B",
-              "rate": false
-            },
             "type": "Time Series"
           }
         ],
@@ -1699,6 +1539,7 @@
           "y": 65
         },
         "id": 3,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -1728,15 +1569,6 @@
             "legendFormat": "connected",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 3,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -1768,7 +1600,7 @@
         "yaxes": [
           {
             "format": "short",
-            "label": null,
+            "label": "Thread count",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -1816,6 +1648,7 @@
           "y": 73
         },
         "id": 6,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -1846,16 +1679,6 @@
             "legendFormat": "total blocks",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "genMap": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 3,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -1864,16 +1687,6 @@
             "intervalFactor": 1,
             "legendFormat": "free blocks",
             "refId": "B",
-            "ts": {
-              "agg": "sum",
-              "dsDisable": false,
-              "dsFn": "avg",
-              "errors": [],
-              "filters": [],
-              "genMap": [],
-              "id": "B",
-              "rate": false
-            },
             "type": "Time Series"
           }
         ],
@@ -1898,7 +1711,7 @@
         "yaxes": [
           {
             "format": "short",
-            "label": null,
+            "label": "Blocks Count",
             "logBase": 1,
             "max": null,
             "min": "0",
@@ -1934,6 +1747,7 @@
           "y": 73
         },
         "id": 7,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -1960,46 +1774,37 @@
             "expr": "sum(rate(mysql_global_status_qcache_hits [$__interval]))",
             "format": "time_series",
             "intervalFactor": 1,
-            "legendFormat": "mysql_qcache_hits",
+            "legendFormat": "hits",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 6,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
             "expr": "sum(rate(mysql_global_status_qcache_inserts [$__interval]))",
             "format": "time_series",
             "intervalFactor": 1,
-            "legendFormat": "mysql_qcache_inserts",
+            "legendFormat": "inserts",
             "refId": "B"
           },
           {
             "expr": "sum(rate(mysql_global_status_qcache_lowmem_prunes [$__interval]))",
             "format": "time_series",
             "intervalFactor": 1,
-            "legendFormat": "mysql_qcache_prunes",
+            "legendFormat": "prunes",
             "refId": "C"
           },
           {
             "expr": "sum(rate(mysql_global_status_qcache_not_cached [$__interval]))",
             "format": "time_series",
             "intervalFactor": 1,
-            "legendFormat": "mysql_qcache_notcached",
+            "legendFormat": "notcached",
             "refId": "D"
           },
           {
             "expr": "sum(rate(mysql_global_status_qcache_queries_in_cache [$__interval]))",
             "format": "time_series",
             "intervalFactor": 1,
-            "legendFormat": " mysql_qcache_queries_in_cache",
+            "legendFormat": "queries in cache",
             "refId": "E"
           }
         ],
@@ -2074,6 +1879,7 @@
           "y": 81
         },
         "id": 14,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -2100,32 +1906,23 @@
             "expr": "sum(mysql_global_status_buffer_pool_pages{ state=\"free\"}) * sum(mysql_global_status_innodb_page_size)",
             "format": "time_series",
             "intervalFactor": 1,
-            "legendFormat": "mysql_buffer_pool_free_pages",
+            "legendFormat": "free_pages",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 5,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
             "expr": "sum(mysql_global_status_buffer_pool_pages{ state=\"data\"}) * sum(mysql_global_status_innodb_page_size)",
             "format": "time_series",
             "intervalFactor": 1,
-            "legendFormat": "mysql_buffer_pool_data_pages",
+            "legendFormat": "data_pages",
             "refId": "B"
           },
           {
             "expr": "sum(mysql_global_status_buffer_pool_pages{ state=\"misc\"}) * sum(mysql_global_status_innodb_page_size)",
             "format": "time_series",
             "intervalFactor": 1,
-            "legendFormat": "mysql_buffer_pool_misc_pages",
+            "legendFormat": "misc_pages",
             "refId": "C"
           }
         ],
@@ -2184,6 +1981,7 @@
           "y": 81
         },
         "id": 16,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -2210,17 +2008,9 @@
             "expr": "sum(rate(mysql_global_status_innodb_buffer_pool_read_requests [$__interval])) / (sum(rate(mysql_global_status_innodb_buffer_pool_reads [$__interval])) + sum(rate(mysql_global_status_innodb_buffer_pool_read_requests [$__interval])))",
             "format": "time_series",
             "intervalFactor": 1,
-            "legendFormat": "mysql_bpool_hit_ratio",
+            "legendFormat": "hit_ratio",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 4,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -2279,6 +2069,7 @@
           "y": 88
         },
         "id": 15,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -2305,17 +2096,9 @@
             "expr": "sum(mysql_global_status_buffer_pool_pages{state = \"dirty\"}) / sum(mysql_global_status_buffer_pool_pages{state = \"data\"})",
             "format": "time_series",
             "intervalFactor": 1,
-            "legendFormat": "mysql_dirty_page_percent",
+            "legendFormat": "Dirty page percent",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 4,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -2375,6 +2158,7 @@
           "y": 88
         },
         "id": 17,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -2401,16 +2185,9 @@
             "expr": "sum(mysql_global_status_innodb_buffer_pool_wait_free)",
             "format": "time_series",
             "intervalFactor": 1,
+            "legendFormat": "pages waiting",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 1,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -2470,6 +2247,7 @@
           "y": 95
         },
         "id": 18,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -2496,16 +2274,9 @@
             "expr": "rate(mysql_global_status_innodb_buffer_pool_write_requests [$__interval])",
             "format": "time_series",
             "intervalFactor": 1,
+            "legendFormat": "request rate",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 3,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -2529,7 +2300,7 @@
         },
         "yaxes": [
           {
-            "format": "short",
+            "format": "reqps",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -2593,16 +2364,6 @@
             "legendFormat": "mysql_innodb_locks_os_waits:os_waits;mysql_innodb_locks_rounds:rounds;mysql_innodb_locks_spin_waits:spin_waits",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "genMap": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 4,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -2661,6 +2422,7 @@
           "y": 102
         },
         "id": 19,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -2690,15 +2452,6 @@
             "legendFormat": "{{operation}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 1,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           }
         ],
@@ -2722,7 +2475,7 @@
         },
         "yaxes": [
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -2757,6 +2510,7 @@
           "y": 102
         },
         "id": 20,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -2791,16 +2545,6 @@
             "legendFormat": "{{instance}} ( lock time)",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "genMap": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 3,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -2809,16 +2553,6 @@
             "intervalFactor": 1,
             "legendFormat": "{{instance}} (waits)",
             "refId": "B",
-            "ts": {
-              "agg": "sum",
-              "dsDisable": false,
-              "dsFn": "avg",
-              "errors": [],
-              "filters": [],
-              "genMap": [],
-              "id": "B",
-              "rate": false
-            },
             "type": "Time Series"
           }
         ],
@@ -2850,7 +2584,7 @@
             "show": true
           },
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -2881,6 +2615,7 @@
           "y": 109
         },
         "id": 22,
+        "interval": "$scrape_frequency",
         "legend": {
           "avg": false,
           "current": false,
@@ -2915,16 +2650,6 @@
             "legendFormat": "fsyncs",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "genMap": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 4,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -2933,16 +2658,6 @@
             "intervalFactor": 1,
             "legendFormat": "log_waits",
             "refId": "B",
-            "ts": {
-              "agg": "sum",
-              "dsDisable": false,
-              "dsFn": "avg",
-              "errors": [],
-              "filters": [],
-              "genMap": [],
-              "id": "B",
-              "rate": false
-            },
             "type": "Time Series"
           }
         ],
@@ -2966,7 +2681,7 @@
         },
         "yaxes": [
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -3038,15 +2753,6 @@
             "legendFormat": "written",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "lineStart": 1,
-              "numLines": 3,
-              "output": true,
-              "query": ""
-            },
             "type": "Query"
           },
           {
@@ -3085,7 +2791,7 @@
         },
         "yaxes": [
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -3093,7 +2799,7 @@
             "show": true
           },
           {
-            "format": "short",
+            "format": "ops",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -3174,7 +2880,7 @@
       ]
     },
     "time": {
-      "from": "now-24h",
+      "from": "now-5m",
       "to": "now"
     },
     "timepicker": {
@@ -3205,5 +2911,5 @@
     "timezone": "",
     "title": "Prometheus MySQL Metrics",
     "uid": "SEscuYpIk",
-    "version": 9
+    "version": 12
   }

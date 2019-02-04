@@ -70,7 +70,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1549254306286,
+  "iteration": 1549262429134,
   "links": [
     {
       "asDropdown": false,
@@ -166,12 +166,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -255,13 +249,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -345,13 +332,6 @@
           "legendFormat": "",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -434,13 +414,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -523,13 +496,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -613,13 +579,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -704,12 +663,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -792,12 +745,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -880,13 +827,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -969,12 +909,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1057,12 +991,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1139,12 +1067,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -1221,14 +1143,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -2422,13 +2336,6 @@
           "legendFormat": "Total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -2623,14 +2530,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "B",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "B",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -2720,14 +2619,6 @@
           "legendFormat": "total_primary_docs",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -2817,13 +2708,6 @@
           "legendFormat": "CPU",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -2913,14 +2797,6 @@
           "legendFormat": "used",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -3010,13 +2886,6 @@
           "legendFormat": "heap_used",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:Heap Used",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -3122,13 +2991,6 @@
           "legendFormat": "total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -3224,14 +3086,6 @@
           "legendFormat": "",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -3321,14 +3175,6 @@
           "legendFormat": "fielddata_memory_size",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "Size",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -3426,15 +3272,6 @@
               "intervalFactor": 1,
               "legendFormat": "Segment count",
               "refId": "A",
-              "ts": {
-                "agg": "sum",
-                "dsDisable": false,
-                "dsFn": "avg",
-                "errors": [],
-                "filters": [],
-                "genMap": [],
-                "rate": false
-              },
               "type": "Time Series"
             }
           ],
@@ -3522,15 +3359,6 @@
               "intervalFactor": 1,
               "legendFormat": "Version_Map_memory",
               "refId": "A",
-              "ts": {
-                "agg": "sum",
-                "dsDisable": false,
-                "dsFn": "avg",
-                "errors": [],
-                "filters": [],
-                "genMap": [],
-                "rate": false
-              },
               "type": "Time Series"
             }
           ],
@@ -3618,15 +3446,6 @@
               "intervalFactor": 1,
               "legendFormat": "Norms_memory",
               "refId": "A",
-              "ts": {
-                "agg": "sum",
-                "dsDisable": false,
-                "dsFn": "avg",
-                "errors": [],
-                "filters": [],
-                "genMap": [],
-                "rate": false
-              },
               "type": "Time Series"
             }
           ],
@@ -3714,15 +3533,6 @@
               "intervalFactor": 1,
               "legendFormat": "Fixed_bitset_memory",
               "refId": "A",
-              "ts": {
-                "agg": "sum",
-                "dsDisable": false,
-                "dsFn": "avg",
-                "errors": [],
-                "filters": [],
-                "genMap": [],
-                "rate": false
-              },
               "type": "Time Series"
             }
           ],
@@ -3810,15 +3620,6 @@
               "intervalFactor": 1,
               "legendFormat": "Index_writer_memory",
               "refId": "A",
-              "ts": {
-                "agg": "sum",
-                "dsDisable": false,
-                "dsFn": "avg",
-                "errors": [],
-                "filters": [],
-                "genMap": [],
-                "rate": false
-              },
               "type": "Time Series"
             }
           ],
@@ -3906,15 +3707,6 @@
               "intervalFactor": 1,
               "legendFormat": "Segment_memory",
               "refId": "A",
-              "ts": {
-                "agg": "sum",
-                "dsDisable": false,
-                "dsFn": "avg",
-                "errors": [],
-                "filters": [],
-                "genMap": [],
-                "rate": false
-              },
               "type": "Time Series"
             }
           ],
@@ -4002,15 +3794,6 @@
               "intervalFactor": 1,
               "legendFormat": "Terms_memory",
               "refId": "A",
-              "ts": {
-                "agg": "sum",
-                "dsDisable": false,
-                "dsFn": "avg",
-                "errors": [],
-                "filters": [],
-                "genMap": [],
-                "rate": false
-              },
               "type": "Time Series"
             }
           ],
@@ -4098,15 +3881,6 @@
               "intervalFactor": 1,
               "legendFormat": "Fields_memory",
               "refId": "A",
-              "ts": {
-                "agg": "sum",
-                "dsDisable": false,
-                "dsFn": "avg",
-                "errors": [],
-                "filters": [],
-                "genMap": [],
-                "rate": false
-              },
               "type": "Time Series"
             }
           ],
@@ -4194,15 +3968,6 @@
               "intervalFactor": 1,
               "legendFormat": "Primary_segment_doc_memory",
               "refId": "A",
-              "ts": {
-                "agg": "sum",
-                "dsDisable": false,
-                "dsFn": "avg",
-                "errors": [],
-                "filters": [],
-                "genMap": [],
-                "rate": false
-              },
               "type": "Time Series"
             }
           ],
@@ -4334,12 +4099,6 @@
           "legendFormat": "initializing_shard",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -4425,12 +4184,6 @@
           "legendFormat": "",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -4514,13 +4267,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -4603,12 +4349,6 @@
           "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": ""
-          },
           "type": "Query"
         }
       ],
@@ -4726,5 +4466,5 @@
   "timezone": "",
   "title": "Prometheus Elasticsearch Cluster Stats",
   "uid": "SMuvXLbml",
-  "version": 1
+  "version": 26
 }
