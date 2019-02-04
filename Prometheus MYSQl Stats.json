@@ -19,7 +19,7 @@
         "name": "VAR_SCRAPE_FREQUENCY",
         "type": "constant",
         "label": "scrape_frequency",
-        "value": "2m",
+        "value": "15s",
         "description": ""
       }
     ],
@@ -56,7 +56,7 @@
     "gnetId": null,
     "graphTooltip": 0,
     "id": null,
-    "iteration": 1549262494262,
+    "iteration": 1549270807373,
     "links": [],
     "panels": [
       {
@@ -2516,7 +2516,7 @@
           "current": false,
           "max": false,
           "min": false,
-          "show": true,
+          "show": false,
           "total": false,
           "values": false
         },
@@ -2576,8 +2576,8 @@
         },
         "yaxes": [
           {
-            "format": "short",
-            "label": null,
+            "format": "percent",
+            "label": "Lock Time",
             "logBase": 1,
             "max": null,
             "min": "0",
@@ -2585,7 +2585,7 @@
           },
           {
             "format": "ops",
-            "label": null,
+            "label": "Wait operations",
             "logBase": 1,
             "max": null,
             "min": "0",
@@ -2636,7 +2636,7 @@
         "seriesOverrides": [
           {
             "alias": "fsyncs",
-            "yaxis": 2
+            "yaxis": 1
           }
         ],
         "spaceLength": 10,
@@ -2644,7 +2644,7 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "rate(mysql_global_status_innodb_os_log_fsyncs [$__interval])",
+            "expr": "rate(mysql_global_status_innodb_data_fsyncs [$__interval])",
             "format": "time_series",
             "intervalFactor": 1,
             "legendFormat": "fsyncs",
@@ -2653,12 +2653,19 @@
             "type": "Query"
           },
           {
+            "expr": "rate(mysql_global_status_innodb_os_log_written [$__interval])",
+            "format": "time_series",
+            "intervalFactor": 1,
+            "legendFormat": "log_written",
+            "refId": "B",
+            "type": "Time Series"
+          },
+          {
             "expr": "rate(mysql_global_status_innodb_log_waits [$__interval])",
             "format": "time_series",
             "intervalFactor": 1,
             "legendFormat": "log_waits",
-            "refId": "B",
-            "type": "Time Series"
+            "refId": "C"
           }
         ],
         "thresholds": [],
@@ -2682,7 +2689,7 @@
         "yaxes": [
           {
             "format": "ops",
-            "label": null,
+            "label": "",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -2690,11 +2697,11 @@
           },
           {
             "format": "short",
-            "label": null,
+            "label": "fsyncs",
             "logBase": 1,
             "max": null,
             "min": null,
-            "show": true
+            "show": false
           }
         ],
         "yaxis": {
@@ -2724,7 +2731,7 @@
           "current": false,
           "max": false,
           "min": false,
-          "show": true,
+          "show": false,
           "total": false,
           "values": false
         },
@@ -2800,7 +2807,7 @@
           },
           {
             "format": "ops",
-            "label": null,
+            "label": "fsyncs",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -2880,7 +2887,7 @@
       ]
     },
     "time": {
-      "from": "now-5m",
+      "from": "now-24h",
       "to": "now"
     },
     "timepicker": {
@@ -2911,5 +2918,5 @@
     "timezone": "",
     "title": "Prometheus MySQL Metrics",
     "uid": "SEscuYpIk",
-    "version": 12
+    "version": 16
   }
