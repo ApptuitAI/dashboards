@@ -55,7 +55,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1549262068167,
+  "iteration": 1549264940664,
   "links": [
     {
       "asDropdown": false,
@@ -1738,6 +1738,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -1769,6 +1770,9 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 1,
           "refId": "A",
           "type": "Time Series"
         }
@@ -3453,5 +3457,5 @@
   "timezone": "",
   "title": "Prometheus Elasticsearch Node Stats",
   "uid": "5MyduYbit",
-  "version": 48
+  "version": 50
 }
