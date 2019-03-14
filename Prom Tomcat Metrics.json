@@ -89,13 +89,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -183,13 +177,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -277,13 +265,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -371,13 +353,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -465,16 +441,7 @@
             "format": "time_series",
             "intervalFactor": 1,
             "refId": "B",
-            "ts": {
-              "dsFn": "avg",
-              "dsDisable": false,
-              "agg": "sum",
-              "filters": [],
-              "rate": false,
-              "id": "B",
-              "errors": [],
-              "genMap": []
-            },
+            
             "type": "Time Series"
           }
         ],
@@ -562,13 +529,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -656,13 +617,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -750,13 +705,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -844,13 +793,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -938,13 +881,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -1032,13 +969,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -1126,13 +1057,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -1220,13 +1145,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -1314,13 +1233,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -1408,13 +1321,7 @@
             "legendFormat": "{{cloud_service}}",
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
@@ -1501,13 +1408,7 @@
             "intervalFactor": 1,
             "metrics": [],
             "refId": "A",
-            "ts": {
-              "alias": "",
-              "errors": [],
-              "id": "A",
-              "output": true,
-              "query": ""
-            },
+            
             "type": "Query"
           }
         ],
