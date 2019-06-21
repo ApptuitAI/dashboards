@@ -1,38 +1,38 @@
 {
   "__inputs": [
     {
-      "name": "DS_APPTUIT",
-      "label": "Apptuit",
+      "name": "DS_APPTUIT-PROMQL",
+      "label": "Apptuit-PromQL",
       "description": "",
       "type": "datasource",
-      "pluginId": "apptuit",
-      "pluginName": "Apptuit"
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
     },
     {
-      "name": "VAR_GLOBAL_TAG_FILTER",
+      "name": "VAR_GTS",
       "type": "constant",
-      "label": "global_tag_filter",
-      "value": ".tag_filter('host==$host')",
+      "label": "Global Tagset",
+      "value": "$jinsight",
       "description": ""
     }
   ],
   "__requires": [
     {
-      "type": "datasource",
-      "id": "apptuit",
-      "name": "Apptuit",
-      "version": "1.0.0"
-    },
-    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.2.1"
+      "version": "5.4.3"
     },
     {
       "type": "panel",
       "id": "graph",
       "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
       "version": "5.0.0"
     }
   ],
@@ -43,7 +43,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1540393200000,
+  "iteration": 1560937052476,
   "links": [],
   "panels": [
     {
@@ -53,7 +53,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -67,7 +67,7 @@
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -94,22 +94,46 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "avg(rate(tomcat_requests_count{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "avg",
           "metrics": [],
           "refId": "A",
           "ts": {
-            "alias": "avg_tomcat_request_rate:avg;tomcat_request_rate:$t(host)",
+            "alias": "",
             "errors": [],
+            "genMap": [],
             "id": "A",
             "lineStart": 1,
             "numLines": 1,
             "output": true,
-            "query": "avg_tomcat_request_rate=fetch('tomcat.requests.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').avg();\ntomcat_request_rate=fetch('tomcat.requests.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').top3();\noutput(avg_tomcat_request_rate, tomcat_request_rate);"
+            "query": ""
           },
           "type": "Query"
+        },
+        {
+          "expr": "topk(3,rate(tomcat_requests_count{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
+          "refId": "C",
+          "ts": {
+            "agg": "sum",
+            "dsDisable": false,
+            "dsFn": "avg",
+            "errors": [],
+            "filters": [],
+            "genMap": [],
+            "id": "C",
+            "rate": false
+          },
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Top 3 Request/sec",
       "tooltip": {
@@ -155,7 +179,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -187,22 +211,27 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
-          "refId": "A",
+          "expr": "sum(rate(tomcat_requests_count{$global_tag_filter, status=~\"[4-5][0-9][0-9]\"} [$__interval])) by (status)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{status}}",
+          "refId": "B",
           "ts": {
-            "alias": "tomcat_error_rate:$t(status)",
+            "agg": "sum",
+            "dsDisable": false,
+            "dsFn": "avg",
             "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "tomcat_error_rate=fetch('tomcat.requests.count', rate='true')$global_tag_filter.tag_filter('status=~[4-5]\\d\\d').downsample('[[__interval]]', 'avg').sum(by='status');"
+            "filters": [],
+            "genMap": [],
+            "id": "B",
+            "rate": false
           },
-          "type": "Query"
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Errors/sec",
       "tooltip": {
@@ -246,7 +275,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -280,22 +309,27 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
-          "refId": "A",
+          "expr": "max(rate(tomcat_requests_duration{quantile=\"0.95\",$global_tag_filter} [$__interval])) by (method,status)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{method}}-{{status}}",
+          "refId": "B",
           "ts": {
-            "alias": "tomcat_response_latency:$t(cloud_service)-$t(method)-$t(status)",
+            "agg": "sum",
+            "dsDisable": false,
+            "dsFn": "avg",
             "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "factor=fetch('tomcat.requests.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').max(by=\"cloud_service,method,status\");\nfactor=factor.div(factor);\ntomcat_response_latency=fetch('tomcat.requests.duration')$global_tag_filter.tag_filter(\"quantile==p95\").downsample('[[__interval]]', 'max').max(by=\"cloud_service,method,status\");\ntomcat_response_latency=tomcat_response_latency.mult(factor, on=\"cloud_service,method,status\");"
+            "filters": [],
+            "genMap": [],
+            "id": "B",
+            "rate": false
           },
-          "type": "Query"
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Response Latency - P95",
       "tooltip": {
@@ -313,7 +347,7 @@
       },
       "yaxes": [
         {
-          "format": "ms",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -339,7 +373,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -376,22 +410,27 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
-          "refId": "A",
+          "expr": "sum(rate(tomcat_requests_count{$global_tag_filter} [$__interval])) by (method)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{method}}",
+          "refId": "B",
           "ts": {
-            "alias": "tomcat_request_count_by_method:$t(method)",
+            "agg": "sum",
+            "dsDisable": false,
+            "dsFn": "avg",
             "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "tomcat_request_count_by_method=fetch('tomcat.requests.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='method');"
+            "filters": [],
+            "genMap": [],
+            "id": "B",
+            "rate": false
           },
-          "type": "Query"
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Requests Count / HTTP Method",
       "tooltip": {
@@ -440,46 +479,29 @@
   "templating": {
     "list": [
       {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "host",
-        "multi": false,
-        "name": "host",
-        "options": [],
-        "query": "tag_values(tomcat.requests.count,host)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
         "current": {
-          "value": "${VAR_GLOBAL_TAG_FILTER}",
-          "text": "${VAR_GLOBAL_TAG_FILTER}"
+          "value": "${VAR_GTS}",
+          "text": "${VAR_GTS}"
         },
         "hide": 2,
-        "label": "global_tag_filter",
-        "name": "global_tag_filter",
+        "isGlobal": false,
+        "label": "Global Tagset",
+        "name": "gts",
         "options": [
           {
-            "value": "${VAR_GLOBAL_TAG_FILTER}",
-            "text": "${VAR_GLOBAL_TAG_FILTER}"
+            "value": "${VAR_GTS}",
+            "text": "${VAR_GTS}"
           }
         ],
-        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "query": "${VAR_GTS}",
+        "refresh": 0,
+        "skipUrlSync": true,
         "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -508,7 +530,7 @@
     ]
   },
   "timezone": "",
-  "title": "Tomcat Metrics",
-  "uid": "9kL2uLxiz",
+  "title": "Prometheus Tomcat Metrics",
+  "uid": "9kL2uLxpz",
   "version": 1
 }

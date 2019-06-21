@@ -1,38 +1,45 @@
 {
   "__inputs": [
     {
-      "name": "DS_APPTUIT",
-      "label": "Apptuit",
+      "name": "DS_APPTUIT-PROMQL",
+      "label": "Apptuit-PromQL",
       "description": "",
       "type": "datasource",
-      "pluginId": "apptuit",
-      "pluginName": "Apptuit"
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
     },
     {
-      "name": "VAR_GLOBAL_TAG_FILTER",
+      "name": "VAR_GTS",
       "type": "constant",
-      "label": "global_tag_filter",
-      "value": ".tag_filter('host==$host')",
+      "label": "Global Tagset",
+      "value": "$mysql",
+      "description": ""
+    },
+    {
+      "name": "VAR_SCRAPE_FREQUENCY",
+      "type": "constant",
+      "label": "scrape_frequency",
+      "value": "15s",
       "description": ""
     }
   ],
   "__requires": [
     {
-      "type": "datasource",
-      "id": "apptuit",
-      "name": "Apptuit",
-      "version": "1.0.0"
-    },
-    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.2.1"
+      "version": "5.4.3"
     },
     {
       "type": "panel",
       "id": "graph",
       "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
       "version": "5.0.0"
     },
     {
@@ -49,7 +56,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1540393200000,
+  "iteration": 1560936924872,
   "links": [],
   "panels": [
     {
@@ -75,7 +82,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -91,7 +98,7 @@
         "y": 1
       },
       "id": 23,
-      "interval": null,
+      "interval": "$scrape_frequency",
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
@@ -127,16 +134,11 @@
       "tableColumn": "",
       "targets": [
         {
+          "expr": "sum(rate(mysql_global_status_queries{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "mysql_query_rate=fetch('mysql.queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]','max').sum();"
-          },
           "type": "Query"
         }
       ],
@@ -162,7 +164,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -178,7 +180,7 @@
         "y": 1
       },
       "id": 25,
-      "interval": null,
+      "interval": "$scrape_frequency",
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
@@ -214,16 +216,11 @@
       "tableColumn": "",
       "targets": [
         {
+          "expr": "sum(rate(mysql_global_status_connections{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "mysql_connection_rate=fetch('mysql.connections.total.count', rate='true')$global_tag_filter.downsample('$__interval','max').sum();"
-          },
           "type": "Query"
         }
       ],
@@ -249,7 +246,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -265,7 +262,7 @@
         "y": 1
       },
       "id": 24,
-      "interval": null,
+      "interval": "$scrape_frequency",
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
@@ -301,16 +298,12 @@
       "tableColumn": "",
       "targets": [
         {
+          "expr": "sum(rate(mysql_global_status_slow_queries{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();"
-          },
           "type": "Query"
         }
       ],
@@ -336,7 +329,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -352,7 +345,7 @@
         "y": 1
       },
       "id": 26,
-      "interval": null,
+      "interval": "$scrape_frequency",
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
@@ -388,16 +381,12 @@
       "tableColumn": "",
       "targets": [
         {
+          "expr": "sum(rate(mysql_global_status_aborted_clients{$global_tag_filter} [$__interval])) + sum(rate(mysql_global_status_connection_errors_total{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 3,
-            "output": true,
-            "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmysql_aborted_connects=fetch('mysql.connections.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max').sum();\nmysql_aborted_total_connections=mysql_aborted_clients.add(mysql_aborted_connects, ignore='state');"
-          },
           "type": "Query"
         }
       ],
@@ -423,7 +412,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "percentunit",
       "gauge": {
         "maxValue": 100,
@@ -439,7 +428,7 @@
         "y": 1
       },
       "id": 27,
-      "interval": null,
+      "interval": "$scrape_frequency",
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
@@ -475,16 +464,12 @@
       "tableColumn": "",
       "targets": [
         {
+          "expr": "avg((rate(mysql_global_status_innodb_buffer_pool_read_requests{$global_tag_filter} [$__interval]))/ (rate(mysql_global_status_innodb_buffer_pool_read_requests{$global_tag_filter} [$__interval]) + rate(mysql_global_status_innodb_buffer_pool_reads{$global_tag_filter} [$__interval])))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 4,
-            "output": true,
-            "query": "mysql_bufpool_read_req=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read_req').downsample('[[__interval]]', 'min');\nmysql_bufpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read').downsample('[[__interval]]', 'min');\nmysql_bufpool_total_reads=mysql_bufpool_read_req.add(mysql_bufpool_reads, ignore='state');\nmysql_bufpool_hit_ratio=mysql_bufpool_read_req.div(mysql_bufpool_total_reads, ignore='state').avg();"
-          },
           "type": "Query"
         }
       ],
@@ -510,7 +495,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "percentunit",
       "gauge": {
         "maxValue": 100,
@@ -526,7 +511,7 @@
         "y": 1
       },
       "id": 28,
-      "interval": null,
+      "interval": "$scrape_frequency",
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
@@ -562,16 +547,11 @@
       "tableColumn": "",
       "targets": [
         {
+          "expr": "sum(mysql_global_status_innodb_buffer_pool_bytes_dirty{$global_tag_filter}) / (sum(mysql_global_status_innodb_buffer_pool_bytes_data{$global_tag_filter}) + sum(mysql_global_status_innodb_buffer_pool_bytes_dirty{$global_tag_filter}))",
+          "format": "time_series",
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 3,
-            "output": true,
-            "query": "mysql_dirty_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==dirty').downsample('[[__interval]]', 'max');\nmysql_total_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'max');\nmysql_dirty_page_percent=mysql_total_data_pages.div(mysql_total_data_pages, ignore='state').max();"
-          },
           "type": "Query"
         }
       ],
@@ -589,35 +569,22 @@
       "valueName": "current"
     },
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 5
-      },
-      "id": 30,
-      "panels": [],
-      "repeat": null,
-      "title": "Commands",
-      "type": "row"
-    },
-    {
       "aliasColors": {
         "Total Queries": "#0A437C"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 6
+        "y": 5
       },
       "id": 5,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -650,22 +617,34 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(rate(mysql_global_status_commands_total{$global_tag_filter} [$__interval])) by (command)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{command}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_all_commands:$t(command);mysql_total_commands:Total Commands;mysql_total_queries:Total Queries",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 4,
-            "output": true,
-            "query": "mysql_all_commands=fetch('mysql.commands.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='command');\nmysql_total_commands=fetch('mysql.commands.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(without='command');\nmysql_total_queries=fetch('mysql.queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_all_commands, mysql_total_commands, mysql_total_queries);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "sum(rate(mysql_global_status_commands_total{$global_tag_filter} [$__interval])) without (command)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Total Commands",
+          "refId": "B",
+          "type": "Time Series"
+        },
+        {
+          "expr": "sum(rate(mysql_global_status_commands_total{$global_tag_filter} [$__interval])) ",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Total Queries",
+          "refId": "C",
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Common Commands",
       "tooltip": {
@@ -683,7 +662,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -705,11 +684,25 @@
       }
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 30,
+      "panels": [],
+      "repeat": null,
+      "title": "Commands",
+      "type": "row"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -718,6 +711,7 @@
         "y": 13
       },
       "id": 9,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -745,22 +739,46 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(rate(mysql_global_status_select_full_join {$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "full_join",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_select_scan_types:$t(select_type)",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "mysql_select_scan_types=fetch('mysql.commands.select.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg').sum(by='select_type');"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "sum(rate(mysql_global_status_select_full_range_join {$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "full_range_join",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(rate(mysql_global_status_select_range {$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "range",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(rate(mysql_global_status_select_range_check {$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "range_check",
+          "refId": "D"
+        },
+        {
+          "expr": "sum(rate(mysql_global_status_select_scan {$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "scan",
+          "refId": "E"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Select command types",
       "tooltip": {
@@ -778,7 +796,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -804,7 +822,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -813,6 +831,7 @@
         "y": 20
       },
       "id": 12,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -840,22 +859,19 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_handlers_total {$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-handler:{{handler}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_handlers:$t(handler)",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "mysql_handlers=fetch('mysql.handlers.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Handler",
       "tooltip": {
@@ -873,7 +889,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -899,7 +915,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -908,6 +924,7 @@
         "y": 27
       },
       "id": 13,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -931,21 +948,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_slow_queries{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Slow_queries",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "mysql_slow_query_rate=fetch('mysql.queries.slow_queries.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Slow Queries",
       "tooltip": {
@@ -963,7 +977,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -989,7 +1003,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -998,6 +1012,7 @@
         "y": 34
       },
       "id": 4,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1021,22 +1036,40 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_sort_merge_passes{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Merge Passes",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_num_merge_passes:Merge Passes;mysql_sort_types:$t(sort_type);mysql_sort_scanned_rows:Rows Scanned",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 4,
-            "output": true,
-            "query": "mysql_num_merge_passes=fetch('mysql.queries.sort.merge_passes.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\nmysql_sort_types=fetch('mysql.queries.sort.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\nmysql_sort_scanned_rows=fetch('mysql.queries.sort.rows.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'sum');\noutput(mysql_num_merge_passes, mysql_sort_types, mysql_sort_scanned_rows);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate( mysql_global_status_sort_range{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-range_sort",
+          "refId": "B"
+        },
+        {
+          "expr": "rate(mysql_global_status_sort_rows{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Rows Scanned",
+          "refId": "C"
+        },
+        {
+          "expr": "rate(mysql_global_status_sort_scan{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-table_scan",
+          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Sorts",
       "tooltip": {
@@ -1094,7 +1127,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1103,12 +1136,13 @@
         "y": 42
       },
       "id": 2,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -1126,21 +1160,19 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_connections{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-connection rate",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "mysql_connections=fetch('mysql.connections.total.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Connections/sec",
       "tooltip": {
@@ -1158,7 +1190,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1186,7 +1218,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1195,6 +1227,7 @@
         "y": 42
       },
       "id": 8,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1220,22 +1253,26 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_aborted_clients{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Aborted Clients",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_aborted_clients:Aborted Clients;mysql_aborted_connections:Aborted Connections",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 3,
-            "output": true,
-            "query": "mysql_aborted_clients=fetch('mysql.connections.aborted_clients.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_aborted_connections=fetch('mysql.connections.count', rate='true')$global_tag_filter.tag_filter('state=aborted').downsample('[[__interval]]', 'max');\noutput(mysql_aborted_clients, mysql_aborted_connections);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(mysql_global_status_aborted_connects{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Aborted Connects",
+          "refId": "B",
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Aborted Clients/Connects",
       "tooltip": {
@@ -1275,33 +1312,20 @@
       }
     },
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 49
-      },
-      "id": 32,
-      "panels": [],
-      "repeat": null,
-      "title": "Dashboard Row",
-      "type": "row"
-    },
-    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 49
       },
       "id": 10,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1325,22 +1349,25 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_table_locks_immediate{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Immediate",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_table_locks_rate:$t(status)",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "mysql_table_locks_rate=fetch('mysql.table_locks.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(mysql_global_status_table_locks_waited{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Waited",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Table Locks",
       "tooltip": {
@@ -1358,7 +1385,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1385,9 +1412,9 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 56
       },
-      "id": 33,
+      "id": 32,
       "panels": [],
       "repeat": null,
       "title": "Dashboard Row",
@@ -1398,15 +1425,16 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 57
       },
       "id": 1,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1430,35 +1458,26 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_bytes_received{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-in",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_network_incoming:in;mysql_network_outgoing:out",
-            "errors": [
-              {
-                "eCol": 0,
-                "line": 3,
-                "message": "Invalid argument value. Expected non-empty Data Frame on RHS for operation 'sub', got empty RHS.",
-                "original": {
-                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                  "message": "Invalid argument value. Expected non-empty Data Frame on RHS for operation 'sub', got empty RHS.",
-                  "queryColumnOffset": -1,
-                  "queryLineNo": 4
-                },
-                "sCol": 0
-              }
-            ],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 5,
-            "output": true,
-            "query": "mysql_network_incoming=fetch('mysql.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction==in').downsample('[[__interval]]', 'avg');\nmysql_network_out=fetch('mysql.network.bytes.count', rate='true')$global_tag_filter.tag_filter('direction==out').downsample('[[__interval]]', 'avg');\nzero=0;\nmysql_network_outgoing=zero.sub(mysql_network_out);\noutput(mysql_network_incoming, mysql_network_outgoing);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "1 - rate(mysql_global_status_bytes_sent{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-out",
+          "refId": "B",
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Network IO",
       "tooltip": {
@@ -1503,7 +1522,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 65
+        "y": 64
       },
       "id": 34,
       "panels": [],
@@ -1516,15 +1535,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 66
+        "y": 65
       },
       "id": 3,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1548,22 +1568,25 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "mysql_global_status_threads_connected{$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-connected",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_running_threads:running;mysql_connected_threads:connected",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 3,
-            "output": true,
-            "query": "mysql_running_threads=fetch('mysql.threads.running')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_connected_threads=fetch('mysql.threads.connected')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_running_threads, mysql_connected_threads);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "mysql_global_status_threads_running{$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-running",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Threads",
       "tooltip": {
@@ -1582,7 +1605,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "Thread count",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1608,7 +1631,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 73
+        "y": 72
       },
       "id": 35,
       "panels": [],
@@ -1621,15 +1644,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 74
+        "y": 73
       },
       "id": 6,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1653,22 +1677,27 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(mysql_global_status_qcache_total_blocks{$global_tag_filter})",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "total blocks",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_qcache_free_blocks:free blocks;mysql_qcache_total_blocks:total blocks",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 3,
-            "output": true,
-            "query": "mysql_qcache_free_blocks=fetch('mysql.queries.cache.blocks')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_total_blocks=fetch('mysql.queries.cache.blocks.total')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_free_blocks, mysql_qcache_total_blocks);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "sum(mysql_global_status_qcache_free_blocks{$global_tag_filter})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "free blocks",
+          "refId": "B",
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Query Cache Memory",
       "tooltip": {
@@ -1687,7 +1716,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "Blocks Count",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -1714,15 +1743,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 74
+        "y": 73
       },
       "id": 7,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1746,22 +1776,46 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(rate(mysql_global_status_qcache_hits{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "hits",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_qcache_hits:hits;mysql_qcache_inserts:inserts;mysql_qcache_prunes:lowmem prunes;mysql_qcache_notcached:not cached;mysql_qcache_queries_in_cache:queries in cache",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 6,
-            "output": true,
-            "query": "mysql_qcache_hits=fetch('mysql.queries.cache.hits.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_inserts=fetch('mysql.queries.cache.inserts.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_prunes=fetch('mysql.queries.cache.lowmem_prunes.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_notcached=fetch('mysql.queries.cache.not_cached.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_qcache_queries_in_cache=fetch('mysql.queries.cache.queries_in_cache.count', rate=\"true\")$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\noutput(mysql_qcache_hits, mysql_qcache_inserts, mysql_qcache_prunes, mysql_qcache_notcached, mysql_qcache_queries_in_cache);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "sum(rate(mysql_global_status_qcache_inserts{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "inserts",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(rate(mysql_global_status_qcache_lowmem_prunes{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "prunes",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(rate(mysql_global_status_qcache_not_cached{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "notcached",
+          "refId": "D"
+        },
+        {
+          "expr": "sum(rate(mysql_global_status_qcache_queries_in_cache{$global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "queries in cache",
+          "refId": "E"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Query Cache Activity",
       "tooltip": {
@@ -1806,7 +1860,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 81
+        "y": 80
       },
       "id": 36,
       "panels": [],
@@ -1821,15 +1875,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 82
+        "y": 81
       },
       "id": 14,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1853,22 +1908,32 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(mysql_global_status_buffer_pool_pages{$global_tag_filter,state=\"free\"}) * sum(mysql_global_status_innodb_page_size)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "free_pages",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_buffer_pool_free_pages:free;mysql_buffer_pool_data_pages:data;mysql_buffer_pool_misc_pages:misc",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 5,
-            "output": true,
-            "query": "mysql_buffer_pool_page_size=fetch('mysql.innodb.page_size.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmysql_buffer_pool_free_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\nmysql_buffer_pool_misc_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==misc').downsample('[[__interval]]', 'avg').sum().mult(mysql_buffer_pool_page_size, ignore='state');\noutput(mysql_buffer_pool_free_pages, mysql_buffer_pool_data_pages, mysql_buffer_pool_misc_pages);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "sum(mysql_global_status_buffer_pool_pages{$global_tag_filter,state=\"data\"}) * sum(mysql_global_status_innodb_page_size)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "data_pages",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(mysql_global_status_buffer_pool_pages{$global_tag_filter,state=\"misc\"}) * sum(mysql_global_status_innodb_page_size)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "misc_pages",
+          "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Buffer Pool",
       "tooltip": {
@@ -1912,15 +1977,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 82
+        "y": 81
       },
       "id": 16,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1944,21 +2010,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(rate(mysql_global_status_innodb_buffer_pool_read_requests{$global_tag_filter} [$__interval])) / (sum(rate(mysql_global_status_innodb_buffer_pool_reads{$global_tag_filter} [$__interval])) + sum(rate(mysql_global_status_innodb_buffer_pool_read_requests{$global_tag_filter} [$__interval])))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "hit_ratio",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 4,
-            "output": true,
-            "query": "mysql_bpool_read_reqs=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read_req').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_reads=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==read').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_total_reads=mysql_bpool_read_reqs.add(mysql_bpool_reads, ignore='state');\nmysql_bpool_hit_ratio=mysql_bpool_read_reqs.div(mysql_bpool_total_reads, ignore='state');"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Buffer Pool Hit Ratio",
       "tooltip": {
@@ -2002,15 +2065,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 89
+        "y": 88
       },
       "id": 15,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2034,21 +2098,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(mysql_global_status_buffer_pool_pages{$global_tag_filter, state = \"dirty\"}) / sum(mysql_global_status_buffer_pool_pages{$global_tag_filter, state = \"data\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Dirty page percent",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 4,
-            "output": true,
-            "query": "mysql_bpool_dirty_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==dirty').downsample('[[__interval]]', 'avg').sum();\nmysql_bpool_data_pages=fetch('mysql.innodb.buffer_pool.pages')$global_tag_filter.tag_filter('state==data').downsample('[[__interval]]', 'avg').sum();\nmysql_dirty_page_percent=mysql_bpool_dirty_pages.div(mysql_bpool_data_pages, ignore='state');\noutput(mysql_dirty_page_percent);"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "% Dirty Pages",
       "tooltip": {
@@ -2092,16 +2153,17 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "description": "Normally, writes to the InnoDB Buffer Pool happen in the background. However, if it is necessary to read or create a page and no clean pages are available, it is also necessary to wait for pages to be flushed first. The Innodb_buffer_pool_wait_free counter counts how many times this has happened. Innodb_buffer_pool_wait_free greater than 0 is a strong indicator that the InnoDB Buffer Pool is too small.",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 89
+        "y": 88
       },
       "id": 17,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2125,21 +2187,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(mysql_global_status_innodb_buffer_pool_wait_free{$global_tag_filter})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "pages waiting",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "mysql_buffer_pool_wait_free=fetch('mysql.innodb.buffer_pool.wait_free.count')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Waiting for flush",
       "tooltip": {
@@ -2183,16 +2242,17 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "description": "A value much higher that 1 is an indicator of a good locality of data",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 96
+        "y": 95
       },
       "id": 18,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2216,21 +2276,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_innodb_buffer_pool_write_requests{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-request rate",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 3,
-            "output": true,
-            "query": "mysql_bpool_write_requests=fetch('mysql.innodb.buffer_pool.count', rate='true')$global_tag_filter.tag_filter('state==write_req').downsample('[[__interval]]','max');\nmysql_bpool_pages_flushed=fetch('mysql.innodb.buffer_pool.pages.flush.count', rate='true')$global_tag_filter.downsample('[[__interval]]','max');\nmysql_bpool_changed_rows_per_block=mysql_bpool_write_requests.div(mysql_bpool_pages_flushed,ignore='state');"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Changed rows per block",
       "tooltip": {
@@ -2248,7 +2305,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "reqps",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2274,13 +2331,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 96
+        "y": 95
       },
       "id": 11,
       "legend": {
@@ -2306,22 +2363,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "mysql_innodb_locks_os_waits:os_waits;mysql_innodb_locks_rounds:rounds;mysql_innodb_locks_spin_waits:spin_waits",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_innodb_locks_os_waits:os_waits;mysql_innodb_locks_rounds:rounds;mysql_innodb_locks_spin_waits:spin_waits",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 4,
-            "output": true,
-            "query": "mysql_innodb_locks_os_waits=fetch('mysql.innodb.locks.os_waits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_innodb_locks_rounds=fetch('mysql.innodb.locks.rounds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_innodb_locks_spin_waits=fetch('mysql.innodb.locks.mutex_spin_waits.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_innodb_locks_os_waits, mysql_innodb_locks_rounds, mysql_innodb_locks_spin_waits);"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "InnoDB Locks",
       "tooltip": {
@@ -2365,15 +2418,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 103
+        "y": 102
       },
       "id": 19,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2397,22 +2451,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_innodb_row_ops_total{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Operation:{{operation}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_row_operations:$t(operation)",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "mysql_row_operations=fetch('mysql.innodb.row_operations.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Row operations",
       "tooltip": {
@@ -2430,7 +2480,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2456,21 +2506,22 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 103
+        "y": 102
       },
       "id": 20,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": false
       },
@@ -2493,22 +2544,26 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_innodb_row_lock_time{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend ( lock time)",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_row_lock_time:$t(host) (lock time);mysql_row_lock_waits:$t(host) (waits)",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 3,
-            "output": true,
-            "query": "mysql_row_lock_time=fetch('mysql.innodb.row_lock.milliseconds.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');\nmysql_row_lock_waits=fetch('mysql.innodb_row_lock_waits', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');\noutput(mysql_row_lock_time, mysql_row_lock_waits);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(mysql_global_status_innodb_row_lock_waits{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend (waits)",
+          "refId": "B",
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Row Locks",
       "tooltip": {
@@ -2526,16 +2581,16 @@
       },
       "yaxes": [
         {
-          "format": "short",
-          "label": null,
+          "format": "percent",
+          "label": "Lock Time",
           "logBase": 1,
           "max": null,
           "min": "0",
           "show": true
         },
         {
-          "format": "short",
-          "label": null,
+          "format": "ops",
+          "label": "Wait operations",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -2556,15 +2611,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 110
+        "y": 109
       },
       "id": 22,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2585,7 +2641,7 @@
       "seriesOverrides": [
         {
           "alias": "fsyncs",
-          "yaxis": 2
+          "yaxis": 1
         }
       ],
       "spaceLength": 10,
@@ -2593,22 +2649,33 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_innodb_data_fsyncs{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-fsyncs",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_os_logs_written:written;mysql_os_log_fsyncs=fsyncs;mysql_innodb_log_waits=log_waits",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 4,
-            "output": true,
-            "query": "mysql_os_logs_written=fetch('mysql.innodb.redo_log.os_file.bytes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\nmysql_os_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true')$global_tag_filter.tag_filter('stat==os_log').downsample('[[__interval]]', 'max');\nmysql_innodb_log_waits=fetch('mysql.innodb.redo_log_buffer.log_wait.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_os_logs_written, mysql_os_log_fsyncs, mysql_innodb_log_waits);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(mysql_global_status_innodb_os_log_written{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-log_written",
+          "refId": "B",
+          "type": "Time Series"
+        },
+        {
+          "expr": "rate(mysql_global_status_innodb_log_waits{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-log_waits",
+          "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Redo Log I/O",
       "tooltip": {
@@ -2626,8 +2693,8 @@
       },
       "yaxes": [
         {
-          "format": "short",
-          "label": null,
+          "format": "ops",
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -2635,11 +2702,11 @@
         },
         {
           "format": "short",
-          "label": null,
+          "label": "fsyncs",
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -2649,18 +2716,19 @@
     },
     {
       "aliasColors": {
-        "fsyncs": "#1F78C1"
+        "fsyncs": "#052b51",
+        "written": "#bf1b00"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 110
+        "y": 109
       },
       "id": 21,
       "legend": {
@@ -2691,22 +2759,33 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(mysql_global_status_innodb_data_written{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-written",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mysql_innodb_data_bytes:$t(stat);mysql_innodb_log_fsyncs:fsyncs",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 3,
-            "output": true,
-            "query": "mysql_innodb_log_fsyncs=fetch('mysql.innodb.redo_log.fsyncs.count', rate='true')$global_tag_filter.tag_filter('stat==innodb').downsample('[[__interval]]', 'max');\nmysql_innodb_data_bytes=fetch('mysql.innodb.data.bytes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'max');\noutput(mysql_innodb_data_bytes, mysql_innodb_log_fsyncs);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(mysql_global_status_innodb_data_read{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-read",
+          "refId": "B"
+        },
+        {
+          "expr": "rate(mysql_global_status_innodb_data_fsyncs{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-fsyncs",
+          "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Datafile I/O",
       "tooltip": {
@@ -2724,7 +2803,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2732,8 +2811,8 @@
           "show": true
         },
         {
-          "format": "short",
-          "label": null,
+          "format": "ops",
+          "label": "fsyncs",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -2753,40 +2832,43 @@
   "templating": {
     "list": [
       {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "host",
-        "multi": false,
-        "name": "host",
-        "options": [],
-        "query": "tag_values(mysql.connections.total.count,host)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "current": {
+          "value": "${VAR_GTS}",
+          "text": "${VAR_GTS}"
+        },
+        "hide": 2,
+        "isGlobal": false,
+        "label": "Global Tagset",
+        "name": "gts",
+        "options": [
+          {
+            "value": "${VAR_GTS}",
+            "text": "${VAR_GTS}"
+          }
+        ],
+        "query": "${VAR_GTS}",
+        "refresh": 0,
+        "skipUrlSync": true,
+        "type": "constant"
       },
       {
         "current": {
-          "value": "${VAR_GLOBAL_TAG_FILTER}",
-          "text": "${VAR_GLOBAL_TAG_FILTER}"
+          "value": "${VAR_SCRAPE_FREQUENCY}",
+          "text": "${VAR_SCRAPE_FREQUENCY}"
         },
-        "hide": 2,
-        "label": "global_tag_filter",
-        "name": "global_tag_filter",
+        "hide": 0,
+        "isGlobal": false,
+        "label": null,
+        "name": "scrape_frequency",
         "options": [
           {
-            "value": "${VAR_GLOBAL_TAG_FILTER}",
-            "text": "${VAR_GLOBAL_TAG_FILTER}"
+            "value": "${VAR_SCRAPE_FREQUENCY}",
+            "text": "${VAR_SCRAPE_FREQUENCY}"
           }
         ],
-        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "query": "${VAR_SCRAPE_FREQUENCY}",
+        "refresh": 0,
+        "skipUrlSync": false,
         "type": "constant"
       }
     ]
@@ -2821,7 +2903,7 @@
     ]
   },
   "timezone": "",
-  "title": "MySQL Metrics",
-  "uid": "SEscuYxik",
+  "title": "Prometheus MySQL Metrics",
+  "uid": "SEscuYpIk",
   "version": 1
 }

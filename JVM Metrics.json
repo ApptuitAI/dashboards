@@ -1,38 +1,38 @@
 {
   "__inputs": [
     {
-      "name": "DS_APPTUIT",
-      "label": "Apptuit",
+      "name": "DS_APPTUIT-PROMQL",
+      "label": "Apptuit-PromQL",
       "description": "",
       "type": "datasource",
-      "pluginId": "apptuit",
-      "pluginName": "Apptuit"
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
     },
     {
-      "name": "VAR_GLOBAL_TAG_FILTER",
+      "name": "VAR_GTS",
       "type": "constant",
-      "label": "global_tag_filter",
-      "value": ".tag_filter('host==$host')",
+      "label": "Global Tagset",
+      "value": "$jinsight",
       "description": ""
     }
   ],
   "__requires": [
     {
-      "type": "datasource",
-      "id": "apptuit",
-      "name": "Apptuit",
-      "version": "1.0.0"
-    },
-    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.2.1"
+      "version": "5.4.3"
     },
     {
       "type": "panel",
       "id": "graph",
       "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
       "version": "5.0.0"
     }
   ],
@@ -43,7 +43,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1540393200000,
+  "iteration": 1560936867760,
   "links": [],
   "panels": [
     {
@@ -51,7 +51,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -83,20 +83,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(jvm_process_cpu_seconds{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "cpu_pct:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.process.cpu.nanos', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.downsample('[[__interval]]', 'p95');\r\nnanos=1000000000;\r\ncpu_pct=A.div(nanos).max(by='cloud_service');\r\noutput(cpu_pct);"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Process CPU %",
       "tooltip": {
@@ -140,7 +138,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -172,20 +170,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(rate(jvm_gc_time_seconds{$global_tag_filter} [$__interval])) without (generation,type)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "gc_pct:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.downsample('[[__interval]]', 'p95').sum(by=\"host\");\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "% GC Time",
       "tooltip": {
@@ -203,7 +199,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -229,7 +225,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -261,20 +257,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "jvm_threads_deadlock_count{$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.thread.deadlock.count')$global_tag_filter.tag_filter('cloud_service=*').downsample('[[__interval]]','avg').sum(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Deadlocked Threads",
       "tooltip": {
@@ -318,7 +312,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -350,20 +344,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "jvm_fd_open{$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.fd.open')$global_tag_filter.tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Open FDs",
       "tooltip": {
@@ -407,7 +399,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -441,21 +433,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "hide": false,
-          "metrics": [],
-          "refId": "A",
-          "ts": {
-            "alias": "C:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.classloading.loaded')$global_tag_filter.downsample('[[__interval]]','avg');\nB=fetch('jvm.classloading.unloaded')$global_tag_filter.downsample('[[__interval]]','avg');\nC=A.sub(B).max(by=\"cloud_service\");"
-          },
-          "type": "Query"
+          "expr": "(jvm_classes_loaded{$global_tag_filter} - jvm_classes_unloaded{$global_tag_filter}) ",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
+          "refId": "B",
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Loaded Class Count",
       "tooltip": {
@@ -499,7 +487,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -531,20 +519,19 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum without(state) (jvm_threads_count{$global_tag_filter}) ",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.thread.count')$global_tag_filter.tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Thread Count",
       "tooltip": {
@@ -588,7 +575,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 6,
@@ -620,20 +607,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(jvm_memory_usage {$global_tag_filter, area=\"heap\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.memory.usage')$global_tag_filter.tag_filter('type=heap').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Heap Usage",
       "tooltip": {
@@ -677,7 +662,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 6,
@@ -709,20 +694,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(jvm_memory_used_bytes{$global_tag_filter, area=\"non_heap\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.memory.used.bytes')$global_tag_filter.tag_filter('type=non_heap').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Non Heap Usage",
       "tooltip": {
@@ -766,7 +749,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 6,
@@ -798,20 +781,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(rate(jvm_gc_time_seconds{$global_tag_filter, generation=\"young\"} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "gc_pct:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.tag_filter(\"generation==young\").downsample('[[__interval]]', 'p95');\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "% Young GC Time",
       "tooltip": {
@@ -829,7 +810,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -855,7 +836,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 6,
@@ -887,20 +868,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(rate(jvm_gc_time_seconds{$global_tag_filter, generation=\"old\"} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "gc_pct:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.gc.time.millis', rate='counter', dropcounterresets='true', align=\"15s\")$global_tag_filter.tag_filter(\"generation==old\").downsample('[[__interval]]', 'p95');\r\nten=10;\r\ngc_pct=A.div(ten).max(by='cloud_service');\r\noutput(gc_pct);"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "% Old GC Time",
       "tooltip": {
@@ -918,7 +897,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -944,7 +923,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -976,22 +955,20 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(jvm_memory_pool_usage{pool=\"eden\", $global_tag_filter})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=eden').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Eden Usage (max)",
+      "title": "Eden Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1007,7 +984,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1033,7 +1010,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1065,22 +1042,20 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(jvm_memory_pool_usage{$global_tag_filter, pool=\"survivor\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=survivor').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Survivor Usage (max)",
+      "title": "Survivor Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1096,7 +1071,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1122,7 +1097,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1154,22 +1129,20 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(jvm_memory_pool_usage{$global_tag_filter, pool=\"old\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=old').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Old Usage (max)",
+      "title": "Old Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1185,7 +1158,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1211,7 +1184,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1243,22 +1216,20 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(jvm_memory_pool_usage{$global_tag_filter,pool=\"code_cache\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=code_cache').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Code Cache Usage (max)",
+      "title": "Code Cache Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1274,7 +1245,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1300,7 +1271,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1332,20 +1303,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(jvm_memory_pool_usage{$global_tag_filter,pool=\"compressed_class_space\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=compressed_class_space').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Compressed Class Space Usage (max)",
       "tooltip": {
@@ -1363,7 +1332,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1389,7 +1358,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1421,20 +1390,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(jvm_memory_pool_usage{$global_tag_filter,pool=\"metaspace\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cloud_service)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('jvm.memory.pools.usage')$global_tag_filter.tag_filter('type=metaspace').tag_filter('cloud_service=*').downsample('[[__interval]]','avg').max(by='cloud_service')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Metaspace Usage (max)",
       "tooltip": {
@@ -1452,7 +1419,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1483,46 +1450,29 @@
   "templating": {
     "list": [
       {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "host",
-        "multi": false,
-        "name": "host",
-        "options": [],
-        "query": "tag_values(jvm.process.cpu.nanos,host)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
         "current": {
-          "value": "${VAR_GLOBAL_TAG_FILTER}",
-          "text": "${VAR_GLOBAL_TAG_FILTER}"
+          "value": "${VAR_GTS}",
+          "text": "${VAR_GTS}"
         },
         "hide": 2,
-        "label": "global_tag_filter",
-        "name": "global_tag_filter",
+        "isGlobal": false,
+        "label": "Global Tagset",
+        "name": "gts",
         "options": [
           {
-            "value": "${VAR_GLOBAL_TAG_FILTER}",
-            "text": "${VAR_GLOBAL_TAG_FILTER}"
+            "value": "${VAR_GTS}",
+            "text": "${VAR_GTS}"
           }
         ],
-        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "query": "${VAR_GTS}",
+        "refresh": 0,
+        "skipUrlSync": true,
         "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -1551,7 +1501,7 @@
     ]
   },
   "timezone": "",
-  "title": "JVM Metrics",
-  "uid": "76FKuLxik",
+  "title": "Prometheus JVM Metrics",
+  "uid": "76FKuLxPk",
   "version": 1
 }
