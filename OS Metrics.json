@@ -1,33 +1,34 @@
 {
   "__inputs": [
     {
-      "name": "DS_APPTUIT",
-      "label": "Apptuit",
+      "name": "DS_APPTUIT-PROMQL",
+      "label": "Apptuit-PromQL",
       "description": "",
       "type": "datasource",
-      "pluginId": "apptuit",
-      "pluginName": "Apptuit"
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
     },
     {
-      "name": "VAR_GLOBAL_TAG_FILTER",
+      "name": "VAR_GTS",
       "type": "constant",
-      "label": "global_tag_filter",
-      "value": ".tag_filter('host==$host')",
+      "label": "Global Tagset",
+      "value": "$nodeexporter",
+      "description": ""
+    },
+    {
+      "name": "VAR_SCRAPE_FREQUENCY",
+      "type": "constant",
+      "label": "scrape_frequency",
+      "value": "2m",
       "description": ""
     }
   ],
   "__requires": [
     {
-      "type": "datasource",
-      "id": "apptuit",
-      "name": "Apptuit",
-      "version": "1.0.0"
-    },
-    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.2.1"
+      "version": "5.4.3"
     },
     {
       "type": "panel",
@@ -39,6 +40,12 @@
       "type": "panel",
       "id": "heatmap",
       "name": "Heatmap",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
       "version": "5.0.0"
     },
     {
@@ -55,7 +62,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1540396684482,
+  "iteration": 1560936948509,
   "links": [],
   "panels": [
     {
@@ -67,7 +74,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -83,7 +90,7 @@
         "y": 0
       },
       "id": 2,
-      "interval": null,
+      "interval": "$scrape_frequency",
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
@@ -119,15 +126,13 @@
       "tableColumn": "",
       "targets": [
         {
-          "metrics": [],
+          "expr": "count(count(node_cpu_seconds_total{mode='idle',$global_tag_filter}) by (instance))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('node.cpu.ticks.count')$global_tag_filter.tag_filter('type==idle').downsample('[[__interval]]','max').count(by='host').count();"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": "",
@@ -156,7 +161,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 7,
         "w": 4,
@@ -166,21 +171,17 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 5,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
-          "metrics": [],
-          "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "fetch('node.uptime.seconds.count')$global_tag_filter.downsample('[[__interval]]','avg');"
-          },
-          "type": "Query"
+          "expr": "avg(sum(avg_over_time(node_cpu_seconds_total{$global_tag_filter}[$__interval])) by (cpu,instance)) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
         }
       ],
       "title": "Instance uptime",
@@ -220,7 +221,8 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
+      "description": "https://www.robustperception.io/understanding-machine-cpu-usage",
       "gridPos": {
         "h": 7,
         "w": 4,
@@ -230,21 +232,17 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 4,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
-          "metrics": [],
-          "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "idle=fetch('node.cpu.ticks.count', rate='true')$global_tag_filter.tag_filter(\"type==idle\").downsample(\"[[__interval]]\", \"avg\");\nused=100;\nused=used.sub(idle);"
-          },
-          "type": "Query"
+          "expr": "100 - (100 * irate(node_cpu_seconds_total{mode='idle',$global_tag_filter}[$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
         }
       ],
       "title": "CPU usage",
@@ -284,7 +282,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 7,
         "w": 4,
@@ -294,21 +292,17 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 7,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
-          "metrics": [],
-          "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "free=fetch('node.memory.bytes')$global_tag_filter.tag_filter(\"state==free\").downsample('[[__interval]]','avg');\ntotal=fetch('node.memory.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg');\nfree_perc = free.div(total, on=\"host\");\nusage = 1;\nusage= usage.sub(free_perc);\noutput(usage);"
-          },
-          "type": "Query"
+          "expr": "1 - (node_memory_MemFree_bytes{$global_tag_filter} / node_memory_MemTotal_bytes{$global_tag_filter})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
         }
       ],
       "title": "Memory usage",
@@ -348,7 +342,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 7,
         "w": 4,
@@ -358,21 +352,17 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 8,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
-          "metrics": [],
-          "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "fetch('node.disk.used.percent')$global_tag_filter.downsample('[[__interval]]', 'avg')"
-          },
-          "type": "Query"
+          "expr": "((node_filesystem_size_bytes{$global_tag_filter} - node_filesystem_avail_bytes{$global_tag_filter}) / node_filesystem_size_bytes{$global_tag_filter}) * 100",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
         }
       ],
       "title": "Disk used",
@@ -413,7 +403,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 7,
         "w": 4,
@@ -423,21 +413,23 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 6,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
-          "metrics": [],
-          "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "bsin=fetch('proc.net.bytes', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nout=0;\nout=out.sub(fetch('proc.net.bytes', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg'));\noutput(bsin,out);"
-          },
-          "type": "Query"
+          "expr": "irate(node_network_receive_bytes_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
+        },
+        {
+          "expr": "0 - irate(node_network_transmit_bytes_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "B"
         }
       ],
       "title": "Network IO",
@@ -469,7 +461,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -478,6 +470,7 @@
         "y": 7
       },
       "id": 9,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -501,25 +494,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "aggregator": "none",
-          "downsampleAggregator": "avg",
-          "downsampleFillPolicy": "none",
-          "metric": "proc.loadavg.1min",
-          "metrics": [],
-          "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "load_avg_per_min=fetch('node.cpu.load.avg_1m')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-          },
-          "type": "Query"
+          "expr": "node_load1{$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Load Average [1m]",
       "tooltip": {
@@ -559,13 +543,11 @@
       }
     },
     {
-      "aliasColors": {
-        "proc.stat.processes{host: nook}": "#052B51"
-      },
+      "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -574,6 +556,7 @@
         "y": 7
       },
       "id": 10,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -597,25 +580,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "aggregator": "none",
-          "downsampleAggregator": "avg",
-          "downsampleFillPolicy": "none",
-          "metric": "proc.stat.processes",
-          "metrics": [],
+          "expr": "irate(node_forks_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "processes_spawn_rate=fetch('node.processes.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Processes",
       "tooltip": {
@@ -655,13 +632,11 @@
       }
     },
     {
-      "aliasColors": {
-        "proc.stat.ctxt{host: nook}": "#614D93"
-      },
+      "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -670,6 +645,7 @@
         "y": 7
       },
       "id": 11,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -693,21 +669,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
+          "expr": "irate(node_context_switches_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "context_switch_rate=fetch('node.process.context_switches.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Context Switches",
       "tooltip": {
@@ -747,13 +720,11 @@
       }
     },
     {
-      "aliasColors": {
-        "proc.stat.intr{host: nook}": "#BA43A9"
-      },
+      "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -762,6 +733,7 @@
         "y": 7
       },
       "id": 12,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -785,21 +757,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
+          "expr": "irate(node_intr_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "interrupt_execution_rate=fetch('node.process.interrupts.count', rate='true')$global_tag_filter.downsample('[[__interval]]', 'avg');"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Interrupts",
       "tooltip": {
@@ -845,7 +814,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -854,12 +823,17 @@
         "y": 14
       },
       "id": 19,
+      "interval": "$scrape_frequency",
       "legend": {
+        "alignAsTable": false,
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
+        "rightSide": false,
         "show": false,
+        "sort": "min",
+        "sortDesc": false,
         "total": false,
         "values": false
       },
@@ -877,21 +851,27 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
+          "expr": "100 - (sum(irate(node_cpu_seconds_total{$global_tag_filter, mode='idle'}[$__interval])) / count(irate(node_cpu_seconds_total{$global_tag_filter, mode='idle'}[$__interval])) * 100)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "avg",
           "refId": "A",
-          "ts": {
-            "alias": "used_cpu_percent:avg; top3:$t(host)",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true').tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\ntop3 = hundred.sub(idle_cpu).top3();\noutput(top3, used_cpu_percent);"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
+        },
+        {
+          "expr": "topk(3,100 - irate(node_cpu_seconds_total{$global_tag_filter, mode='idle'}[$__interval]) *100)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
+          "refId": "B",
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Top 3 Used CPU",
       "tooltip": {
@@ -932,13 +912,12 @@
     },
     {
       "aliasColors": {
-        "ade-scoring-group-1-95-4wp2": "#bf1b00",
         "avg": "rgb(158, 166, 155)"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -947,6 +926,7 @@
         "y": 14
       },
       "id": 20,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -970,21 +950,28 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "topk(3,100 - ((node_memory_MemFree_bytes{$global_tag_filter} + node_memory_Buffers_bytes{$global_tag_filter} + node_memory_Cached_bytes{$global_tag_filter}) / (node_memory_MemTotal_bytes{$global_tag_filter})) * 100)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "avg_mem_used_percent:avg; top3:$t(host)",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": "memtotal=fetch('node.memory.total.bytes').downsample('[[__interval]]', 'avg');\nmemfree=fetch('node.memory.bytes').tag_filter('state==free').downsample('[[__interval]]', 'avg');\nmembuffers=fetch('node.memory.bytes').tag_filter('state==buffers').downsample('[[__interval]]', 'avg');\nmemcached=fetch('node.memory.bytes').tag_filter('state==cached').downsample('[[__interval]]', 'avg');\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\navg_mem_available_percent=memunused.sum().div(memtotal.sum()).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\navg_mem_used_percent=hundred.sub(avg_mem_available_percent);\ntop3=mem_used_percent.top3();\noutput(avg_mem_used_percent, top3);"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
+        },
+        {
+          "expr": "100 - (sum(node_memory_MemFree_bytes{$global_tag_filter} + node_memory_Buffers_bytes{$global_tag_filter} + node_memory_Cached_bytes{$global_tag_filter}) / sum(node_memory_MemTotal_bytes{$global_tag_filter})) * 100",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "avg",
+          "refId": "B",
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Top 3 Memory Usages",
       "tooltip": {
@@ -1025,13 +1012,12 @@
     },
     {
       "aliasColors": {
-        "ade-scoring-group-1-95-4wp2": "#bf1b00",
         "avg": "rgb(158, 166, 155)"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1040,6 +1026,7 @@
         "y": 14
       },
       "id": 21,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1063,23 +1050,125 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "topk(3,irate(node_disk_io_time_seconds_total{$global_tag_filter}[$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-{{node_name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "avg_node_disk_utilization:avg; top3:$t(host)",
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": "node_disk_utilization=fetch('node.disk.uptime.percent').downsample('[[__interval]]','avg');\navg_node_disk_utilization=node_disk_utilization.avg();\ntop3=node_disk_utilization.top3();\noutput(avg_node_disk_utilization, top3);"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
+        },
+        {
+          "expr": "avg(irate(node_disk_io_time_seconds_total{$global_tag_filter}[$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "avg",
+          "refId": "B",
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Top 3 Disc Utilization",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "% Idle": "#E0F9D7",
+        "% Used": "#E24D42"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT-PROMQL}",
+      "fill": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 1,
+      "interval": "$scrape_frequency",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "node_cpu_used_percent{$global_tag_filter}",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
+          "metrics": [],
+          "refId": "A",
+          "ts": {},
+          "type": "Time Series"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1117,108 +1206,12 @@
       }
     },
     {
-      "aliasColors": {
-        "% Idle": "#E0F9D7",
-        "% Used": "#E24D42"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_APPTUIT}",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 24,
-        "x": 0,
-        "y": 21
-      },
-      "id": 1,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": false,
-        "max": true,
-        "min": true,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "metrics": [],
-          "refId": "A",
-          "ts": {
-            "alias": "used_cpu_percent:%Used;idle_cpu_percent:%Idle",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 6,
-            "output": true,
-            "query": "idle_cpu=fetch('node.cpu.ticks.count', rate='true')$global_tag_filter.tag_filter('type==idle').downsample('[[__interval]]', 'avg');\ncount=idle_cpu.count();\nidle_cpu_percent=idle_cpu.sum().div(count);\nhundred=100;\nused_cpu_percent=hundred.sub(idle_cpu_percent);\noutput(used_cpu_percent, idle_cpu_percent);"
-          },
-          "type": "Query"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "CPU Usage",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
-      "fill": 1,
+      "datasource": "${DS_APPTUIT-PROMQL}",
+      "fill": 0,
       "gridPos": {
         "h": 7,
         "w": 24,
@@ -1226,6 +1219,7 @@
         "y": 30
       },
       "id": 3,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1247,87 +1241,24 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": true,
+      "stack": false,
       "steppedLine": false,
       "targets": [
         {
+          "expr": "node_memory_used_percent{$global_tag_filter}",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "mem_used_percent:Used %; mem_available_percent: Available %",
-            "errors": [
-              {
-                "eCol": 0,
-                "line": 5,
-                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                "original": {
-                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                  "queryColumnOffset": -1,
-                  "queryLineNo": 6
-                },
-                "sCol": 0
-              },
-              {
-                "eCol": 0,
-                "line": 4,
-                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                "original": {
-                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                  "queryColumnOffset": -1,
-                  "queryLineNo": 5
-                },
-                "sCol": 0
-              },
-              {
-                "eCol": 0,
-                "line": 4,
-                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                "original": {
-                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                  "queryColumnOffset": -1,
-                  "queryLineNo": 5
-                },
-                "sCol": 0
-              },
-              {
-                "eCol": 0,
-                "line": 4,
-                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                "original": {
-                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                  "queryColumnOffset": -1,
-                  "queryLineNo": 5
-                },
-                "sCol": 0
-              },
-              {
-                "eCol": 0,
-                "line": 4,
-                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                "original": {
-                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'add', got empty LHS.",
-                  "queryColumnOffset": -1,
-                  "queryLineNo": 5
-                },
-                "sCol": 0
-              }
-            ],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 9,
-            "output": true,
-            "query": "memtotal=fetch('node.memory.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nmemfree=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nmembuffers=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==buffers').downsample('[[__interval]]', 'avg').sum();\nmemcached=fetch('node.memory.bytes')$global_tag_filter.tag_filter('state==cached').downsample('[[__interval]]', 'avg').sum();\nmemunused=memfree.add(membuffers, ignore='state').add(memcached, ignore='state');\nhundred=100;\nmem_available_percent=memunused.div(memtotal).mult(hundred);\nmem_used_percent=hundred.sub(mem_available_percent);\noutput(mem_used_percent, mem_available_percent);"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Memory",
       "tooltip": {
@@ -1371,7 +1302,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "decimals": 2,
       "fill": 1,
       "gridPos": {
@@ -1381,6 +1312,7 @@
         "y": 37
       },
       "id": 13,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1391,6 +1323,8 @@
         "min": true,
         "rightSide": true,
         "show": true,
+        "sort": null,
+        "sortDesc": null,
         "total": false,
         "values": true
       },
@@ -1408,22 +1342,19 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "((node_filesystem_size_bytes{$global_tag_filter} - node_filesystem_free_bytes{$global_tag_filter}) / node_filesystem_size_bytes{$global_tag_filter}) * 100",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-{{mountpoint}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "node_disk_space:$t(mount)",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "node_disk_space=fetch('node.disk.used.percent')$global_tag_filter.downsample('[[__interval]]','avg');"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Disc Space",
       "tooltip": {
@@ -1467,7 +1398,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1476,6 +1407,7 @@
         "y": 37
       },
       "id": 14,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1502,21 +1434,20 @@
           "aggregator": "sum",
           "downsampleAggregator": "avg",
           "downsampleFillPolicy": "none",
+          "expr": "irate(node_disk_io_time_seconds_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "node_disk_utilization=fetch('node.disk.uptime.percent')$global_tag_filter.downsample('[[__interval]]','avg');"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Disc Utilization",
       "tooltip": {
@@ -1534,7 +1465,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": "",
           "logBase": 1,
           "max": null,
@@ -1560,7 +1491,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1569,6 +1500,7 @@
         "y": 44
       },
       "id": 15,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1577,6 +1509,8 @@
         "min": true,
         "rightSide": true,
         "show": true,
+        "sort": "max",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -1599,22 +1533,28 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "irate(node_network_receive_bytes_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "in ($global_legend)",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "network_in:$t(direction)($t(host)); network_out:$t(direction)($t(host))",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "network_in=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]', 'avg');\nnetwork_out=fetch('node.network.bytes.count', rate='true')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]', 'avg');\noutput(network_out, network_in);"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
+        },
+        {
+          "expr": "irate(node_network_transmit_bytes_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "out ($global_legend)",
+          "refId": "B",
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Network IO",
       "tooltip": {
@@ -1658,7 +1598,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1667,12 +1607,13 @@
         "y": 51
       },
       "id": 16,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -1690,58 +1631,19 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(sum(node_memory_SwapTotal_bytes{$global_tag_filter}) - sum(node_memory_SwapFree_bytes{$global_tag_filter}) / sum(node_memory_SwapFree_bytes{$global_tag_filter})) * 100",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "swap_usage_percent",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [
-              {
-                "eCol": 0,
-                "line": 4,
-                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                "original": {
-                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                  "queryColumnOffset": -1,
-                  "queryLineNo": 5
-                },
-                "sCol": 0
-              },
-              {
-                "eCol": 0,
-                "line": 4,
-                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                "original": {
-                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                  "queryColumnOffset": -1,
-                  "queryLineNo": 5
-                },
-                "sCol": 0
-              },
-              {
-                "eCol": 0,
-                "line": 4,
-                "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                "original": {
-                  "errorType": "ERROR_INVALID_FUNCTION_ARGUMENT_VALUE",
-                  "message": "Invalid argument value. Expected non-empty Data Frames for operation 'div', got empty LHS.",
-                  "queryColumnOffset": -1,
-                  "queryLineNo": 5
-                },
-                "sCol": 0
-              }
-            ],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 6,
-            "output": true,
-            "query": "swap_free=fetch('node.swap.bytes')$global_tag_filter.tag_filter('state==free').downsample('[[__interval]]', 'avg').sum();\nswap_total=fetch('node.swap.total.bytes')$global_tag_filter.downsample('[[__interval]]', 'avg').sum();\nhundred=100;\nswap_used=swap_total.sub(swap_free, ignore='state');\nswap_usage_percent=swap_used.div(swap_total).mult(hundred);\noutput(swap_usage_percent);"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Swap Usage",
       "tooltip": {
@@ -1785,7 +1687,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1794,6 +1696,7 @@
         "y": 51
       },
       "id": 17,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1824,22 +1727,28 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "node_vmstat_pswpin{$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "in($global_legend)",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "node_swap_in:in($t(host));node_swap_out:out($t(host))",
-            "errors": [],
-            "id": "A",
-            "lineStart": 1,
-            "numLines": 1,
-            "output": true,
-            "query": "node_swap_in=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==in\").downsample('[[__interval]]','avg');\nnode_swap_out=fetch('node.swap.bytes_per_second')$global_tag_filter.tag_filter(\"direction==out\").downsample('[[__interval]]','avg');\noutput(node_swap_in, node_swap_out);"
-          },
-          "type": "Query"
+          "ts": {},
+          "type": "Time Series"
+        },
+        {
+          "expr": "node_vmstat_pswpout{$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "out($global_legend)",
+          "refId": "B",
+          "ts": {},
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Swap IO",
       "tooltip": {
@@ -1886,46 +1795,49 @@
   "templating": {
     "list": [
       {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "host",
-        "multi": false,
-        "name": "host",
-        "options": [],
-        "query": "tag_values(node.cpu.ticks.count,host)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "current": {
+          "value": "${VAR_GTS}",
+          "text": "${VAR_GTS}"
+        },
+        "hide": 2,
+        "isGlobal": false,
+        "label": "Global Tagset",
+        "name": "gts",
+        "options": [
+          {
+            "value": "${VAR_GTS}",
+            "text": "${VAR_GTS}"
+          }
+        ],
+        "query": "${VAR_GTS}",
+        "refresh": 0,
+        "skipUrlSync": true,
+        "type": "constant"
       },
       {
         "current": {
-          "value": "${VAR_GLOBAL_TAG_FILTER}",
-          "text": "${VAR_GLOBAL_TAG_FILTER}"
+          "value": "${VAR_SCRAPE_FREQUENCY}",
+          "text": "${VAR_SCRAPE_FREQUENCY}"
         },
-        "hide": 2,
-        "label": "global_tag_filter",
-        "name": "global_tag_filter",
+        "hide": 0,
+        "isGlobal": false,
+        "label": null,
+        "name": "scrape_frequency",
         "options": [
           {
-            "value": "${VAR_GLOBAL_TAG_FILTER}",
-            "text": "${VAR_GLOBAL_TAG_FILTER}"
+            "value": "${VAR_SCRAPE_FREQUENCY}",
+            "text": "${VAR_SCRAPE_FREQUENCY}"
           }
         ],
-        "query": "${VAR_GLOBAL_TAG_FILTER}",
+        "query": "${VAR_SCRAPE_FREQUENCY}",
+        "refresh": 0,
+        "skipUrlSync": false,
         "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -1954,7 +1866,7 @@
     ]
   },
   "timezone": "",
-  "title": "OS Metrics",
-  "uid": "5yJpuYxiz",
+  "title": "Prometheus OS Metrics",
+  "uid": "5yJpuYxir",
   "version": 1
 }

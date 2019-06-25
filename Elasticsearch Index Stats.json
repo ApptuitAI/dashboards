@@ -1,33 +1,27 @@
 {
   "__inputs": [
     {
-      "name": "DS_APPTUIT",
-      "label": "Apptuit",
+      "name": "DS_APPTUIT-PROMQL",
+      "label": "Apptuit-PromQL",
       "description": "",
       "type": "datasource",
-      "pluginId": "apptuit",
-      "pluginName": "Apptuit"
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
     },
     {
-      "name": "VAR_GLOBAL_TAG_FILTER",
+      "name": "VAR_GTS",
       "type": "constant",
-      "label": "global_tag_filter",
-      "value": ".tag_filter('host==$host')",
+      "label": "Global Tagset",
+      "value": "$es_cluster",
       "description": ""
     }
   ],
   "__requires": [
     {
-      "type": "datasource",
-      "id": "apptuit",
-      "name": "Apptuit",
-      "version": "1.0.0"
-    },
-    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.2.1"
+      "version": "5.4.3"
     },
     {
       "type": "panel",
@@ -40,6 +34,12 @@
       "id": "heatmap",
       "name": "Heatmap",
       "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "5.0.0"
     }
   ],
   "annotations": {
@@ -49,7 +49,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1540399183891,
+  "iteration": 1560936810020,
   "links": [
     {
       "asDropdown": false,
@@ -57,7 +57,8 @@
       "includeVars": false,
       "keepTime": false,
       "tags": [
-        "elasticsearch"
+        "elasticsearch",
+        "prometheus"
       ],
       "targetBlank": true,
       "type": "dashboards"
@@ -91,7 +92,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -99,23 +100,22 @@
         "y": 1
       },
       "heatmap": {},
+      "hideTimeOverride": false,
       "highlightCards": true,
       "id": 78,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_indexing_index_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "genMap": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
         }
       ],
@@ -156,7 +156,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -166,20 +166,18 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 79,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_merge_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_docs', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
         }
       ],
@@ -226,7 +224,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
@@ -235,6 +233,7 @@
         "y": 10
       },
       "id": 69,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -258,20 +257,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_query_cache_evictions_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primary;B:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.evictions', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.evictions', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Evictions Rate",
       "tooltip": {
@@ -315,7 +312,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
@@ -324,6 +321,7 @@
         "y": 10
       },
       "id": 70,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -347,20 +345,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_query_cache_hits_total{instance=~\"$instance\", index=~\"$index\"}  [$__interval]) / (rate(elasticsearch_index_stats_query_cache_hits_total{instance=~\"$instance\", index=~\"$index\"} [$__interval]) + rate(elasticsearch_index_stats_query_cache_misses_total{instance=~\"$instance\", index=~\"$index\"} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "C",
-          "ts": {
-            "alias": "hr:$t(index)-Primary;hr1:$t(index)-Total",
-            "errors": [],
-            "id": "C",
-            "output": true,
-            "query": "tcr=fetch('elasticsearch.indices.byindex.primaries.query_cache.total_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.query_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhr=hcr.div(tcr);\ntcr1=fetch('elasticsearch.indices.byindex.total.query_cache.total_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.query_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhr1=hcr1.div(tcr1);\noutput(hr,hr1)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Hit Ratio",
       "tooltip": {
@@ -404,7 +400,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
@@ -413,6 +409,7 @@
         "y": 10
       },
       "id": 71,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -436,20 +433,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_query_cache_hits_total{instance=~\"$instance\", index=~\"$index\"} [$__interval] )+ rate(elasticsearch_index_stats_query_cache_misses_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primary;B:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.total_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.total_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Call rate",
       "tooltip": {
@@ -493,7 +488,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
@@ -502,6 +497,7 @@
         "y": 10
       },
       "id": 77,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -525,20 +521,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_index_stats_query_cache_memory_bytes_total{instance=~\"$instance\", index=~\"$index\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primary;B:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.query_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.query_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Memory",
       "tooltip": {
@@ -596,7 +590,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -605,6 +599,7 @@
         "y": 19
       },
       "id": 68,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -628,20 +623,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_request_cache_evictions_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primary;B:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.request_cache.evictions', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.request_cache.evictions', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Evictions Rate",
       "tooltip": {
@@ -685,7 +678,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -694,6 +687,7 @@
         "y": 19
       },
       "id": 73,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -719,20 +713,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_request_cache_hits_total{instance=~\"$instance\", index=~\"$index\"} [$__interval]) /  (rate(elasticsearch_index_stats_request_cache_hits_total{instance=~\"$instance\", index=~\"$index\"} [$__interval]) + rate(elasticsearch_index_stats_request_cache_misses_total{instance=~\"$instance\", index=~\"$index\"} [$__interval]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "C",
-          "ts": {
-            "alias": "hr:$t(index)-Primary;hr1:$t(index)-Total",
-            "errors": [],
-            "id": "C",
-            "output": true,
-            "query": "mcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.miss_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr=hcr.add(mcr);\nhr=hcr.div(tcr);\nmcr1=fetch('elasticsearch.indices.byindex.total.request_cache.miss_count', rate='counter')$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.request_cache.hit_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr1=hcr1.add(mcr1);\nhr1=hcr1.div(tcr1);\noutput(hr,hr1)\n"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Hit Ratio",
       "tooltip": {
@@ -776,7 +768,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -785,6 +777,7 @@
         "y": 19
       },
       "id": 72,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -808,20 +801,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_request_cache_hits_total{instance=~\"$instance\", index=~\"$index\"} [$__interval]) + rate(elasticsearch_index_stats_request_cache_misses_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "tcr:$t(index)-Primary;tcr1:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "mcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.miss_count', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr=fetch('elasticsearch.indices.byindex.primaries.request_cache.hit_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr=hcr.add(mcr);\nmcr1=fetch('elasticsearch.indices.byindex.total.request_cache.miss_count', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\nhcr1=fetch('elasticsearch.indices.byindex.total.request_cache.hit_count', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter(\"index=$index\").downsample('[[__interval]]', 'avg');\ntcr1=hcr1.add(mcr1);\noutput(tcr,tcr1)\n"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Call rate",
       "tooltip": {
@@ -865,7 +856,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -874,6 +865,7 @@
         "y": 19
       },
       "id": 74,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -899,20 +891,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_index_stats_request_cache_memory_bytes_total{instance=~\"$instance\", index=~\"$index\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primary;B:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.request_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.request_cache.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Memory",
       "tooltip": {
@@ -970,7 +960,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -979,6 +969,7 @@
         "y": 27
       },
       "id": 17,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1002,20 +993,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_indexing_index_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primaries Index Rate;B:$t(index)-Index Rate",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)\n"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Indexing Rate",
       "tooltip": {
@@ -1059,7 +1048,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1068,6 +1057,7 @@
         "y": 27
       },
       "id": 24,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1096,20 +1086,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_indexing_index_time_seconds_total{instance=~\"$instance\", index=~\"$index\"} [$__interval]) * 1000/ rate(elasticsearch_index_stats_indexing_index_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:$t(index)-Primary;F:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.indexing.index_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.indexing.index_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Avg Indexing Time per document",
       "tooltip": {
@@ -1153,7 +1141,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1162,6 +1150,7 @@
         "y": 27
       },
       "id": 18,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1190,20 +1179,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "increase(elasticsearch_index_stats_search_query_time_seconds_total{instance=~\"$instance\", index=~\"$index\"} [$__interval]) / increase(elasticsearch_index_stats_search_query_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:$t(index)-Primary; F:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.search.query_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.search.query_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.search.query_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.search.query_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)\n"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Avg Search Time",
       "tooltip": {
@@ -1221,7 +1208,7 @@
       },
       "yaxes": [
         {
-          "format": "ms",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1247,7 +1234,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1256,6 +1243,7 @@
         "y": 27
       },
       "id": 20,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1279,20 +1267,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_index_stats_merge_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primary; B:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_docs', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Merges Rate",
       "tooltip": {
@@ -1336,7 +1322,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1345,6 +1331,7 @@
         "y": 27
       },
       "id": 22,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1375,20 +1362,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "increase(elasticsearch_index_stats_merge_time_seconds_total{instance=~\"$instance\", index=~\"$index\"} [$__interval]) / increase(elasticsearch_index_stats_merge_total{instance=~\"$instance\", index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:$t(index)-Primary; F:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=A.div(B);\nD=fetch('elasticsearch.indices.byindex.total.merges.total_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.total.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=D.div(E);\noutput(C,F)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Avg time per Merge",
       "tooltip": {
@@ -1406,7 +1391,7 @@
       },
       "yaxes": [
         {
-          "format": "ms",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1432,21 +1417,21 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
-      "fill": 0,
+      "datasource": "${DS_APPTUIT-PROMQL}",
+      "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 4,
         "x": 20,
         "y": 27
       },
-      "id": 21,
+      "id": 87,
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -1464,22 +1449,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 1,
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primaries Merges Size Rate; B:$t(index)-Merges Size Rate",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.merges.total_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.merges.total_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)\n"
-          },
-          "type": "Query"
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Merges Total Size",
+      "title": "Merge Total Size",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1495,7 +1476,7 @@
       },
       "yaxes": [
         {
-          "format": "bytes",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1508,7 +1489,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -1521,21 +1502,21 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
-      "fill": 0,
+      "datasource": "${DS_APPTUIT-PROMQL}",
+      "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 4,
         "x": 0,
         "y": 34
       },
-      "id": 27,
+      "id": 85,
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -1553,20 +1534,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 1,
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primaries_Translog_Operations; B:$t(index)-Total_Translog_Operations;C:$t(index)-Primaries_Translog_Size; D:$t(index)-Total_Translog_Size",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.translog.operations')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.translog.operations')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.primaries.translog.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.translog.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D)\n"
-          },
-          "type": "Query"
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Translog",
       "tooltip": {
@@ -1588,15 +1565,15 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         },
         {
-          "format": "decbytes",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         }
       ],
@@ -1610,7 +1587,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1619,6 +1596,7 @@
         "y": 34
       },
       "id": 25,
+      "interval": "$scrape_frequency",
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -1651,20 +1629,25 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_indices_docs_total{instance=~\"$instance\",index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Total_Docs_Rate",
           "metrics": [],
           "refId": "B",
-          "ts": {
-            "alias": "A:$t(index)-Primaries_Docs_Rate;B:$t(index)-Primaries_Deleted_Doc_Rate;C:$t(index)-Total_Docs_Rate;D:$t(index)-Total_Docs_Deleted_Rate",
-            "errors": [],
-            "id": "B",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.docs.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.primaries.docs.deleted', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.total.docs.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.docs.deleted', rate='counter', dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(elasticsearch_indices_docs_deleted{instance=~\"$instance\",index=~\"$index\"} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{name}}-Total_Docs_Deleted_Rate",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Indices Docs",
       "tooltip": {
@@ -1708,7 +1691,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1717,12 +1700,13 @@
         "y": 34
       },
       "id": 38,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -1734,31 +1718,31 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/.*Total.*/",
-          "yaxis": 2
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(elasticsearch_indices_segment_count_total{instance=~\"$instance\",index=~\"$index\"}) by(instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{cluster}}-Total",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primary;B:$t(index)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.segments.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.segments.count', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "sum(elasticsearch_indices_segment_count_primary{instance=~\"$instance\",index=~\"$index\"}) by(instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{cluster}}-Primary",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Segments",
       "tooltip": {
@@ -1777,7 +1761,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -1789,7 +1773,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -1802,7 +1786,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1811,6 +1795,7 @@
         "y": 34
       },
       "id": 23,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1834,20 +1819,107 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_indices_segment_doc_values_memory_bytes_primary{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Primary_Doc_Memory",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(index)-Primaries_Doc_Memory;B:$t(index)-Total_Doc_Memory;C:$t(index)-Primaries_Index_Writer_Memory;D:$t(index)-Total_Index_Writer_Memory;E:$t(index)-Primaries_Segments_Memory;F:$t(index)-Total_Segments_Memory;G:$t(index)-Primaries_Stored_Fields_Memory;H:$t(index)-Total_Stored_Fields_Memory;I:$t(index)-Primaries_Terms_Memory;J:$t(index)-Total_Terms_Memory;K:$t(index)-Primaries_Version_Map_Memory;L:$t(index)-Total_Version_Map_Memory;",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.indices.byindex.primaries.segments.doc_values_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.indices.byindex.total.segments.doc_values_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.indices.byindex.primaries.segments.index_writer_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.indices.byindex.total.segments.index_writer_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.indices.byindex.primaries.segments.memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nF=fetch('elasticsearch.indices.byindex.total.segments.memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\n\nG=fetch('elasticsearch.indices.byindex.primaries.segments.stored_fields_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nH=fetch('elasticsearch.indices.byindex.total.segments.stored_fields_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nI=fetch('elasticsearch.indices.byindex.primaries.segments.terms_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nJ=fetch('elasticsearch.indices.byindex.total.segments.terms_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nK=fetch('elasticsearch.indices.byindex.primaries.segments.version_map_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\nL=fetch('elasticsearch.indices.byindex.total.segments.version_map_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('index==$index').downsample('[[__interval]]','avg');\noutput(A,B,C,D,E,F,G,H,I,J,K,L)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_doc_values_memory_bytes_total{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Total_Doc_Memory",
+          "refId": "B"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_index_writer_memory_bytes_primary{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Primary_Index_Writer_Memory",
+          "refId": "C"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_index_writer_memory_bytes_total{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Total_Index_Writer_Memory",
+          "refId": "D"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_memory_bytes_primary{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Primary_Segment_Memory",
+          "refId": "E"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_memory_bytes_total{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Total_Segment_Memory",
+          "refId": "F"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_fields_memory_bytes_primary{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Primary_Stored_Fields_Memory",
+          "refId": "G"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_fields_memory_bytes_total{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Total_Stored_Fields_Memory",
+          "refId": "H"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_terms_memory_primary{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Primary_Terms_Memory",
+          "refId": "I"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_terms_memory_total{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Total_Terms_Memory",
+          "refId": "J"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_version_map_memory_bytes_primary{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Primary_Version_Map_Memory",
+          "refId": "K"
+        },
+        {
+          "expr": "elasticsearch_indices_segment_version_map_memory_bytes_total{instance=~\"$instance\",index=~\"$index\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{index}}-Total_Version_Map_Memory",
+          "refId": "L"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Segments Memory",
       "tooltip": {
@@ -1891,23 +1963,50 @@
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
-    "elasticsearch"
+    "elasticsearch",
+    "prometheus"
   ],
   "templating": {
     "list": [
       {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
-        "hide": 0,
+        "current": {
+          "value": "${VAR_GTS}",
+          "text": "${VAR_GTS}"
+        },
+        "hide": 2,
+        "isGlobal": false,
+        "label": "Global Tagset",
+        "name": "gts",
+        "options": [
+          {
+            "value": "${VAR_GTS}",
+            "text": "${VAR_GTS}"
+          }
+        ],
+        "query": "${VAR_GTS}",
+        "refresh": 0,
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "allValue": "",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "${DS_APPTUIT-PROMQL}",
+        "definition": "label_values(elasticsearch_cluster_health_status{cluster=~\"$cluster\"},instance) ",
+        "hide": 2,
         "includeAll": true,
+        "isGlobal": false,
         "label": null,
         "multi": false,
-        "name": "cluster",
+        "name": "instance",
         "options": [],
-        "query": "tag_values(elasticsearch.cluster.status, cluster)",
+        "query": "label_values(elasticsearch_cluster_health_status{cluster=~\"$cluster\"},instance) ",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -1916,38 +2015,26 @@
         "useTags": false
       },
       {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "${DS_APPTUIT-PROMQL}",
+        "definition": "label_values(elasticsearch_indices_segment_doc_values_memory_bytes_primary{instance=~\"$instance\"},index) ",
         "hide": 0,
         "includeAll": true,
+        "isGlobal": false,
         "label": null,
         "multi": true,
         "name": "index",
         "options": [],
-        "query": "tag_values(elasticsearch.indices.byindex.primaries.query_cache.total_count,index,cluster=$cluster)",
+        "query": "label_values(elasticsearch_indices_segment_doc_values_memory_bytes_primary{instance=~\"$instance\"},index) ",
         "refresh": 1,
         "regex": "",
-        "sort": 2,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
-        "hide": 2,
-        "includeAll": true,
-        "label": "host",
-        "multi": false,
-        "name": "host",
-        "options": [],
-        "query": "tag_values(elasticsearch.node.process.cpu.percent,node)",
-        "refresh": 1,
-        "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -1956,21 +2043,29 @@
         "useTags": false
       },
       {
+        "allValue": null,
         "current": {
-          "value": "${VAR_GLOBAL_TAG_FILTER}",
-          "text": "${VAR_GLOBAL_TAG_FILTER}"
+          "text": "2m",
+          "type": "2m",
+          "value": "2m"
         },
-        "hide": 2,
-        "label": "global_tag_filter",
-        "name": "global_tag_filter",
+        "hide": 0,
+        "includeAll": false,
+        "isGlobal": false,
+        "label": null,
+        "multi": false,
+        "name": "scrape_frequency",
         "options": [
           {
-            "value": "${VAR_GLOBAL_TAG_FILTER}",
-            "text": "${VAR_GLOBAL_TAG_FILTER}"
+            "selected": true,
+            "text": "2m",
+            "type": "2m",
+            "value": "2m"
           }
         ],
-        "query": "${VAR_GLOBAL_TAG_FILTER}",
-        "type": "constant"
+        "query": "2m",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -2004,7 +2099,7 @@
     ]
   },
   "timezone": "",
-  "title": "Elasticsearch Index Stats",
-  "uid": "tKdOuLbmk",
+  "title": "Prometheus Elasticsearch Index Stats",
+  "uid": "tKdOuLbmp",
   "version": 1
 }

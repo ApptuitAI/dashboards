@@ -1,33 +1,27 @@
 {
   "__inputs": [
     {
-      "name": "DS_APPTUIT",
-      "label": "Apptuit",
+      "name": "DS_APPTUIT-PROMQL",
+      "label": "Apptuit-PromQL",
       "description": "",
       "type": "datasource",
-      "pluginId": "apptuit",
-      "pluginName": "Apptuit"
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
     },
     {
-      "name": "VAR_GLOBAL_TAG_FILTER",
+      "name": "VAR_GTS",
       "type": "constant",
-      "label": "global_tag_filter",
-      "value": ".tag_filter('host==$host')",
+      "label": "Global Tagset",
+      "value": "$es_node",
       "description": ""
     }
   ],
   "__requires": [
     {
-      "type": "datasource",
-      "id": "apptuit",
-      "name": "Apptuit",
-      "version": "1.0.0"
-    },
-    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.2.1"
+      "version": "5.4.3"
     },
     {
       "type": "panel",
@@ -39,6 +33,12 @@
       "type": "panel",
       "id": "heatmap",
       "name": "Heatmap",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
       "version": "5.0.0"
     },
     {
@@ -55,7 +55,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1540399769567,
+  "iteration": 1560936842254,
   "links": [
     {
       "asDropdown": false,
@@ -63,7 +63,8 @@
       "includeVars": false,
       "keepTime": false,
       "tags": [
-        "elasticsearch"
+        "elasticsearch",
+        "prometheus"
       ],
       "targetBlank": true,
       "type": "dashboards"
@@ -97,7 +98,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 9,
         "w": 6,
@@ -107,21 +108,26 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 80,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
+          "expr": "elasticsearch_os_cpu_percent{$global_tag_filter}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.process.cpu.percent')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.node.os.cpu.percent')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\noutput(A,C)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "elasticsearch_process_cpu_percent{$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "B"
         }
       ],
       "title": "CPU",
@@ -161,7 +167,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 9,
         "w": 6,
@@ -171,20 +177,19 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 57,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
+          "expr": "rate(elasticsearch_indices_indexing_index_total{ $global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "fetch('elasticsearch.node.indices.indexing.index_total', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster==$cluster\").downsample('[[__interval]]', 'avg');\n"
-          },
           "type": "Query"
         }
       ],
@@ -225,7 +230,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 9,
         "w": 6,
@@ -235,21 +240,18 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 81,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
+          "expr": "rate(elasticsearch_indices_search_query_total{ $global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Query_Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.indices.search.query_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\n\n"
-          },
           "type": "Query"
         }
       ],
@@ -290,7 +292,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
         "h": 9,
         "w": 6,
@@ -300,20 +302,18 @@
       "heatmap": {},
       "highlightCards": true,
       "id": 82,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
+          "expr": "(rate(elasticsearch_indices_indexing_index_time_seconds_total{ $global_tag_filter}[$__interval]) * 1000) / rate(elasticsearch_indices_indexing_index_total{ $global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.indices.indexing.index_time_in_millis', rate=\"counter\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.indices.indexing.index_total', rate=\"counter\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=A.div(B);"
-          },
           "type": "Query"
         }
       ],
@@ -344,26 +344,27 @@
     {
       "columns": [
         {
-          "text": "Avg",
-          "value": "avg"
+          "text": "Current",
+          "value": "current"
         }
       ],
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fontSize": "100%",
       "gridPos": {
-        "h": 9,
+        "h": 7,
         "w": 6,
         "x": 0,
         "y": 10
       },
       "id": 84,
+      "interval": "$scrape_frequency",
       "links": [],
       "minSpan": 4,
       "pageSize": null,
       "scroll": false,
       "showHeader": true,
       "sort": {
-        "col": 2,
+        "col": 1,
         "desc": true
       },
       "styles": [
@@ -409,15 +410,12 @@
       ],
       "targets": [
         {
+          "expr": "topk(5,elasticsearch_jvm_gc_collection_seconds_count{gc='old', $global_tag_filter})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{name}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.jvm.gc.collectors.old.collection_count')$global_tag_filter.series_max().top5();"
-          },
           "type": "Query"
         }
       ],
@@ -438,31 +436,37 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "gridPos": {
-        "h": 9,
-        "w": 6,
+        "h": 7,
+        "w": 12,
         "x": 6,
         "y": 10
       },
       "heatmap": {},
       "highlightCards": true,
       "id": 89,
+      "interval": "$scrape_frequency",
       "legend": {
         "show": false
       },
       "links": [],
       "targets": [
         {
+          "expr": "(rate(elasticsearch_jvm_gc_collection_seconds_sum{gc='old', $global_tag_filter}[$__interval]) + on (name) rate(elasticsearch_jvm_gc_collection_seconds_sum{gc='young', $global_tag_filter}[$__interval]))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "thousand=1000;\nA=fetch('elasticsearch.node.jvm.gc.collectors.old.collection_time_in_millis',rate=\"counter\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node');\nB=fetch('elasticsearch.node.jvm.gc.collectors.young.collection_time_in_millis',rate=\"counter\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node');\nC=A.add(B).div(thousand).downsample('[[__interval]]', 'max');\n\n"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(elasticsearch_jvm_gc_collection_seconds_sum{ $global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "refId": "B"
         }
       ],
       "title": "%  Max GC Time",
@@ -494,15 +498,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
-        "h": 9,
+        "h": 7,
         "w": 6,
-        "x": 12,
+        "x": 18,
         "y": 10
       },
       "id": 90,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -510,7 +515,7 @@
         "hideZero": true,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -528,20 +533,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_thread_pool_rejected_count{ $global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-{{type}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(cluster)-$t(node)-$t(threadpool)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.thread_pool.rejected', rate=\"counter\", dropcounterresets=\"true\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').tag_filter('threadpool==$threadpool').downsample('[[__interval]]','avg')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Job Rejection Rate",
       "tooltip": {
@@ -586,7 +589,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 17
       },
       "id": 93,
       "panels": [],
@@ -599,21 +602,22 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 20
+        "y": 18
       },
       "id": 8,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -631,30 +635,29 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_os_cpu_percent{$global_tag_filter}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-OS",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Process;C:$t(node)-OS",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.process.cpu.percent')$global_tag_filter.tag_filter('node==$node').tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.node.os.cpu.percent')$global_tag_filter.tag_filter('node==$node').tag_filter('cluster==$cluster').downsample('[[__interval]]','avg');\noutput(A,C)"
-          },
           "type": "Query"
         },
         {
-          "hide": true,
+          "expr": "elasticsearch_process_cpu_percent{$global_tag_filter}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Process",
           "metrics": [],
           "refId": "B",
-          "ts": {
-            "errors": [],
-            "query": "B=fetch('elasticsearch.cluster.nodes.process.cpu.percent')$global_tag_filter.downsample('[[__interval]]','avg')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Node CPU",
       "tooltip": {
@@ -698,15 +701,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
-      "fill": 0,
+      "fill": 1,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 20
+        "y": 18
       },
-      "id": 7,
+      "id": 99,
       "legend": {
         "avg": false,
         "current": false,
@@ -730,22 +732,15 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:$t(node)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.os.swap.total_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.os.swap.used_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=B.div(A);\noutput(C)"
-          },
-          "type": "Query"
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "% Swap Memory Used",
+      "title": "%Swap Memory used",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -761,11 +756,11 @@
       },
       "yaxes": [
         {
-          "format": "percentunit",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         },
         {
@@ -774,7 +769,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -787,15 +782,15 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
-      "fill": 0,
+      "datasource": "${DS_APPTUIT-PROMQL}",
+      "fill": 1,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 20
+        "y": 18
       },
-      "id": 6,
+      "id": 97,
       "legend": {
         "avg": false,
         "current": false,
@@ -819,22 +814,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
-          "refId": "C",
-          "ts": {
-            "alias": "C:$t(node)",
-            "errors": [],
-            "id": "C",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.os.mem.total_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.os.mem.used_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=B.div(A);\noutput(C)"
-          },
-          "type": "Query"
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A",
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "% OS Memory used",
+      "title": "% OS Memory Used",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -850,11 +841,11 @@
       },
       "yaxes": [
         {
-          "format": "percentunit",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         },
         {
@@ -863,7 +854,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -876,15 +867,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 20
+        "y": 18
       },
       "id": 30,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -902,27 +894,38 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/send/",
+          "transform": "negative-Y"
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "hide": true,
+          "expr": "rate(elasticsearch_transport_rx_size_bytes_total{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-receive",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Rx,B:$t(node)-Tx",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.transport.rx_size_in_bytes', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.transport.tx_size_in_bytes', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(elasticsearch_transport_tx_size_bytes_total{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-send",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Transport",
       "tooltip": {
@@ -940,7 +943,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "Bps",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -967,7 +970,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 26
       },
       "id": 94,
       "panels": [],
@@ -980,15 +983,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 29
+        "y": 27
       },
       "id": 17,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1012,20 +1016,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_indices_indexing_index_total{ $global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.indices.indexing.index_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Indexing Rate",
       "tooltip": {
@@ -1069,15 +1071,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 29
+        "y": 27
       },
       "id": 24,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1101,20 +1104,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_indices_indexing_index_time_seconds_total{$global_tag_filter} [$__interval]) * 1000 / rate(elasticsearch_indices_indexing_index_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:$t(node)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.indices.indexing.index_time_in_millis', rate=\"counter\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.indices.indexing.index_total', rate=\"counter\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=A.div(B);"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Avg Indexing Time per document",
       "tooltip": {
@@ -1158,15 +1159,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 29
+        "y": 27
       },
       "id": 18,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1190,20 +1192,27 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_indices_search_query_time_seconds{ $global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Query_Time_In_Millis",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Query_Time_In_Millis ; B:$t(node)-Query_Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.indices.search.query_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.indices.search.query_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\noutput(A,B)\n"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(elasticsearch_indices_search_query_total{ $global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Query_Total",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Search Rate",
       "tooltip": {
@@ -1221,7 +1230,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1247,15 +1256,17 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
+      "description": "review again for this panel",
       "fill": 1,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 29
+        "y": 27
       },
       "id": 91,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1284,20 +1295,25 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_indices_search_query_time_seconds{$global_tag_filter} [$__interval]) / rate(elasticsearch_indices_search_query_total{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "prim_time:Primary;tot_time:Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "AT=fetch('elasticsearch.node.indices.search.query_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum();\nBT=fetch('elasticsearch.node.indices.search.query_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum();\nA=fetch('elasticsearch.node.indices.search.query_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum();\nB=fetch('elasticsearch.node.indices.search.query_total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').downsample('[[__interval]]','avg').sum();\nprim_time=AT.div(A);\ntot_time=BT.div(B);\noutput(prim_time, tot_time);"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(elasticsearch_indices_search_query_time_seconds{$global_tag_filter} [$__interval]) / rate(elasticsearch_indices_search_query_total{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Total",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Avg Search Time",
       "tooltip": {
@@ -1315,7 +1331,7 @@
       },
       "yaxes": [
         {
-          "format": "ms",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1341,15 +1357,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 37
+        "y": 35
       },
       "id": 20,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1367,26 +1384,38 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/-Total/",
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_indices_merges_docs_total{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Docs",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Total_Docs ; B:$t(node)-Total",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.indices.merges.total_docs', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.indices.merges.total', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(elasticsearch_indices_merges_total{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Total",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Merges Rate",
       "tooltip": {
@@ -1405,15 +1434,16 @@
       "yaxes": [
         {
           "format": "ops",
-          "label": null,
+          "label": "Docs Merged",
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "format": "short",
-          "label": null,
+          "decimals": null,
+          "format": "ops",
+          "label": "Merges",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1430,15 +1460,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 37
+        "y": 35
       },
       "id": 21,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1462,20 +1493,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "increase(elasticsearch_indices_merges_total_size_bytes_total{$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Merges size",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "$t(node)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.indices.merges.total_size_in_bytes', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Merges Total Size",
       "tooltip": {
@@ -1519,15 +1548,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 37
+        "y": 35
       },
       "id": 22,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1551,20 +1581,20 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "increase(elasticsearch_indices_merges_total_time_seconds_total{ $global_tag_filter}[$__interval])/increase(elasticsearch_indices_merges_total{ $global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Merges_Total_Time_In_Millis; B:$t(node)-Total_Throttled_Time_In_Millis",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "thousand=1000;\nA=fetch('elasticsearch.node.indices.merges.total_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.indices.merges.total_throttled_time_in_millis', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=A.div(thousand);\nD=B.div(thousand);\noutput(A,B)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Merges Latency",
       "tooltip": {
@@ -1582,7 +1612,7 @@
       },
       "yaxes": [
         {
-          "format": "ms",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1608,15 +1638,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 37
+        "y": 35
       },
       "id": 27,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1636,7 +1667,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "/.*-Size/",
+          "alias": "/-size/",
           "yaxis": 2
         }
       ],
@@ -1645,20 +1676,26 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(elasticsearch_indices_translog_operations{ $global_tag_filter})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-operations",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-operations;B:$t(node)-Size",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.indices.translog.operations')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.indices.translog.size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "elasticsearch_indices_translog_size_in_bytes{ $global_tag_filter}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-size",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Translog",
       "tooltip": {
@@ -1677,7 +1714,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "Operations",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -1685,7 +1722,7 @@
         },
         {
           "format": "decbytes",
-          "label": null,
+          "label": "Size",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -1702,15 +1739,15 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 1,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 45
+        "y": 43
       },
-      "id": 26,
+      "id": 101,
       "legend": {
         "avg": false,
         "current": false,
@@ -1734,19 +1771,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "hide": true,
-          "metrics": [],
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 1,
           "refId": "A",
-          "ts": {
-            "alias": "$t(node)-HTTP opened",
-            "errors": [],
-            "query": "A=fetch('elasticsearch.node.http.total_opened', rate='true')$global_tag_filter.tag_filter('cluster==$node').tag_filter('node==$node').downsample('[[__interval]]','avg')"
-          },
-          "type": "Query"
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "HTTP Open",
       "tooltip": {
@@ -1777,7 +1811,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -1790,15 +1824,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 45
+        "y": 43
       },
       "id": 25,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1827,20 +1862,26 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_indices_docs{ $global_tag_filter}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Docs",
           "metrics": [],
           "refId": "B",
-          "ts": {
-            "alias": "B:$t(node)-Docs rate; C:$t(node)-Deleted rate",
-            "errors": [],
-            "id": "B",
-            "output": true,
-            "query": "B=fetch('elasticsearch.node.indices.docs.count')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.node.indices.docs.deleted')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\noutput(B,C)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "elasticsearch_indices_docs_deleted{ $global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Deleted",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Indices Docs",
       "tooltip": {
@@ -1859,7 +1900,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "Docs",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1867,7 +1908,7 @@
         },
         {
           "format": "short",
-          "label": null,
+          "label": "Deleted",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1884,15 +1925,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 45
+        "y": 43
       },
       "id": 38,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -1916,20 +1958,19 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(elasticsearch_indices_segments_count{$global_tag_filter}) by (name)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-segment_count",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Segments Count",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.indices.segments.count')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg')"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Segments",
       "tooltip": {
@@ -1973,15 +2014,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 45
+        "y": 43
       },
       "id": 16,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2005,20 +2047,46 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_breakers_estimated_size_bytes{ breaker=\"parent\",$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Parent Estimated Size",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Fielddata Estimated Size;B:$t(node)-Fielddata Memory Size;C:$t(node)-Parent Estimated Size;D:$t(node)-Request Estimated Size;E:$t(node)-Inflight Requests Estimated Size",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.breakers.fielddata.estimated_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.indices.fielddata.memory_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.node.breakers.parent.estimated_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.node.breakers.request.estimated_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.node.breakers.in_flight_requests.estimated_size_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\noutput(A,B,C,D,E)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "elasticsearch_breakers_estimated_size_bytes{ breaker=\"fielddata\",$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Fielddata Estimated Size",
+          "refId": "B"
+        },
+        {
+          "expr": "elasticsearch_breakers_estimated_size_bytes{ breaker=\"request\",$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Request Estimated Size",
+          "refId": "C"
+        },
+        {
+          "expr": "elasticsearch_breakers_estimated_size_bytes{ breaker=\"in_flight_requests\",$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Inflight Requests Estimated Size",
+          "refId": "D"
+        },
+        {
+          "expr": "elasticsearch_indices_fielddata_memory_size_bytes{ $global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Fielddata Memory Size",
+          "refId": "E"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Field Data & Breakers",
       "tooltip": {
@@ -2062,15 +2130,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 53
+        "y": 51
       },
       "id": 23,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2094,20 +2163,59 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(rate(elasticsearch_indices_segment_doc_values_memory_bytes_total{$global_tag_filter} [$__interval])) by (name)",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-Doc_value_memory",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Doc_Values_Memory;B:$t(node)-Index_Writer_Memory;C:$t(node)-Memory;D:$t(node)-Stored_Fields_Memory;E:$t(node)-Terms_Memory;F:$t(node)-Version_Map_Memory",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.indices.segments.doc_values_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.indices.segments.index_writer_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=fetch('elasticsearch.node.indices.segments.memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.node.indices.segments.stored_fields_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.node.indices.segments.terms_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nF=fetch('elasticsearch.node.indices.segments.version_map_memory_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\noutput(A,B,C,D,E,F)\n"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "sum(rate(elasticsearch_indices_segment_index_writer_memory_bytes_total{$global_tag_filter} [$__interval])) by (name)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-index_write_memory",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(rate(elasticsearch_indices_segments_memory_bytes{$global_tag_filter} [$__interval])) by (name)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-segment_memory_byts",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(rate(elasticsearch_indices_segment_fields_memory_bytes_total{$global_tag_filter} [$__interval])) by (name)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-segment_field_memory",
+          "refId": "D"
+        },
+        {
+          "expr": "sum(rate(elasticsearch_indices_segment_terms_memory_total{$global_tag_filter} [$__interval])) by (name)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-segment_terms_memory",
+          "refId": "E"
+        },
+        {
+          "expr": "sum(rate(elasticsearch_indices_segment_version_map_memory_bytes_total{$global_tag_filter} [$__interval])) by (name)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-version_map_memory",
+          "refId": "F"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Segments Memory",
       "tooltip": {
@@ -2151,15 +2259,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 53
+        "y": 51
       },
       "id": 78,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2185,21 +2294,40 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_thread_pool_queue_count{ type=~'$threadpool',$global_tag_filter}",
+          "format": "time_series",
           "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-{{type}}-queue",
           "metrics": [],
           "refId": "C",
-          "ts": {
-            "alias": "C:$t(node)-$t(threadpool)-Queue;D:$t(node)-$t(threadpool)-Threads;E:$t(node)-$t(threadpool)-Largest;F:$t(node)-$t(threadpool)-Active",
-            "errors": [],
-            "id": "C",
-            "output": true,
-            "query": "C=fetch('elasticsearch.node.thread_pool.queue')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').tag_filter('threadpool==$threadpool').downsample('[[__interval]]','avg');\nD=fetch('elasticsearch.node.thread_pool.threads')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').tag_filter('threadpool==$threadpool').downsample('[[__interval]]','avg');\nE=fetch('elasticsearch.node.thread_pool.largest')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').tag_filter('threadpool==$threadpool').downsample('[[__interval]]','avg');\nF=fetch('elasticsearch.node.thread_pool.active')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').tag_filter('threadpool==$threadpool').downsample('[[__interval]]','avg');\noutput(C,D,E,F)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "elasticsearch_thread_pool_threads_count{ type=~'$threadpool',$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-{{type}}-threads",
+          "refId": "A"
+        },
+        {
+          "expr": "elasticsearch_thread_pool_largest_count{ type=~'$threadpool',$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-{{type}}-largest",
+          "refId": "B"
+        },
+        {
+          "expr": "elasticsearch_thread_pool_active_count{ type=~'$threadpool',$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-{{type}}-active",
+          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Thread Pool - Threads",
       "tooltip": {
@@ -2243,15 +2371,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 53
+        "y": 51
       },
       "id": 79,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2282,21 +2411,26 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_thread_pool_completed_count{ type=~'$threadpool',$global_tag_filter} [$__interval])",
+          "format": "time_series",
           "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-{{type}}",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-$t(threadpool)-Jobs Completed;B:$t(node)-$t(threadpool)-Jobs Rejected",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.thread_pool.completed', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').tag_filter('threadpool==$threadpool').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.thread_pool.rejected', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').tag_filter('threadpool==$threadpool').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "rate(elasticsearch_thread_pool_rejected_count{ type=~'$threadpool',$global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-{{type}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Thread Pool - Jobs",
       "tooltip": {
@@ -2341,7 +2475,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 61
+        "y": 59
       },
       "id": 95,
       "panels": [],
@@ -2354,15 +2488,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 62
+        "y": 60
       },
       "id": 88,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2386,20 +2521,27 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "(rate(elasticsearch_jvm_gc_collection_seconds_sum{gc='old', $global_tag_filter} [$__interval])) + on (name) (rate(elasticsearch_jvm_gc_collection_seconds_sum{gc='young', $global_tag_filter} [$__interval]))",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:$t(node)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "thousand=1000;\nA=fetch('elasticsearch.node.jvm.gc.collectors.old.collection_time_in_millis',rate=\"counter\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node');\nB=fetch('elasticsearch.node.jvm.gc.collectors.young.collection_time_in_millis',rate=\"counter\")$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node');\nC=A.add(B).div(thousand).downsample('[[__interval]]', 'max');\n\n"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "sum(rate(elasticsearch_jvm_gc_collection_seconds_sum{$global_tag_filter} [$__interval])) by (name)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "% Max GC Time",
       "tooltip": {
@@ -2443,15 +2585,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 9,
         "w": 6,
         "x": 6,
-        "y": 62
+        "y": 60
       },
       "id": 14,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2466,12 +2609,13 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pointradius": 5,
+      "pointradius": 0.5,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
           "alias": "/.*% GC.*/",
+          "linewidth": 2,
           "yaxis": 2
         }
       ],
@@ -2480,21 +2624,27 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_jvm_gc_collection_seconds_sum{gc='young', $global_tag_filter} [$__interval])",
+          "format": "time_series",
           "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-% GC",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Young Collection Rate; C:$t(node)-% GC",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "thousand=1000;\nA=fetch('elasticsearch.node.jvm.gc.collectors.young.collection_count', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.jvm.gc.collectors.young.collection_time_in_millis', rate=\"counter\")$global_tag_filter.tag_filter(\"cluster=$cluster\").tag_filter('node==$node').downsample('[[__interval]]', 'avg');\nC=B.div(thousand);\noutput(A,C)\n\n"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "increase(elasticsearch_jvm_gc_collection_seconds_count{gc='young', $global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-# GC",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "JVM GC Collector Young",
       "tooltip": {
@@ -2512,8 +2662,8 @@
       },
       "yaxes": [
         {
-          "format": "ops",
-          "label": null,
+          "format": "short",
+          "label": "Num GCs",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -2521,7 +2671,7 @@
         },
         {
           "format": "percentunit",
-          "label": "",
+          "label": "% GC time",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -2538,15 +2688,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 62
+        "y": 60
       },
       "id": 31,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2566,7 +2717,8 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "/.*Old.*/",
+          "alias": "/.*%.*/",
+          "linewidth": 2,
           "yaxis": 2
         }
       ],
@@ -2575,21 +2727,26 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "rate(elasticsearch_jvm_gc_collection_seconds_sum{gc='old', $global_tag_filter} [$__interval])",
+          "format": "time_series",
           "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-% GC",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Old GC Rate;C:$t(node)-% GC",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "thousand=1000;\nA=fetch('elasticsearch.node.jvm.gc.collectors.old.collection_count', rate='counter')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.jvm.gc.collectors.old.collection_time_in_millis', rate='true')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=B.div(thousand);\noutput(A,C)"
-          },
           "type": "Query"
+        },
+        {
+          "expr": "increase(elasticsearch_jvm_gc_collection_seconds_count{gc='old', $global_tag_filter} [$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend-# GC",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "JVM GC Collectors Old",
       "tooltip": {
@@ -2607,8 +2764,8 @@
       },
       "yaxes": [
         {
-          "format": "ops",
-          "label": "",
+          "format": "short",
+          "label": "Num GCs",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -2616,7 +2773,7 @@
         },
         {
           "format": "percentunit",
-          "label": "",
+          "label": "% GC time",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -2633,15 +2790,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 62
+        "y": 60
       },
       "id": 5,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2665,20 +2823,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
-          "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Heap Max;B:$t(node)-Heap Used",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.jvm.mem.heap_max_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.jvm.mem.heap_used_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=B.div(A);\noutput(C)"
-          },
-          "type": "Query"
+          "expr": "elasticsearch_jvm_memory_used_bytes{area='heap', $global_tag_filter} / on(name) elasticsearch_jvm_memory_committed_bytes{area=\"heap\", $global_tag_filter}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "JVM - Heap - Used %",
       "tooltip": {
@@ -2722,15 +2877,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 71
+        "y": 69
       },
       "id": 13,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2754,20 +2910,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_jvm_memory_used_bytes{area='non-heap',$global_tag_filter} / elasticsearch_jvm_memory_committed_bytes{area='non-heap',$global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:$t(node)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.jvm.mem.non_heap_used_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.jvm.mem.non_heap_committed_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=A.div(B);\noutput(C)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "JVM - Non Heap - Used %",
       "tooltip": {
@@ -2811,15 +2965,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 9,
         "w": 6,
         "x": 6,
-        "y": 71
+        "y": 69
       },
       "id": 11,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -2843,20 +2998,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_jvm_memory_pool_used_bytes{pool='young', $global_tag_filter} / on (name) elasticsearch_jvm_memory_pool_max_bytes{pool='young', $global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:$t(node)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.jvm.mem.pools.young.max_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.jvm.mem.pools.young.used_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=B.div(A);\noutput(C)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "JVM - Young Gen - Used %",
       "tooltip": {
@@ -2900,20 +3053,22 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 71
+        "y": 69
       },
       "id": 10,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
+        "rightSide": false,
         "show": false,
         "total": false,
         "values": false
@@ -2932,20 +3087,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_jvm_memory_pool_used_bytes{pool='survivor', $global_tag_filter} / elasticsearch_jvm_memory_pool_max_bytes{pool='survivor', $global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:$t(node)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.jvm.mem.pools.survivor.max_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.jvm.mem.pools.survivor.used_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=B.div(A);\noutput(C)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "JVM - Survivor Gen - Used %",
       "tooltip": {
@@ -2989,15 +3142,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
+      "datasource": "${DS_APPTUIT-PROMQL}",
       "fill": 0,
       "gridPos": {
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 71
+        "y": 69
       },
       "id": 9,
+      "interval": "$scrape_frequency",
       "legend": {
         "avg": false,
         "current": false,
@@ -3021,20 +3175,18 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "elasticsearch_jvm_memory_pool_used_bytes{pool='old', $global_tag_filter} / elasticsearch_jvm_memory_pool_max_bytes{pool='old', $global_tag_filter}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
-          "ts": {
-            "alias": "C:$t(node)",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.jvm.mem.pools.old.max_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.jvm.mem.pools.old.used_in_bytes')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nC=B.div(A);\noutput(C)"
-          },
           "type": "Query"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "JVM - Old Gen - Used %",
       "tooltip": {
@@ -3078,15 +3230,15 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_APPTUIT}",
-      "fill": 0,
+      "datasource": "${DS_APPTUIT-PROMQL}",
+      "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 80
+        "y": 78
       },
-      "id": 12,
+      "id": 103,
       "legend": {
         "avg": false,
         "current": false,
@@ -3110,20 +3262,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "metrics": [],
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 1,
           "refId": "A",
-          "ts": {
-            "alias": "A:$t(node)-Thread Count;B:$t(node)-Peak Thread Count",
-            "errors": [],
-            "id": "A",
-            "output": true,
-            "query": "A=fetch('elasticsearch.node.jvm.threads.count')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\nB=fetch('elasticsearch.node.jvm.threads.peak_count')$global_tag_filter.tag_filter('cluster==$cluster').tag_filter('node==$node').downsample('[[__interval]]','avg');\noutput(A,B)"
-          },
-          "type": "Query"
+          "type": "Time Series"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "JVM Thread Count",
       "tooltip": {
@@ -3154,7 +3302,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -3167,63 +3315,50 @@
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
-    "elasticsearch"
+    "elasticsearch",
+    "prometheus"
   ],
   "templating": {
     "list": [
       {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
-        "hide": 0,
-        "includeAll": true,
-        "label": null,
-        "multi": false,
-        "name": "cluster",
-        "options": [],
-        "query": "tag_values(elasticsearch.cluster.status, cluster)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "current": {
+          "value": "${VAR_GTS}",
+          "text": "${VAR_GTS}"
+        },
+        "hide": 2,
+        "isGlobal": false,
+        "label": "Global Tagset",
+        "name": "gts",
+        "options": [
+          {
+            "value": "${VAR_GTS}",
+            "text": "${VAR_GTS}"
+          }
+        ],
+        "query": "${VAR_GTS}",
+        "refresh": 0,
+        "skipUrlSync": true,
+        "type": "constant"
       },
       {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "${DS_APPTUIT-PROMQL}",
+        "definition": "label_values(elasticsearch_thread_pool_active_count{$global_tag_filter},type) ",
         "hide": 0,
         "includeAll": true,
-        "label": null,
-        "multi": true,
-        "name": "node",
-        "options": [],
-        "query": "tag_values(elasticsearch.node.process.cpu.percent,node,cluster=$cluster)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
-        "hide": 0,
-        "includeAll": true,
+        "isGlobal": false,
         "label": null,
         "multi": true,
         "name": "threadpool",
         "options": [],
-        "query": "tag_values(elasticsearch.node.thread_pool.active,threadpool)",
+        "query": "label_values(elasticsearch_thread_pool_active_count{$global_tag_filter},type) ",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -3232,41 +3367,28 @@
         "useTags": false
       },
       {
-        "allValue": "*",
-        "current": {},
-        "datasource": "${DS_APPTUIT}",
-        "hide": 2,
-        "includeAll": true,
-        "label": "host",
-        "multi": false,
-        "name": "host",
-        "options": [],
-        "query": "tag_values(elasticsearch.node.process.cpu.percent,node)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
+        "allValue": null,
         "current": {
-          "value": "${VAR_GLOBAL_TAG_FILTER}",
-          "text": "${VAR_GLOBAL_TAG_FILTER}"
+          "text": "1m",
+          "value": "1m"
         },
-        "hide": 2,
-        "label": "global_tag_filter",
-        "name": "global_tag_filter",
+        "hide": 0,
+        "includeAll": false,
+        "isGlobal": false,
+        "label": null,
+        "multi": false,
+        "name": "scrape_frequency",
         "options": [
           {
-            "value": "${VAR_GLOBAL_TAG_FILTER}",
-            "text": "${VAR_GLOBAL_TAG_FILTER}"
+            "selected": false,
+            "text": "2m",
+            "type": "2m",
+            "value": "2m"
           }
         ],
-        "query": "${VAR_GLOBAL_TAG_FILTER}",
-        "type": "constant"
+        "query": "2m",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -3300,7 +3422,7 @@
     ]
   },
   "timezone": "",
-  "title": "Elasticsearch Node Stats",
-  "uid": "5MyduYbik",
+  "title": "Prometheus Elasticsearch Node Stats",
+  "uid": "5MyduYbit",
   "version": 1
 }
