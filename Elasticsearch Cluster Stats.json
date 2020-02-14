@@ -1362,7 +1362,7 @@
         "current": false,
         "max": false,
         "min": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": false
       },
@@ -1385,7 +1385,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(elasticsearch_index_stats_indexing_index_total{instance=~\"$instance\"} [$__interval]))",
+          "expr": "sum(rate(elasticsearch_indices_indexing_index_total{$global_tag_filter}[$__interval]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1552,7 +1552,7 @@
         "current": false,
         "max": false,
         "min": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": false
       },
@@ -1583,7 +1583,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(elasticsearch_index_stats_search_query_total{instance=~\"$instance\"}[$__interval]))",
+          "expr": "sum(rate(elasticsearch_indices_search_query_total{$global_tag_filter}[$__interval]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Total",
