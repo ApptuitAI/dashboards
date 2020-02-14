@@ -1362,7 +1362,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Disc Space",
+      "title": "Disk Space",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1408,7 +1408,7 @@
       "fill": 1,
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 6,
         "x": 12,
         "y": 37
       },
@@ -1455,7 +1455,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Disc Utilization",
+      "title": "Disk Utilization",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1473,6 +1473,99 @@
         {
           "format": "percentunit",
           "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_APPTUIT-PROMQL}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 37
+      },
+      "id": 23,
+      "interval": "$scrape_frequency",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(node_disk_read_bytes_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(node_disk_written_bytes_total{$global_tag_filter}[$__interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "$global_legend",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Disk Read/Write Bps",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
