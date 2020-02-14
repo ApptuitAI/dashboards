@@ -845,13 +845,19 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "avg",
+          "linewidth": 2,
+          "zindex": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "100 - (sum(irate(node_cpu_seconds_total{$global_tag_filter, mode='idle'}[$__interval])) / count(irate(node_cpu_seconds_total{$global_tag_filter, mode='idle'}[$__interval])) * 100)",
+          "expr": "avg(node_cpu_used_percent{$global_tag_filter})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "avg",
@@ -860,7 +866,7 @@
           "type": "Time Series"
         },
         {
-          "expr": "topk(3,100 - irate(node_cpu_seconds_total{$global_tag_filter, mode='idle'}[$__interval]) *100)",
+          "expr": "topk(3, node_cpu_used_percent{$global_tag_filter})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "$global_legend",
@@ -873,7 +879,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Top 3 Used CPU",
+      "title": "Top 3 Instances by Used CPU",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -889,7 +895,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
