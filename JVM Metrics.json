@@ -1501,7 +1501,7 @@
     ]
   },
   "timezone": "",
-  "title": "Prometheus JVM Metrics",
+  "title": "JVM Metrics",
   "uid": "76FKuLxPk",
   "version": 1
 }

@@ -2099,7 +2099,7 @@
     ]
   },
   "timezone": "",
-  "title": "Prometheus Elasticsearch Index Stats",
+  "title": "Elasticsearch Index Stats",
   "uid": "tKdOuLbmp",
   "version": 1
 }
