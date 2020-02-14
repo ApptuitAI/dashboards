@@ -469,7 +469,7 @@
     ]
   },
   "timezone": "",
-  "title": "Prometheus Outgoing Request Metrics",
+  "title": "Outgoing Request Metrics",
   "uid": "ep--7Aqiz",
   "version": 1
 }

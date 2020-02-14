@@ -3422,7 +3422,7 @@
     ]
   },
   "timezone": "",
-  "title": "Prometheus Elasticsearch Node Stats",
+  "title": "Elasticsearch Node Stats",
   "uid": "5MyduYbit",
   "version": 1
 }

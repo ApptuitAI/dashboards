@@ -4467,7 +4467,7 @@
     ]
   },
   "timezone": "",
-  "title": "Prometheus Elasticsearch Cluster Stats",
+  "title": "Elasticsearch Cluster Stats",
   "uid": "SMuvXLbml",
   "version": 1
 }

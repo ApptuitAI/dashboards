@@ -530,7 +530,7 @@
     ]
   },
   "timezone": "",
-  "title": "Prometheus Tomcat Metrics",
+  "title": "Tomcat Metrics",
   "uid": "9kL2uLxpz",
   "version": 1
 }
