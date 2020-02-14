@@ -1730,10 +1730,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(node_memory_SwapTotal_bytes{$global_tag_filter}) - sum(node_memory_SwapFree_bytes{$global_tag_filter}) / sum(node_memory_SwapFree_bytes{$global_tag_filter})) * 100",
+          "expr": "(node_memory_SwapTotal_bytes{$global_tag_filter} - node_memory_SwapFree_bytes{$global_tag_filter} - node_memory_SwapCached_bytes{$global_tag_filter}) / node_memory_SwapTotal_bytes{$global_tag_filter}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "swap_usage_percent",
+          "legendFormat": "$global_legend",
           "metrics": [],
           "refId": "A",
           "ts": {},
@@ -1760,7 +1761,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
